@@ -16,6 +16,7 @@ public class Comando {
             switch(comando){
 
                 case "/gioca":
+                    partita.avvia();
                     
                     break;
 

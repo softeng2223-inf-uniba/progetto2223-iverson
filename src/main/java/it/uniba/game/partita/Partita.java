@@ -12,16 +12,23 @@ public class Partita {
 
     /**
      * Inizializza una Partita e la sua relativa griglia di gioco
-    
+     * @throws NumeroCoordinateException se si inseriscono un numero diverso di coordinate
+	 * rispetto alla sua dimensione
      */
-    public Partita() {
+    public Partita()  throws NumeroCoordinateException {
         this.griglia = new Griglia(10,10);
-        this.inCorso = true;
+        this.inCorso = false;
         this.erroriCorrenti = 0;
         this.colpiTotali = 0;
         this.numMaxErrori = 50;
     }
 
+    /**
+     * Inizializza una Partita
+     */
+    public void avvia(){
+        this.inCorso = true;
+    }
 /**
  * Restituisce il numero massimo di errori
  * @return numero massimo di errori
