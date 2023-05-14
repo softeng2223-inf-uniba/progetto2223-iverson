@@ -5,9 +5,7 @@ import it.uniba.game.utility.Keyboard;
 
 public class Comando {
     /**
-     * 
-     * @throws PosizioneException
-     * @throws NumeroCoordinateException
+     * Funzione che ha la funzione di "menu" e permette all'utente di inserire i vari comandi 
      */
     public static void avvia(){
         String comando = new String("");
@@ -22,7 +20,11 @@ public class Comando {
                     break;
 
                 case "/svelagriglia":
-                    
+                    if(partita.statoPartita()){
+                        partita.svelaGriglia();
+                    }else{
+                        System.out.println("La partita non è stata inizializzata");
+                    }
                     break;
                 
                 case "/colpisci":
@@ -60,9 +62,6 @@ public class Comando {
                 default:
                     System.out.println("Comando non riconosciuto");
                     break;    
-
-
-
 
             }
             

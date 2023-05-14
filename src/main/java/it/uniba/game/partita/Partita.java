@@ -7,7 +7,7 @@ public class Partita {
     private int numMaxErrori;
     private int colpiTotali;
     private int erroriCorrenti;
-    private String inCorso;
+    private boolean inCorso;
     private Griglia griglia;
 
     /**
@@ -16,7 +16,10 @@ public class Partita {
      */
     public Partita() {
         this.griglia = new Griglia(10,10);
-        this.inCorso = "Partita avviata";
+        this.inCorso = true;
+        this.erroriCorrenti = 0;
+        this.colpiTotali = 0;
+        this.numMaxErrori = 50;
     }
 
 /**
@@ -72,42 +75,77 @@ public class Partita {
 
 
     
-    /**
+       /**
      * Restituisce lo stato della partita
      * @return stato della partita
      */
-    public String statoPartita(){
+    public boolean statoPartita(){
         return inCorso;
     }
-
-    /**
-     * Imposta lo stato della partita in Pausa
-     */
-  
-    public void pausaPartita(){
-        inCorso = "Partita in Pausa";
-    }
-
-    /**
-     * Imposta lo stato della partita in terminata
-     */
-
-    public void chiudiPartita(){
-        inCorso = "Partita terminata";
-    }
-    /**
-     * Imposta lo stato della partita in avviata
-     */
    
-    public void continuaPartita(){
-        if (inCorso != "Partita terminata"){
-            inCorso = "Partita avviata";
-        }else{
-            System.out.println("La partita è gia Terminata");
+    /**
+     * Restituisce la griglia di gioco stampata in Unicode
+     */
+    public void svelaGriglia() {
+        char orizzontale = '\u2501'; // carattere Unicode della linea orizzontale
+        char verticale = '\u2503'; // carattere Unicode della linea verticale
+        char nave = '\u26F4'; // carattere Unicode della nave
+        char mancato = '\u25BD'; // carattere Unicode che rappresenta il mancato con un triangolino vuoto 
+        char colpito = '\u25BC'; // carattere Unicode che rappresenta il colpito con un triangolino pieno
+    
+        // Stampa delle righe superiori della griglia
+        System.out.print("   ");
+        for (int i = 1; i <= 10; i++) {
+            System.out.print(" " + i + "  " );
         }
-            
-    }
+        System.out.println();
+         // Stampa della prima linea verticale della griglia
+         System.out.print("  " + verticale);
+         // Stampa delle linee orizzontali della griglia
+         for (int j = 0; j < 10; j++) {
+             System.out.print(orizzontale + "" + orizzontale + "" + orizzontale + verticale);
+         }
+         System.out.println();
+        // Stampa delle linee orizzontali e verticali della griglia
+        for (int i = 0; i < 10; i++) {
+            System.out.print((char) (i + 65) + " " + verticale);
+           
+            for (int j = 0; j < 10; j++) {
+                String cella = griglia.getCella(i, j);
+                switch (cella) {
+                    case "N":
+                        System.out.print(" " + nave + " " + verticale);           
+                        break;
+                    case "V":
+                        System.out.print("   " + verticale);
+                        break;
+                    case "NC":
+                        System.out.print(" " + colpito + " " + verticale);
+                        break;
+                    case "VC":
+                        System.out.print(" " + mancato + " " + verticale);
+                        break;
+                    default:
+                        System.out.print("   " + verticale);   
+                        break;
+                        
+                    }
+                    
+                }
+                
+                System.out.println();
 
+                
+                
+                // Stampa della prima linea verticale della griglia
+                System.out.print("  " + verticale);
+                // Stampa delle linee orizzontali della griglia
+                for (int j = 0; j < 10; j++) {
+                    System.out.print(orizzontale + "" + orizzontale + "" + orizzontale + verticale);
+                }
+                System.out.println();
+            }
+    }
 
     	/**
 	 * Descrive lo stato della Partita
