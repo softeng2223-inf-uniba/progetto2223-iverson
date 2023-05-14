@@ -1,9 +1,10 @@
-package it.uniba.game.nave;
+package nave;
 
 /**
  * Classe di una Coordinata
  */
-public class Coordinata implements Cloneable{
+public class Coordinata implements Cloneable
+{
     private int riga;
     private int colonna;
 	private boolean colpito;
@@ -43,6 +44,13 @@ public class Coordinata implements Cloneable{
 	*/
 	public boolean getcolpito(){
 		return this.colpito;
+	}
+
+	/**
+	* Imposta la coordinata come colpita
+	*/
+	public void setcolpito(){
+		this.colpito = true;
 	}
 	
 	@Override
