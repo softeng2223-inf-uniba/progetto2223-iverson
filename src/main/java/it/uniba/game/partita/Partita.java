@@ -13,8 +13,11 @@ public class Partita {
     /**
      * Inizializza una Partita
      */
-    public Partita()  throws NumeroCoordinateException {
+    public Partita(){
         this.inCorso = false;
+        this.erroriCorrenti = 0;
+        this.colpiTotali = 0;
+        this.numMaxErrori = 50;
     }
 
     /**
@@ -22,12 +25,9 @@ public class Partita {
      * @throws NumeroCoordinateException se si inseriscono un numero diverso di coordinate
 	 * rispetto alla sua dimensione
      */
-    public void avvia(){
+    public void avvia() throws NumeroCoordinateException {
         this.griglia = new Griglia(10,10);
         this.inCorso = true;
-        this.erroriCorrenti = 0;
-        this.colpiTotali = 0;
-        this.numMaxErrori = 50;
     }
 /**
  * Restituisce il numero massimo di errori
@@ -153,6 +153,64 @@ public class Partita {
                 System.out.println();
             }
     }
+
+    /**
+     * Restituisce la griglia di gioco stampata in Unicode a differenza si svelaGriglia() non mostra le navi dell'avversario
+     */
+    public void stampaGriglia() {
+        char orizzontale = '\u2501'; // carattere Unicode della linea orizzontale
+        char verticale = '\u2503'; // carattere Unicode della linea verticale
+        char mancato = '\u25BD'; // carattere Unicode che rappresenta il mancato con un triangolino vuoto 
+        char colpito = '\u25BC'; // carattere Unicode che rappresenta il colpito con un triangolino pieno
+    
+        // Stampa delle righe superiori della griglia
+        System.out.print("   ");
+        for (int i = 1; i <= 10; i++) {
+            System.out.print(" " + i + "  " );
+        }
+        System.out.println();
+         // Stampa della prima linea verticale della griglia
+         System.out.print("  " + verticale);
+         // Stampa delle linee orizzontali della griglia
+         for (int j = 0; j < 10; j++) {
+             System.out.print(orizzontale + "" + orizzontale + "" + orizzontale + verticale);
+         }
+         System.out.println();
+        // Stampa delle linee orizzontali e verticali della griglia
+        for (int i = 0; i < 10; i++) {
+            System.out.print((char) (i + 65) + " " + verticale);
+           
+            for (int j = 0; j < 10; j++) {
+                String cella = griglia.getCella(i, j);
+                switch (cella) {
+                    case "V":
+                        System.out.print("   " + verticale);
+                        break;
+                    case "NC":
+                        System.out.print(" " + colpito + " " + verticale);
+                        break;
+                    case "VC":
+                        System.out.print(" " + mancato + " " + verticale);
+                        break;
+                    default:
+                        System.out.print("   " + verticale);   
+                        break;
+                        
+                    }
+                    
+                }
+                
+                System.out.println();
+                
+                // Stampa della prima linea verticale della griglia
+                System.out.print("  " + verticale);
+                // Stampa delle linee orizzontali della griglia
+                for (int j = 0; j < 10; j++) {
+                    System.out.print(orizzontale + "" + orizzontale + "" + orizzontale + verticale);
+                }
+                System.out.println();
+            }
+	}
 
     	/**
 	 * Descrive lo stato della Partita
