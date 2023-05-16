@@ -17,6 +17,7 @@ public class Comando {
         Partita partita = new Partita();
 
         do {
+            System.out.print("\nInserisci un comando: ");
             comando = Keyboard.readString();
             switch (comando) {
 
@@ -42,16 +43,40 @@ public class Comando {
                     break;
 
                 case "/facile":
+               
+                if(!partita.statoPartita()){
+                    partita.setNumMaxErrori(50);
+                    System.out.println("OK \n difficolta' impostata a facile");
+                }
+                else{
+                    System.out.println("Impossibile modificare la difficoltà, la partita è gia in corso");
 
+                }
                     break;
 
-                case "/medio":
 
+                case "/medio":
+                if(!partita.statoPartita()){
+                    partita.setNumMaxErrori(30);
+                    System.out.println("OK \n difficolta' impostata a medio");
+                }
+                else{
+                    System.out.println("Impossibile modificare la difficoltà, la partita è gia in corso");
+
+                }
                     break;
 
                 case "/difficile":
+                if(!partita.statoPartita()){
+                partita.setNumMaxErrori(10);
+                System.out.println("OK \n difficolta' impostata a difficile");
+                }
+                else{
+                    System.out.println("Impossibile modificare la difficoltà, la partita è gia in corso");
 
-                    break;
+                }
+                
+                 break;
 
                 case "/mostranavi":
                     MostraNavi();

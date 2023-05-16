@@ -34,6 +34,8 @@ public class Partita {
         this.inCorso = true;
     }
 
+
+   
     /**
      * Restituisce il numero massimo di errori
      * 
