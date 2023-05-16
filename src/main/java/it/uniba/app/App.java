@@ -18,5 +18,6 @@ public final class App {
                 Comando.StampaHelp();
             }
         }
+       
     }
 }

@@ -43,7 +43,7 @@ public class Comando {
 
                 case "/facile":
                
-                if(!partita.StatoPartita()){
+                if(!partita.statoPartita()){
                     partita.setNumMaxErrori(50);
                     System.out.println("OK \n difficolta' impostata a facile");
                 }
@@ -55,7 +55,7 @@ public class Comando {
 
 
                 case "/medio":
-                if(!partita.StatoPartita()){
+                if(!partita.statoPartita()){
                     partita.setNumMaxErrori(30);
                     System.out.println("OK \n difficolta' impostata a facile");
                 }
@@ -66,7 +66,7 @@ public class Comando {
                     break;
 
                 case "/difficile":
-                if(!partita.StatoPartita()){
+                if(!partita.statoPartita()){
                 partita.setNumMaxErrori(10);
                 System.out.println("OK \n difficolta' impostata a facile");
                 }
