@@ -12,7 +12,7 @@ public class Comando {
      *                                   coordinate
      *                                   rispetto alla sua dimensione
      */
-    public static void avvia throws NumeroCoordinateException() {
+    public static void avvia () throws NumeroCoordinateException{
         String comando = new String("");
         Partita partita = new Partita();
 
