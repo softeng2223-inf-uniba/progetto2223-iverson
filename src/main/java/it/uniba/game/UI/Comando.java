@@ -54,7 +54,7 @@ public class Comando {
                     break;
 
                 case "/mostranavi":
-
+                    MostraNavi();
                     break;
 
                 case "/mostralivello":
@@ -74,5 +74,12 @@ public class Comando {
         } while (true);
 
     }
-
+    
+    public static void MostraNavi(){
+        System.out.println("Le navi disponibili sono: \n"); 
+        System.out.println("Cacciatorpediniere \u26F4 \u26F4  esemplari: 4 \n");
+        System.out.println("Incrociatore \u26F4 \u26F4 \u26F4  esemplari: 3 \n");
+        System.out.println("Corazzata \u26F4 \u26F4 \u26F4 \u26F4  esemplari: 2 \n");
+        System.out.println("Portaerei \u26F4 \u26F4 \u26F4 \u26F4 \u26F4  esemplari: 1 \n");
+    }
 }
