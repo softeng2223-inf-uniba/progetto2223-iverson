@@ -83,12 +83,11 @@ public class Comando {
                     break;
 
                 case "/mostralivello":
-
+                    MostraLivello(partita);
                     break;
 
                 case "/esci":
                     Esci();
-                    
                     break;
 
                 default:
@@ -146,6 +145,25 @@ public class Comando {
         if(conferma.equals("y")){
             System.exit(0);
         }
+    }
+
+    /**
+     * La funzione mostra al giocatore il livello di difficoltà della partita
+     * @param partita Oggetto di tipo Partita dalla quale prendiamo la funzione NumMaxErrori
+     */
+    private static void MostraLivello(Partita partita){
+        switch(partita.getNumMaxErrori()){
+            case 50: 
+                System.out.println("La difficoltà è impostata su 'FACILE' con Max Errori = 50");
+                break;
+            case 30: 
+                System.out.println("La difficoltà è impostata su 'MEDIA' con Max Errori = 30");
+                break;
+            case 10: 
+                System.out.println("La difficoltà è impostata su 'DIFFICILE' con Max Errori = 10");
+                break;
+        }
+
     }
 }
 
