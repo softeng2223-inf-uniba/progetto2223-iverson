@@ -17,6 +17,7 @@ public class Comando {
         Partita partita = new Partita();
 
         do {
+            System.out.print("\nInserisci un comando: ");
             comando = Keyboard.readString();
             switch (comando) {
 
@@ -57,7 +58,7 @@ public class Comando {
                 case "/medio":
                 if(!partita.statoPartita()){
                     partita.setNumMaxErrori(30);
-                    System.out.println("OK \n difficolta' impostata a facile");
+                    System.out.println("OK \n difficolta' impostata a medio");
                 }
                 else{
                     System.out.println("Impossibile modificare la difficoltà, la partita è gia in corso");
@@ -68,7 +69,7 @@ public class Comando {
                 case "/difficile":
                 if(!partita.statoPartita()){
                 partita.setNumMaxErrori(10);
-                System.out.println("OK \n difficolta' impostata a facile");
+                System.out.println("OK \n difficolta' impostata a difficile");
                 }
                 else{
                     System.out.println("Impossibile modificare la difficoltà, la partita è gia in corso");
