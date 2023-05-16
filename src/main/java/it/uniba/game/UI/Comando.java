@@ -2,13 +2,17 @@ package it.uniba.game.UI;
 
 import it.uniba.game.partita.Partita;
 import it.uniba.game.utility.Keyboard;
+import it.uniba.game.eccezioni.NumeroCoordinateException;
 
 public class Comando {
     /**
      * Funzione che ha la funzione di "menu" e permette all'utente di inserire i
      * vari comandi
+     * @throws NumeroCoordinateException se si inseriscono un numero diverso di
+     *                                   coordinate
+     *                                   rispetto alla sua dimensione
      */
-    public static void avvia() {
+    public static void avvia throws NumeroCoordinateException() {
         String comando = new String("");
         Partita partita = new Partita();
 

@@ -1,5 +1,7 @@
 package it.uniba.game.partita;
 
+import it.uniba.game.eccezioni.NumeroCoordinateException;
+
 /**
  * Classe che inizializza una Partita e la sua relativa Griglia di gioco
  */
