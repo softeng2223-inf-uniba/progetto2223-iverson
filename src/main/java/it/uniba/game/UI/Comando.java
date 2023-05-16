@@ -5,37 +5,38 @@ import it.uniba.game.utility.Keyboard;
 
 public class Comando {
     /**
-     * Funzione che ha la funzione di "menu" e permette all'utente di inserire i vari comandi 
+     * Funzione che ha la funzione di "menu" e permette all'utente di inserire i
+     * vari comandi
      */
-    public static void avvia(){
+    public static void avvia() {
         String comando = new String("");
         Partita partita = new Partita();
 
-        do{
+        do {
             comando = Keyboard.readString();
-            switch(comando){
+            switch (comando) {
 
                 case "/gioca":
                     partita.avvia();
-                    
+
                     break;
 
                 case "/svelagriglia":
-                    if(partita.statoPartita()){
+                    if (partita.statoPartita()) {
                         partita.svelaGriglia();
-                    }else{
+                    } else {
                         System.out.println("La partita non è stata inizializzata");
                     }
                     break;
-                
+
                 case "/colpisci":
-                    
+
                     break;
 
                 case "/help":
-                    
+
                     break;
-                    
+
                 case "/facile":
 
                     break;
@@ -49,7 +50,7 @@ public class Comando {
                     break;
 
                 case "/mostranavi":
-                    
+
                     break;
 
                 case "/mostralivello":
@@ -57,19 +58,17 @@ public class Comando {
                     break;
 
                 case "/esci":
-                    
+
                     break;
 
                 default:
                     System.out.println("Comando non riconosciuto");
-                    break;    
+                    break;
 
             }
-            
-           
-        }while(true);
 
-    } 
+        } while (true);
 
-    
+    }
+
 }
