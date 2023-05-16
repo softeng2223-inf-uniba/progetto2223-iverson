@@ -42,16 +42,40 @@ public class Comando {
                     break;
 
                 case "/facile":
+               
+                if(!partita.StatoPartita()){
+                    partita.setNumMaxErrori(50);
+                    System.out.println("OK \n difficolta' impostata a facile");
+                }
+                else{
+                    System.out.println("Impossibile modificare la difficoltà, la partita è gia in corso");
 
+                }
                     break;
 
-                case "/medio":
 
+                case "/medio":
+                if(!partita.StatoPartita()){
+                    partita.setNumMaxErrori(30);
+                    System.out.println("OK \n difficolta' impostata a facile");
+                }
+                else{
+                    System.out.println("Impossibile modificare la difficoltà, la partita è gia in corso");
+
+                }
                     break;
 
                 case "/difficile":
+                if(!partita.StatoPartita()){
+                partita.setNumMaxErrori(10);
+                System.out.println("OK \n difficolta' impostata a facile");
+                }
+                else{
+                    System.out.println("Impossibile modificare la difficoltà, la partita è gia in corso");
 
-                    break;
+                }
+                
+                 break;
 
                 case "/mostranavi":
                     MostraNavi();
