@@ -87,7 +87,8 @@ public class Comando {
                     break;
 
                 case "/esci":
-
+                    Esci();
+                    
                     break;
 
                 default:
@@ -100,6 +101,9 @@ public class Comando {
 
     }
     
+    /**
+     * La funzione mostra il numero di esemplari e le dimensioni delle navi
+     */
     public static void MostraNavi(){
         System.out.println("Le navi disponibili sono: \n"); 
         System.out.println("Cacciatorpediniere \u26F4 \u26F4  esemplari: 4 \n");
@@ -108,6 +112,9 @@ public class Comando {
         System.out.println("Portaerei \u26F4 \u26F4 \u26F4 \u26F4 \u26F4  esemplari: 1 \n");
     }
     
+    /**
+     * La funzione stampa il comando il /help che descrive i vari comandi disponibili
+     */
     public static void StampaHelp(){
         System.out.print( "Comandi applicabili: \n" + 
         "/gioca (Comando che inizializza una nuova partita)\n" + 
@@ -121,11 +128,24 @@ public class Comando {
         "/difficile (Comando chiamabile solamente prima di iniziare la partita, imposta il livello di difficolta')\n");
     }
     
+    /**
+     * La funzione stampa la descrizione del gioco all'avvio 
+     */
     public static void StampaDescrizione(){
         System.out.print("Benvenuto in battaglia navale \n" + 
             "l'obbiettivo del gioco e' distruggere tutte le navi dell'avversario entro un tot di mosse \n" + 
             "scrivi /help per ulteriori informazioni");
     }
-        
+       
+    /**
+     * La funzione permette di chiudere il gioco, dopo aver richiesto un input da tastiera allo studente 
+     */
+    private static void Esci(){
+        System.out.print( "Sei sicuro di voler chiudere il gioco? Se si premere: 'y' altrimenti premi 'n' ");
+        String conferma = Keyboard.readString();
+        if(conferma.equals("y")){
+            System.exit(0);
+        }
+    }
 }
 
