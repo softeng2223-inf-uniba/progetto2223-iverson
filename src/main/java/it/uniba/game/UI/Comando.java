@@ -38,7 +38,7 @@ public class Comando {
                     break;
 
                 case "/help":
-
+                    StampaHelp();
                     break;
 
                 case "/facile":
@@ -82,4 +82,25 @@ public class Comando {
         System.out.println("Corazzata \u26F4 \u26F4 \u26F4 \u26F4  esemplari: 2 \n");
         System.out.println("Portaerei \u26F4 \u26F4 \u26F4 \u26F4 \u26F4  esemplari: 1 \n");
     }
+    
+    public static void StampaHelp(){
+        System.out.print( "Comandi applicabili: \n" + 
+        "/gioca (Comando che inizializza una nuova partita)\n" + 
+        "/svelagriglia (Comando eseguibile solo a partita in corso, mostra la griglia con le navi posizionate)\n" + 
+        "/help (Comando che mostra la lista dei comandi)\n" + 
+        "/mostranavi (Comando che mostra una legenda delle navi disponibili nel gioco)\n" + 
+        "/mostralivello (Comando che mostra il livello al quale si sta giocando fra facile, medio e difficile)\n" + 
+        "/esci (Comando che fa uscire dalla partita)\n" +
+        "/facile (Comando chiamabile solamente prima di iniziare la partita, imposta il livello di difficolta')\n" +
+        "/medio (Comando chiamabile solamente prima di iniziare la partita, imposta il livello di difficolta')\n" +
+        "/difficile (Comando chiamabile solamente prima di iniziare la partita, imposta il livello di difficolta')\n");
+    }
+    
+    public static void StampaDescrizione(){
+        System.out.print("Benvenuto in battaglia navale \n" + 
+            "l'obbiettivo del gioco e' distruggere tutte le navi dell'avversario entro un tot di mosse \n" + 
+            "scrivi /help per ulteriori informazioni");
+    }
+        
 }
+
