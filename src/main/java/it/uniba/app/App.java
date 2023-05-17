@@ -29,8 +29,7 @@ public final class App {
         }
         try {
             comando.avvia();
-        }
-        catch (NumeroCoordinateException e) {
+        } catch (NumeroCoordinateException e) {
             System.out.println(e.getMessage());
         }
 
