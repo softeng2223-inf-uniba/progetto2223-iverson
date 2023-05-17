@@ -141,7 +141,8 @@ public class Comando {
         + "/esci (Comando che fa uscire dalla partita)\n"
         + "/facile (Comando chiamabile solamente prima di iniziare la partita, imposta il livello di difficolta')\n"
         + "/medio (Comando chiamabile solamente prima di iniziare la partita, imposta il livello di difficolta')\n"
-        + "/difficile (Comando chiamabile solamente prima di iniziare la partita, imposta il livello di difficolta')\n");
+        + "/difficile (Comando chiamabile solamente prima di iniziare la partita,"
+        + "imposta il livello di difficolta')\n");
     }
 
     /**

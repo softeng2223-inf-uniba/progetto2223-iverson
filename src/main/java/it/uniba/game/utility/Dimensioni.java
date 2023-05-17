@@ -1,7 +1,8 @@
 package it.uniba.game.utility;
-
+/**
+ * Classe enum che rappresenta i valori di dimensioni.
+ */
 public enum Dimensioni {
-    
     CACCIATORPEDINIERE(2),
     CORAZZATA(4),
     INCROCIATORE(3),
@@ -11,10 +12,10 @@ public enum Dimensioni {
 
      /**
      * Costruttore della classe enum.
-     * @param value Puó essere una dimensione valida in base.
+     * @param pValue Puó essere una dimensione valida in base.
      */
-    private Dimensioni(int value) {
-        this.value = value;
+    private Dimensioni(final int pValue) {
+        this.value = pValue;
     }
 
     /**

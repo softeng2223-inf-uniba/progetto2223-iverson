@@ -12,10 +12,10 @@ public enum Difficolta {
 
     /**
      * Costruttore della classe enum.
-     * @param value in base 10, 30, 50 viene definito il valore dell'enum
+     * @param pValue in base 10, 30, 50 viene definito il valore dell'enum
      */
-    Difficolta(int value) {
-        this.value = value;
+    Difficolta(final int pValue) {
+        this.value = pValue;
     }
 
     /**

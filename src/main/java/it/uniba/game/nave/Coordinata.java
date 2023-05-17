@@ -11,12 +11,12 @@ public class Coordinata implements Cloneable {
     /**
      * Costruttore di Coordinata.
      *
-     * @param riga    : riga della coordinata
-     * @param colonna : colonna della coordinata
+     * @param pRiga    : riga della coordinata
+     * @param pColonna : colonna della coordinata
      */
-    public Coordinata(int riga, int colonna) {
-        this.riga = riga;
-        this.colonna = colonna;
+    public Coordinata(final int pRiga, final int pColonna) {
+        this.riga = pRiga;
+        this.colonna = pColonna;
         this.colpito = false;
     }
 
@@ -55,6 +55,10 @@ public class Coordinata implements Cloneable {
         this.colpito = true;
     }
 
+    /**
+     * Clona l'oggetto.
+     * r@return un nuovo oggetto di Coordinata.
+     */
     @Override
     protected Object clone() throws CloneNotSupportedException {
         return super.clone();
@@ -66,7 +70,9 @@ public class Coordinata implements Cloneable {
      * @return stato della coordinata
      */
     public String toString() {
-        return "Riga: " + String.valueOf(this.riga) +
-                " Colonna " + String.valueOf(this.colonna);
+        return "Riga: "
+                + String.valueOf(this.riga)
+                + " Colonna "
+                + String.valueOf(this.colonna);
     }
 }
