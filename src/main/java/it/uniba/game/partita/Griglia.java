@@ -20,11 +20,11 @@ import it.uniba.game.eccezioni.NumeroCoordinateException;
 class Griglia {
     private int righe;
     private int colonne;
-
+    private static final Random RAND = new Random();
     private String[][] griglia;
     private ArrayList<ArrayList<Nave>> navi;
 
-    private int numNavi;
+
 
     /**
      * Inizializza la griglia di gioco.
@@ -40,12 +40,11 @@ class Griglia {
         this.griglia = new String[this.righe][this.colonne];
         for (int i = 0; i < this.griglia.length; i++) {
             for (int j = 0; j < this.griglia.length; j++) {
-                this.griglia[i][j] = new String("V");
+                this.griglia[i][j] = "V";
             }
         }
 
         impostaNavi();
-        this.numNavi = setnumnavi();
 
     }
 
@@ -76,16 +75,15 @@ class Griglia {
      * @return un array di coordinate consecutive
      */
     private Coordinata[] trovaCellaVuota(final int dimnave) {
-        Random rand = new Random();
-        rand.setSeed(System.currentTimeMillis());
+        RAND.setSeed(System.currentTimeMillis());
         int triga;
         int tcolonna;
         boolean esitoTrovato = false;
 
         do {
             do {
-                triga = rand.nextInt(this.righe);
-                tcolonna = rand.nextInt(this.colonne);
+                triga = RAND.nextInt(this.righe);
+                tcolonna = RAND.nextInt(this.colonne);
 
             } while (!this.griglia[triga][tcolonna].equals("V"));
             boolean esitoR = false;
@@ -177,21 +175,6 @@ class Griglia {
 
     }
 
-    /**
-     * Imposta numero delle navi.
-     *
-     * @return pNumNavi numero delle navi
-     */
-    private int setnumnavi() {
-        int pNumNavi = 0;
-        for (int i = 0; i < this.navi.size(); i++) {
-            for (int j = 0; j < this.navi.get(i).size(); j++) {
-                pNumNavi = pNumNavi + this.navi.get(j).size();
-            }
-        }
-        return pNumNavi;
-
-    }
 
     /**
      * Descrive lo stato della Griglia.

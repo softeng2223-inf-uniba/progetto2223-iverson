@@ -13,7 +13,7 @@ public class Partita {
     private int erroriCorrenti;
     private boolean inCorso;
     private Griglia griglia;
-    private final int dimMax = 10;
+    private static final int DIMMAX = 10;
 
     /**
      * Inizializza una Partita.
@@ -33,7 +33,7 @@ public class Partita {
      * coordinate rispetto alla sua dimensione
      */
     public void avvia() throws NumeroCoordinateException {
-        this.griglia = new Griglia(dimMax, dimMax);
+        this.griglia = new Griglia(DIMMAX, DIMMAX);
         this.inCorso = true;
     }
 
@@ -108,22 +108,22 @@ public class Partita {
         final int valoreChiocciola = 65;
         // Stampa delle righe superiori della griglia
         System.out.print("   ");
-        for (int i = 1; i <= dimMax; i++) {
+        for (int i = 1; i <= DIMMAX; i++) {
             System.out.print(" " + i + "  ");
         }
         System.out.println();
         // Stampa della prima linea verticale della griglia
         System.out.print("  " + verticale);
         // Stampa delle linee orizzontali della griglia
-        for (int j = 0; j < dimMax; j++) {
+        for (int j = 0; j < DIMMAX; j++) {
             System.out.print(orizzontale + "" + orizzontale + "" + orizzontale + verticale);
         }
         System.out.println();
         // Stampa delle linee orizzontali e verticali della griglia
-        for (int i = 0; i < dimMax; i++) {
+        for (int i = 0; i < DIMMAX; i++) {
             System.out.print((char) (i + valoreChiocciola) + " " + verticale);
 
-            for (int j = 0; j < dimMax; j++) {
+            for (int j = 0; j < DIMMAX; j++) {
                 String cella = griglia.getCella(i, j);
                 switch (cella) {
                     case "N":
@@ -151,7 +151,7 @@ public class Partita {
             // Stampa della prima linea verticale della griglia
             System.out.print("  " + verticale);
             // Stampa delle linee orizzontali della griglia
-            for (int j = 0; j < dimMax; j++) {
+            for (int j = 0; j < DIMMAX; j++) {
                 System.out.print(orizzontale + "" + orizzontale + "" + orizzontale + verticale);
             }
             System.out.println();
@@ -171,22 +171,22 @@ public class Partita {
 
         // Stampa delle righe superiori della griglia
         System.out.print("   ");
-        for (int i = 1; i <= dimMax; i++) {
+        for (int i = 1; i <= DIMMAX; i++) {
             System.out.print(" " + i + "  ");
         }
         System.out.println();
         // Stampa della prima linea verticale della griglia
         System.out.print("  " + verticale);
         // Stampa delle linee orizzontali della griglia
-        for (int j = 0; j < dimMax; j++) {
+        for (int j = 0; j < DIMMAX; j++) {
             System.out.print(orizzontale + "" + orizzontale + "" + orizzontale + verticale);
         }
         System.out.println();
         // Stampa delle linee orizzontali e verticali della griglia
-        for (int i = 0; i < dimMax; i++) {
+        for (int i = 0; i < DIMMAX; i++) {
             System.out.print((char) (i + valoreChiocciola) + " " + verticale);
 
-            for (int j = 0; j < dimMax; j++) {
+            for (int j = 0; j < DIMMAX; j++) {
                 String cella = griglia.getCella(i, j);
                 switch (cella) {
                     case "V":
@@ -211,7 +211,7 @@ public class Partita {
             // Stampa della prima linea verticale della griglia
             System.out.print("  " + verticale);
             // Stampa delle linee orizzontali della griglia
-            for (int j = 0; j < dimMax; j++) {
+            for (int j = 0; j < DIMMAX; j++) {
                 System.out.print(orizzontale + "" + orizzontale + "" + orizzontale + verticale);
             }
             System.out.println();

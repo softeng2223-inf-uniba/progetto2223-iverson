@@ -14,18 +14,15 @@ import it.uniba.game.utility.Difficolta;
  * tramite la funzione avvia().
  */
 public class Comando {
-    private static String comando;
-    private static final Scanner KEYBOARD = new Scanner(System.in);
-    private static Partita partita;
+    private  String comando;
+    private static final Scanner KEYBOARD = new Scanner(System.in, "UTF-8");
+    private  Partita partita;
 
     /**
      * Construttore della classe Comando.
      */
     public Comando() {
-
-        comando = new String("");
         partita = new Partita();
-
     }
 
     /**
@@ -169,7 +166,7 @@ public class Comando {
     /**
      * La funzione mostra al giocatore il livello di difficoltà della partita.
      */
-    private static void mostraLivello() {
+    private  void mostraLivello() {
         if (partita.getNumMaxErrori() == Difficolta.valueOf("FACILE").getValue()) {
             System.out.println("La difficoltà è impostata su 'FACILE' con Max Errori = 50");
         } else if (partita.getNumMaxErrori() == Difficolta.valueOf("MEDIO").getValue()) {
