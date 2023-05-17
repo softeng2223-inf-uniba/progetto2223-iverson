@@ -11,15 +11,15 @@ import it.uniba.game.utility.Difficolta;
 
 /**
  * Classe che ha la la funzione di menu e permette all'utente di inserire i vari comandi
- * tramite la funzione avvia()
+ * tramite la funzione avvia().
  */
 public class Comando {
-    public static String comando; 
-    private static final Scanner keyboard = new Scanner(System.in);
-    public static Partita partita;
+    private static String comando;
+    private static final Scanner KEYBOARD = new Scanner(System.in);
+    private static Partita partita;
 
     /**
-     * Construttore della classe Comando
+     * Construttore della classe Comando.
      */
     public Comando() {
 
@@ -34,15 +34,14 @@ public class Comando {
      * @throws NumeroCoordinateException se si inseriscono un numero diverso di
      * coordinate rispetto alla sua dimensione.
      */
-    public void avvia () throws NumeroCoordinateException{
-        
+    public void avvia() throws NumeroCoordinateException {
         do {
             System.out.print("\nInserisci un comando: ");
-            comando = keyboard.nextLine();
+            comando = KEYBOARD.nextLine();
             switch (comando) {
 
                 case "/gioca":
-                    if (!partita.statoPartita()){
+                    if (!partita.statoPartita()) {
                         partita.avvia();
                     } else {
                         System.out.println("La partita è già in corso");
@@ -78,7 +77,7 @@ public class Comando {
 
                 case "/medio":
                     if (!partita.statoPartita()) {
-                        partita.setNumMaxErrori(Difficolta.valueOf("MEDIA").getValue());
+                        partita.setNumMaxErrori(Difficolta.valueOf("MEDIO").getValue());
                         System.out.println("OK \n difficolta' impostata a medio");
                     } else {
                         System.out.println("Impossibile modificare la difficoltà, la partita è gia in corso");
@@ -94,8 +93,7 @@ public class Comando {
                         System.out.println("Impossibile modificare la difficoltà, la partita è gia in corso");
 
                     }
-                    
-                break;
+                    break;
 
                 case "/mostranavi":
                     mostraNavi();
@@ -107,7 +105,7 @@ public class Comando {
 
                 case "/esci":
                     esci();
-                break;
+                    break;
 
                 default:
                     System.out.println("Comando non riconosciuto");
@@ -118,9 +116,9 @@ public class Comando {
         } while (true);
 
     }
-    
+
     /**
-     * La funzione mostra il numero di esemplari e le dimensioni delle navi
+     * La funzione mostra il numero di esemplari e le dimensioni delle navi.
      */
     private static void mostraNavi() {
         System.out.println("Le navi disponibili sono: \n");
@@ -129,21 +127,21 @@ public class Comando {
         System.out.println("Corazzata \u26F4 \u26F4 \u26F4 \u26F4  esemplari: 2 \n");
         System.out.println("Portaerei \u26F4 \u26F4 \u26F4 \u26F4 \u26F4  esemplari: 1 \n");
     }
-    
+
     /**
      * La funzione stampa il comando il /help che descrive i vari comandi disponibili.
      */
     public void stampaHelp() {
-        System.out.print( "Comandi applicabili: \n"
-        +"/gioca (Comando che inizializza una nuova partita)\n"
-        +"/svelagriglia (Comando eseguibile solo a partita in corso, mostra la griglia con le navi posizionate)\n"
-        +"/help (Comando che mostra la lista dei comandi)\n"
-        +"/mostranavi (Comando che mostra una legenda delle navi disponibili nel gioco)\n"
-        +"/mostralivello (Comando che mostra il livello al quale si sta giocando fra facile, medio e difficile)\n"
-        +"/esci (Comando che fa uscire dalla partita)\n"
-        +"/facile (Comando chiamabile solamente prima di iniziare la partita, imposta il livello di difficolta')\n"
-        +"/medio (Comando chiamabile solamente prima di iniziare la partita, imposta il livello di difficolta')\n"
-        +"/difficile (Comando chiamabile solamente prima di iniziare la partita, imposta il livello di difficolta')\n");
+        System.out.print("Comandi applicabili: \n"
+        + "/gioca (Comando che inizializza una nuova partita)\n"
+        + "/svelagriglia (Comando eseguibile solo a partita in corso, mostra la griglia con le navi posizionate)\n"
+        + "/help (Comando che mostra la lista dei comandi)\n"
+        + "/mostranavi (Comando che mostra una legenda delle navi disponibili nel gioco)\n"
+        + "/mostralivello (Comando che mostra il livello al quale si sta giocando fra facile, medio e difficile)\n"
+        + "/esci (Comando che fa uscire dalla partita)\n"
+        + "/facile (Comando chiamabile solamente prima di iniziare la partita, imposta il livello di difficolta')\n"
+        + "/medio (Comando chiamabile solamente prima di iniziare la partita, imposta il livello di difficolta')\n"
+        + "/difficile (Comando chiamabile solamente prima di iniziare la partita, imposta il livello di difficolta')\n");
     }
 
     /**
@@ -151,17 +149,17 @@ public class Comando {
      */
     public void stampaDescrizione() {
         System.out.print("Benvenuto in battaglia navale \n"
-        +"l'obbiettivo del gioco e' distruggere tutte le navi dell'avversario entro un tot di mosse \n"
-        +"scrivi /help per ulteriori informazioni");
+        + "l'obbiettivo del gioco e' distruggere tutte le navi dell'avversario entro un tot di mosse \n"
+        + "scrivi /help per ulteriori informazioni");
     }
 
     /**
      * La funzione permette di chiudere il gioco, dopo aver richiesto un input da tastiera allo studente.
      */
     private static void esci() {
-        System.out.print( "Sei sicuro di voler chiudere il gioco? Se si scrivi: 'y' "
-        +"altrimenti scrivi qualsiasi altra cosa");
-        String conferma = keyboard.nextLine();
+        System.out.print("Sei sicuro di voler chiudere il gioco? Se si scrivi: 'y' "
+        + "altrimenti scrivi qualsiasi altra cosa");
+        String conferma = KEYBOARD.nextLine();
         if (conferma.equals("y")) {
             System.exit(0);
         }
