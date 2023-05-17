@@ -15,7 +15,7 @@ public class Incrociatore extends Nave {
      * coordinate rispetto alla sua dimensione
      */
     public Incrociatore(final Coordinata[] coordinate) throws NumeroCoordinateException {
-        super(Dimensioni.valueOf("INCROCIATORE").getValue(), coordinate, false);
+        super(Dimensioni.valueOf("INCROCIATORE").getDim(), coordinate, false);
     }
 
     /**

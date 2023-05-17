@@ -15,7 +15,7 @@ public class Cacciatorpediniere extends Nave {
      * coordinate rispetto alla sua dimensione
      */
     public Cacciatorpediniere(final Coordinata[] coordinate) throws NumeroCoordinateException {
-        super(Dimensioni.valueOf("CACCIATORPEDINIERE").getValue(), coordinate, false);
+        super(Dimensioni.valueOf("CACCIATORPEDINIERE").getDim(), coordinate, false);
     }
 
     /**

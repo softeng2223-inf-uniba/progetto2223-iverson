@@ -15,7 +15,7 @@ public class Portaerei extends Nave {
      * coordinate rispetto alla sua dimensione
      */
     public Portaerei(final Coordinata[] coordinate) throws NumeroCoordinateException {
-        super(Dimensioni.valueOf("PORTAEREI").getValue(), coordinate, false);
+        super(Dimensioni.valueOf("PORTAEREI").getDim(), coordinate, false);
     }
 
     /**

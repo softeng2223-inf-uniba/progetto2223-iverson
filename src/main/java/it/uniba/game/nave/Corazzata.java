@@ -15,7 +15,7 @@ public class Corazzata extends Nave {
      * coordinate rispetto alla sua dimensione
      */
     public Corazzata(final Coordinata[] coordinate) throws NumeroCoordinateException {
-        super(Dimensioni.valueOf("CORAZZATA").getValue(), coordinate, false);
+        super(Dimensioni.valueOf("CORAZZATA").getDim(), coordinate, false);
     }
 
     /**
