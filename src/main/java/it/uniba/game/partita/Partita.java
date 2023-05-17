@@ -2,6 +2,8 @@ package it.uniba.game.partita;
 
 import it.uniba.game.eccezioni.NumeroCoordinateException;
 
+import it.uniba.game.utility.Difficolta;
+
 /**
  * Classe che inizializza una Partita e la sua relativa Griglia di gioco
  */
@@ -11,7 +13,8 @@ public class Partita {
     private int erroriCorrenti;
     private boolean inCorso;
     private Griglia griglia;
-
+    private final int dimMax = 10;
+    
     /**
      * Inizializza una Partita
      */
@@ -19,8 +22,9 @@ public class Partita {
         this.inCorso = false;
         this.erroriCorrenti = 0;
         this.colpiTotali = 0;
-        this.numMaxErrori = 50;
+        this.numMaxErrori = Difficolta.valueOf("FACILE").getValue();
     }
+
 
     /**
      * Inizializza una Partita e la sua relativa griglia di gioco
@@ -30,7 +34,7 @@ public class Partita {
      *                                   rispetto alla sua dimensione
      */
     public void avvia() throws NumeroCoordinateException {
-        this.griglia = new Griglia(10, 10);
+        this.griglia = new Griglia(dimMax, dimMax);
         this.inCorso = true;
     }
 
@@ -103,30 +107,30 @@ public class Partita {
      * Restituisce la griglia di gioco stampata in Unicode
      */
     public void svelaGriglia() {
-        char orizzontale = '\u2501'; // carattere Unicode della linea orizzontale
-        char verticale = '\u2503'; // carattere Unicode della linea verticale
-        char nave = '\u26F4'; // carattere Unicode della nave
-        char mancato = '\u25BD'; // carattere Unicode che rappresenta il mancato con un triangolino vuoto
-        char colpito = '\u25BC'; // carattere Unicode che rappresenta il colpito con un triangolino pieno
-
+        final char orizzontale = '\u2501'; // carattere Unicode della linea orizzontale
+        final char verticale = '\u2503'; // carattere Unicode della linea verticale
+        final char nave = '\u26F4'; // carattere Unicode della nave
+        final char mancato = '\u25BD'; // carattere Unicode che rappresenta il mancato con un triangolino vuoto
+        final char colpito = '\u25BC'; // carattere Unicode che rappresenta il colpito con un triangolino pieno
+        final int valoreChiocciola = 65;
         // Stampa delle righe superiori della griglia
         System.out.print("   ");
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= dimMax; i++) {
             System.out.print(" " + i + "  ");
         }
         System.out.println();
         // Stampa della prima linea verticale della griglia
         System.out.print("  " + verticale);
         // Stampa delle linee orizzontali della griglia
-        for (int j = 0; j < 10; j++) {
+        for (int j = 0; j < dimMax; j++) {
             System.out.print(orizzontale + "" + orizzontale + "" + orizzontale + verticale);
         }
         System.out.println();
         // Stampa delle linee orizzontali e verticali della griglia
-        for (int i = 0; i < 10; i++) {
-            System.out.print((char) (i + 65) + " " + verticale);
+        for (int i = 0; i < dimMax; i++) {
+            System.out.print((char) (i + valoreChiocciola) + " " + verticale);
 
-            for (int j = 0; j < 10; j++) {
+            for (int j = 0; j < dimMax; j++) {
                 String cella = griglia.getCella(i, j);
                 switch (cella) {
                     case "N":
@@ -154,7 +158,7 @@ public class Partita {
             // Stampa della prima linea verticale della griglia
             System.out.print("  " + verticale);
             // Stampa delle linee orizzontali della griglia
-            for (int j = 0; j < 10; j++) {
+            for (int j = 0; j < dimMax; j++) {
                 System.out.print(orizzontale + "" + orizzontale + "" + orizzontale + verticale);
             }
             System.out.println();
@@ -166,29 +170,30 @@ public class Partita {
      * svelaGriglia() non mostra le navi dell'avversario
      */
     public void stampaGriglia() {
-        char orizzontale = '\u2501'; // carattere Unicode della linea orizzontale
-        char verticale = '\u2503'; // carattere Unicode della linea verticale
-        char mancato = '\u25BD'; // carattere Unicode che rappresenta il mancato con un triangolino vuoto
-        char colpito = '\u25BC'; // carattere Unicode che rappresenta il colpito con un triangolino pieno
+        final char orizzontale = '\u2501'; // carattere Unicode della linea orizzontale
+        final char verticale = '\u2503'; // carattere Unicode della linea verticale
+        final char mancato = '\u25BD'; // carattere Unicode che rappresenta il mancato con un triangolino vuoto
+        final char colpito = '\u25BC'; // carattere Unicode che rappresenta il colpito con un triangolino pieno
+        final int valoreChiocciola = 65;
 
         // Stampa delle righe superiori della griglia
         System.out.print("   ");
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= dimMax; i++) {
             System.out.print(" " + i + "  ");
         }
         System.out.println();
         // Stampa della prima linea verticale della griglia
         System.out.print("  " + verticale);
         // Stampa delle linee orizzontali della griglia
-        for (int j = 0; j < 10; j++) {
+        for (int j = 0; j < dimMax; j++) {
             System.out.print(orizzontale + "" + orizzontale + "" + orizzontale + verticale);
         }
         System.out.println();
         // Stampa delle linee orizzontali e verticali della griglia
-        for (int i = 0; i < 10; i++) {
-            System.out.print((char) (i + 65) + " " + verticale);
+        for (int i = 0; i < dimMax; i++) {
+            System.out.print((char) (i + valoreChiocciola) + " " + verticale);
 
-            for (int j = 0; j < 10; j++) {
+            for (int j = 0; j < dimMax; j++) {
                 String cella = griglia.getCella(i, j);
                 switch (cella) {
                     case "V":
@@ -213,7 +218,7 @@ public class Partita {
             // Stampa della prima linea verticale della griglia
             System.out.print("  " + verticale);
             // Stampa delle linee orizzontali della griglia
-            for (int j = 0; j < 10; j++) {
+            for (int j = 0; j < dimMax; j++) {
                 System.out.print(orizzontale + "" + orizzontale + "" + orizzontale + verticale);
             }
             System.out.println();

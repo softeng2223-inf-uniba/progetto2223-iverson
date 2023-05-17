@@ -27,6 +27,7 @@ public class Comando {
         partita = new Partita();
 
     }
+
     /**
      * Funzione che ha la funzione di "menu" e permette all'utente di inserire i
      * vari comandi.
@@ -168,7 +169,6 @@ public class Comando {
 
     /**
      * La funzione mostra al giocatore il livello di difficoltà della partita.
-     * @param partita Oggetto di tipo Partita dalla quale prendiamo la funzione NumMaxErrori.
      */
     private static void mostraLivello() {
         if (partita.getNumMaxErrori() == Difficolta.valueOf("FACILE").getValue()) {
