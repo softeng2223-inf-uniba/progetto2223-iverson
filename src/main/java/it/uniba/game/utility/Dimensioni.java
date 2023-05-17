@@ -3,20 +3,25 @@ package it.uniba.game.utility;
  * Classe enum che rappresenta i valori di dimensioni.
  */
 public enum Dimensioni {
-    CACCIATORPEDINIERE(2,4),
-    CORAZZATA(4,3),
-    INCROCIATORE(3,2),
-    PORTAEREI(5,1);
+    CACCIATORPEDINIERE(0, 2, 4),
+    CORAZZATA(1, 4, 3),
+    INCROCIATORE(2, 3, 2),
+    PORTAEREI(3, 5, 1);
 
     private int dim;
     private int esemplari;
+    private int index;
      /**
      * Costruttore della classe enum.
-     * @param pValue Puó essere una dimensione valida.
+     * @param pIndex Indica un indice con la quale si riferisce al numero che contraddistringue
+     * la nave in fase di inserimento
+     * @param pDim Puó essere una dimensione valida.
+     * @param pEsemplari Può essere un numero di esemplari.
      */
-    Dimensioni(final int pDim, final int pEsemplari) {
+    Dimensioni(final int pIndex, final int pDim, final int pEsemplari) {
         this.dim = pDim;
         this.esemplari = pEsemplari;
+        this.index = pIndex;
     }
 
     /**
@@ -34,4 +39,12 @@ public enum Dimensioni {
     public int getEsemplari() {
             return esemplari;
         }
+
+    /**
+     * Funzione che restituisce l'indice della nave.
+     * @return index il valore dell'indice della nave.
+     */
+    public int getIndex() {
+        return index;
+    }
 }
