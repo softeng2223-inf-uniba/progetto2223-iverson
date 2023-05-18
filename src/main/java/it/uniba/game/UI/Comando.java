@@ -40,6 +40,7 @@ public class Comando {
                 case "/gioca":
                     if (!partita.statoPartita()) {
                         partita.avvia();
+                        System.out.println("La partita è stata avviata");
                     } else {
                         System.out.println("La partita è già in corso");
                     }
@@ -129,7 +130,7 @@ public class Comando {
      * La funzione stampa il comando il /help che descrive i vari comandi disponibili.
      */
     public void stampaHelp() {
-        System.out.print("Comandi applicabili: \n"
+        System.out.println("Comandi applicabili: \n"
         + "/gioca (Comando che inizializza una nuova partita)\n"
         + "/svelagriglia (Comando eseguibile solo a partita in corso, mostra la griglia con le navi posizionate)\n"
         + "/help (Comando che mostra la lista dei comandi)\n"
@@ -155,8 +156,8 @@ public class Comando {
      * La funzione permette di chiudere il gioco, dopo aver richiesto un input da tastiera allo studente.
      */
     private static void esci() {
-        System.out.print("Sei sicuro di voler chiudere il gioco? Se si scrivi: 'y' "
-        + "altrimenti scrivi qualsiasi altra cosa");
+        System.out.print("Sei sicuro di voler chiudere il gioco? Se si digitare 'y' "
+        + "altrimenti scrivi qualsiasi altra cosa: ");
         String conferma = KEYBOARD.nextLine();
         if (conferma.equals("y")) {
             System.exit(0);
