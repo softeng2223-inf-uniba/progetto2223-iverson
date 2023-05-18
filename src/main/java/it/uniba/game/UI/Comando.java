@@ -130,7 +130,7 @@ public class Comando {
      * La funzione stampa il comando il /help che descrive i vari comandi disponibili.
      */
     public void stampaHelp() {
-        System.out.println("Comandi applicabili: \n"
+        System.out.print("Comandi applicabili: \n"
         + "/gioca (Comando che inizializza una nuova partita)\n"
         + "/svelagriglia (Comando eseguibile solo a partita in corso, mostra la griglia con le navi posizionate)\n"
         + "/help (Comando che mostra la lista dei comandi)\n"
@@ -147,7 +147,7 @@ public class Comando {
      * La funzione stampa la descrizione del gioco all'avvio.
      */
     public void stampaDescrizione() {
-        System.out.print("Benvenuto in battaglia navale \n"
+        System.out.println("Benvenuto in battaglia navale \n"
         + "l'obbiettivo del gioco e' distruggere tutte le navi dell'avversario entro un tot di mosse \n"
         + "scrivi /help per ulteriori informazioni");
     }
