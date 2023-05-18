@@ -8,25 +8,31 @@ import it.uniba.game.eccezioni.NumeroCoordinateException;
  */
 public final class App {
     /**
+     * Costruttore privato per prevenire inizializzazioni.
+     */
+    private App() {
+
+    }
+
+    /**
      * Entrypoint of the application.
      *
      * @param args command line arguments
      */
     public static void main(final String[] args) {
-        Comando.StampaDescrizione();
+        Comando comando = new Comando();
+        comando.stampaDescrizione();
         for (String string : args) {
-            if (string.equals("--help") || string.equals("-h")){
-                Comando.StampaHelp();
+            if (string.equals("--help") || string.equals("-h")) {
+                comando.stampaHelp();
             }
         }
-        try{
-
-            Comando.avvia();
-        }
-        catch (NumeroCoordinateException e)
-        {
+        try {
+            comando.avvia();
+        } catch (NumeroCoordinateException e) {
             System.out.println(e.getMessage());
         }
-       
+
     }
+
 }
