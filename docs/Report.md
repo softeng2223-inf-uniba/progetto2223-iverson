@@ -51,7 +51,8 @@ Nel caso l'utente inserisca <span style="color:red">/help</span> per avere piu' 
 ![helpbase](./img/helpbase.jpg)
 
 Nel caso l'utente inserisca il comando <span style="color:red">/gioca</span> verrà iniziata una nuova partita:
-![gioca](./img/gioca.jpg)
+
+![NuovoGioca](./img/NuovoGioca.png)
 
 Nel caso l'utente inserisca il comando <span style="color:red">/mostranavi</span> verrà stampata una legenda delle navi disponibili:
 ![Mostranavi](./img/MostraNavi.jpg)
