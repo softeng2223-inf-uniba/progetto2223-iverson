@@ -40,6 +40,7 @@ public class Comando {
                 case "/gioca":
                     if (!partita.statoPartita()) {
                         partita.avvia();
+                        partita.stampaGriglia();
                         System.out.println("La partita è stata avviata");
                     } else {
                         System.out.println("La partita è già in corso");
