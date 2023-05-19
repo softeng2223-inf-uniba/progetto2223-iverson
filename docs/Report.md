@@ -53,7 +53,7 @@ Nel caso l'utente inserisca <span style="color:red">/help</span> per avere piu' 
 Nel caso l'utente inserisca il comando <span style="color:red">/gioca</span> verrà iniziata una nuova partita:
 ![gioca](./img/gioca.jpg)
 
-Nel caso l'utente inserisca il comando <span style="color:red">/mostranavi</span> verrà stampata una legende delle navi disponibili:
+Nel caso l'utente inserisca il comando <span style="color:red">/mostranavi</span> verrà stampata una legenda delle navi disponibili:
 ![Mostranavi](./img/MostraNavi.jpg)
 
 Nel caso l'utente (a partita in corso) inserisca il comando <span style="color:red">/svelagriglia</span> verrà mostrata la griglia con le navi posizionate:
@@ -63,6 +63,7 @@ Nel caso l'utente inserisca il comando <span style="color:red">/mostralivello</s
 ![mostralivello](./img/mostralivello.jpg)
 
 Nel caso l'utente inserisca il comando "<span style="color:red">/esci</span>" prima gli verrà chiesta conferma di uscita e in seguito ad un risposta affermativa l'applicazione si chiuderà:
+
 ![esci](./img/esci.jpg)
 
 
