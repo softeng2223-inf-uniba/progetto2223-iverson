@@ -4,6 +4,8 @@ import it.uniba.game.eccezioni.NumeroCoordinateException;
 
 import it.uniba.game.utility.Difficolta;
 
+import it.uniba.game.utility.Tempo;
+
 /**
  * Classe che inizializza una Partita e la sua relativa Griglia di gioco.
  */
@@ -15,6 +17,7 @@ public class Partita {
     private Griglia griglia;
     private static final int DIMMAX = 10;
     private int tempoMax = 0;
+    private long startTime;
 
     /**
      * Inizializza una Partita.
@@ -36,6 +39,7 @@ public class Partita {
     public void avvia() throws NumeroCoordinateException {
         this.griglia = new Griglia(DIMMAX, DIMMAX);
         this.inCorso = true;
+        startTime = System.currentTimeMillis();
     }
 
 
@@ -229,12 +233,26 @@ public class Partita {
     }
 
     /**
-     * Classe che modifica il tempo massimo del timer.
-     *
+     * Metodo che modifica il tempo massimo del timer.
      * @param num : numero che indica il nuovo tempo massimo del timer
      */
     public void setTempoMax(final int num) {
         tempoMax = num;
+    }
+
+    /**
+     * Metodo che controlla se il tempo del timer é scaduto.
+     */
+    private boolean controllaTempoScaduto() {
+        long elapsedTime = System.currentTimeMillis() - startTime;
+        long elapsedSeconds = elapsedTime / Tempo.valueOf("MILLISECONDI").getValue();
+        if (tempoMax != 0 && tempoMax > elapsedSeconds / Tempo.valueOf("SECONDI").getValue()) {
+            System.out.println("Il tempo é scaduto");
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
 }
