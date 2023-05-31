@@ -59,6 +59,14 @@ public class Comando {
 
                     break;
 
+                case "/mostragriglia":
+                    if (partita.statoPartita()) {
+                        partita.stampaGriglia();
+                    } else {
+                        System.out.println("La partita non è stata inizializzata");
+                    }
+                    break;
+
                 case "/help":
                     stampaHelp();
                     break;
