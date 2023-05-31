@@ -74,6 +74,7 @@ public class Comando {
 
                             num = Integer.parseInt(cStrings[1]);
                             partita.setTempoMax(num);
+                            System.out.println("OK!");
                         } else {
                             System.out.println("Non hai inserito un numero corretto o il comando é sbagliato");
                         }
