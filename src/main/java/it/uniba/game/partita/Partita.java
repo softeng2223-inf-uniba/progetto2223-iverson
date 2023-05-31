@@ -14,6 +14,7 @@ public class Partita {
     private boolean inCorso;
     private Griglia griglia;
     private static final int DIMMAX = 10;
+    private int tempoMax = 0;
 
     /**
      * Inizializza una Partita.
@@ -225,6 +226,15 @@ public class Partita {
      */
     public String toString() {
         return griglia.toString();
+    }
+
+    /**
+     * Classe che modifica il tempo massimo del timer.
+     *
+     * @param num : numero che indica il nuovo tempo massimo del timer
+     */
+    public void setTempoMax(final int num) {
+        tempoMax = num;
     }
 
 }
