@@ -144,6 +144,25 @@ public class Comando {
                     mostraLivello();
                     break;
 
+                case "/tentativi":
+                if (!partita.statoPartita()) {
+                    if (cStrings.length == 1) {
+                        System.out.println("Non hai inserito nessun numero di tentativi");
+                    } else if (isInteger(cStrings[1])) {
+
+                        partita.setNumMaxErrori(Integer.parseInt(cStrings[1]));
+                        System.out.println("OK!");
+                        System.out.println("Numero dei tentativi impostato direttamente a " + Integer.parseInt(cStrings[1]) );
+                    } else {
+                        System.out.println("Non hai inserito un numero corretto o il comando é sbagliato");
+                    }
+
+                } else {
+                    System.out.println("La partita è già in corso, non puoi modificare i tentativi disponibili");
+                }
+
+
+                break;
                 case "/esci":
                     esci();
                     break;
