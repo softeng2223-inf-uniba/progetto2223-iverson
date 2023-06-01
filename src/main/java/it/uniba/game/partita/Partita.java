@@ -244,9 +244,8 @@ public class Partita {
      * Metodo che controlla se il tempo del timer é scaduto.
      */
     private boolean controllaTempoScaduto() {
-        long elapsedTime = System.currentTimeMillis() - startTime;
-        long elapsedSeconds = elapsedTime / Tempo.valueOf("MILLISECONDI").getValue();
-        if (tempoMax != 0 && tempoMax > elapsedSeconds / Tempo.valueOf("SECONDI").getValue()) {
+
+        if (tempoMax != 0 && tempoMax > tempoAttuale()) {
             System.out.println("Il tempo é scaduto");
             return true;
         } else {
@@ -254,5 +253,42 @@ public class Partita {
         }
 
     }
+
+    /**
+     * Metodo che restituisce il tempo massimo del timer e il tempo corrente.
+     */
+    public void mostraTempo() {
+        long secondi = Tempo.valueOf("SECONDI").getValue() -  restoTempoAttuale();
+        long minuti = tempoMax - tempoAttuale();
+        minuti--;
+        System.out.println("Attualmente sono passati: " + tempoAttuale()
+        + " minuti e " + restoTempoAttuale() + " secondi");
+        if (tempoMax != 0) {
+            System.out.println("Tempo massimo del timer: " + tempoMax + " minuti");
+            System.out.println("Tempo rimanente: " + minuti + " minuti e " + "secondi " + secondi);
+        } else {
+            System.out.println("Non avendo scelto un tempo non hai limite!!");
+        }
+
+    }
+    /**
+     * Metodo che restituisce il tempo rimanente in minuti.
+     * @return Tempo rimanente in minuti.
+     */
+    private long tempoAttuale() {
+        long elapsedTime = System.currentTimeMillis() - startTime;
+        long elapsedSeconds = elapsedTime / Tempo.valueOf("MILLISECONDI").getValue();
+         return elapsedSeconds / Tempo.valueOf("SECONDI").getValue();
+    }
+    /**
+     * Metodo che restituisce il tempo rimanente in secondi.
+     * @return Tempo rimanente in secondi.
+     */
+    private long restoTempoAttuale() {
+        long elapsedTime = System.currentTimeMillis() - startTime;
+        long elapsedSeconds = elapsedTime / Tempo.valueOf("MILLISECONDI").getValue();
+         return elapsedSeconds % Tempo.valueOf("SECONDI").getValue();
+    }
+
 
 }
