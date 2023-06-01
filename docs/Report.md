@@ -23,14 +23,76 @@ Il modello di dominio è un diagramma delle classi con prospettive concettuali, 
 Di seguito si riporta l'elenco dei requisiti che l'applicazione soddisfa, divisi in requisiti funzionali (le funzionalità che devono essere fruibili dall'utente) e requisiti non funzionali (le caratteristiche che l'applicazione dovrà avere in merito alla sua esecuzione):
 #### 3.1 REQUISITI FUNZIONALI
 Attori/utenti del sistema: giocatore della partita.
-* **RF1**: Come giocatore voglio mostrare l’help con elenco comandi
-* **RF2**: Come giocatore voglio chiudere il gioco
-* **RF3**:Come giocatore voglio impostare il livello di gioco per variare il numero massimo di tentativi sbagliati
-* **RF4**: Come giocatore voglio mostrare il livello di gioco e il numero massimo di tentativi falliti
-* **RF5**: Come giocatore voglio mostrare i tipi di nave e il numero di esemplari per ogni tipo
-* **RF6**: Come giocatore voglio iniziare una nuova partita
-* **RF7**: Come giocatore voglio svelare la griglia con le navi posizionate
+* **RF1**: Come giocatore voglio mostrare l'help con elenco comandi
+Criteri di accettazione: 
 
+        Al comando /help o invocando l'app con flag --help o -h 
+        il risultato è una descrizione concisa, che normalmente appare all'avvio del programma, seguita dalla lista di comandi disponibili, uno per riga, come da esempio successivo: 
+            * gioca	 
+            * esci 
+            ... 
+
+* **RF2**:Come giocatore voglio chiudere il gioco 
+Criteri di accettazione: 
+        
+        Al comando /esci 
+        l'applicazione chiede conferma  
+        se la conferma è positiva, l'applicazione si chiude restituendo il controllo al sistema operativo 
+        se la conferma è negativa, l'applicazione si predispone a ricevere nuovi tentativi o comandi 
+
+* **RF3**:Come giocatore voglio impostare il livello di gioco per variare il numero massimo di tentativi sbagliati 
+Criteri di accettazione 
+
+        Al comando /facile  
+        l’applicazione risponde con OK e imposta a 50 il numero massimo di tentativi falliti 
+
+        Al comando /medio  
+        l’applicazione risponde con OK e imposta a 30 il numero massimo di tentativi falliti 
+
+        Al comando /difficile  
+        l’applicazione risponde con OK e imposta a 10 il numero massimo di tentativi falliti 
+
+* **RF4**: Come giocatore voglio mostrare il livello di gioco e il numero massimo di tentativi falliti
+Criteri di accettazione: 
+
+        Al comando /mostralivello  
+
+        l’applicazione risponde visualizzando il livello di gioco e il numero di massimo di tentativi falliti 
+
+* **RF5**: Come giocatore voglio mostrare i tipi di nave e il numero  
+
+    Criteri di accettazione: 
+
+        Al comando /mostranavi  
+
+        l’applicazione risponde visualizzando, per ogni tipo di nave, la dimensione in quadrati e il numero di esemplari da affondare: 
+
+        -Cacciatorpediniere 	⊠⊠ 	        esemplari: 4 
+
+        -Incrociatore 	       ⊠⊠⊠ 	        esemplari: 3  
+
+        -Corazzata 		       ⊠⊠⊠⊠ 	        esemplari: 2  
+
+        -Portaerei  	       ⊠⊠⊠⊠⊠ 	esemplari: 1  
+
+
+
+* **RF6**: Come giocatore voglio iniziare una nuova partita 
+
+    Criteri di accettazione:
+
+        Al comando /gioca  
+
+        se nessuna partita è in corso l'applicazione imposta causalmente le navi, in orizzontale o in verticale, mostra la griglia vuota e si predispone a ricevere il primo tentativo o altri comandi. 
+
+* **RF7**: Come giocatore voglio svelare la griglia con le navi posizionate 
+    Criteri di accettazione:
+
+        Al comando /svelagriglia  
+
+        l’applicazione risponde visualizzando, una griglia 10x10, con le righe numerate da 1 a 10 e le colonne numerate da A a J, e tutte le navi posizionate   
+
+ 
 
 #### 3.2 REQUISITI NON FUNZIONALI
 **RNF1**: il container docker dell’app deve essere eseguito da terminali che supportano Unicode con encoding UTF-8 o UTF-16. Alcuni dei terminali supportati sono:
