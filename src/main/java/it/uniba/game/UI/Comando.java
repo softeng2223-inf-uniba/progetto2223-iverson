@@ -16,7 +16,6 @@ import it.uniba.game.utility.Difficolta;
 public class Comando {
     private String comando;
     private String[] cStrings;
-    private int num;
     private static final Scanner KEYBOARD = new Scanner(System.in, "UTF-8");
     private  Partita partita;
 
@@ -72,8 +71,7 @@ public class Comando {
                             System.out.println("Non hai inserito nessun tempo");
                         } else if (isInteger(cStrings[1])) {
 
-                            num = Integer.parseInt(cStrings[1]);
-                            partita.setTempoMax(num);
+                            partita.setTempoMax(Integer.parseInt(cStrings[1]));
                             System.out.println("OK!");
                         } else {
                             System.out.println("Non hai inserito un numero corretto o il comando é sbagliato");
@@ -84,6 +82,17 @@ public class Comando {
                     }
 
                     break;
+
+                case "/mostratempo":
+
+                    if (partita.statoPartita()) {
+                        partita.mostraTempo();
+                    } else {
+                        System.out.println("La partita non è stata inizializzata, non puoi visualizzare il timer");
+                    }
+
+                    break;
+
                 case "/mostragriglia":
                     if (partita.statoPartita()) {
                         partita.stampaGriglia();
