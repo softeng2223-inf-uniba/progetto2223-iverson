@@ -14,7 +14,9 @@ import it.uniba.game.utility.Difficolta;
  * tramite la funzione avvia().
  */
 public class Comando {
-    private  String comando;
+    private String comando;
+    private String[] cStrings;
+    private int num;
     private static final Scanner KEYBOARD = new Scanner(System.in, "UTF-8");
     private  Partita partita;
 
@@ -35,7 +37,11 @@ public class Comando {
         do {
             System.out.print("\nInserisci un comando: ");
             comando = KEYBOARD.nextLine();
-            switch (comando) {
+            cStrings = comando.split(" ");
+
+
+
+            switch (cStrings[0]) {
 
                 case "/gioca":
                     if (!partita.statoPartita()) {
@@ -59,6 +65,25 @@ public class Comando {
 
                     break;
 
+                case "/tempo":
+
+                    if (!partita.statoPartita()) {
+                        if (cStrings.length == 1) {
+                            System.out.println("Non hai inserito nessun tempo");
+                        } else if (isInteger(cStrings[1])) {
+
+                            num = Integer.parseInt(cStrings[1]);
+                            partita.setTempoMax(num);
+                            System.out.println("OK!");
+                        } else {
+                            System.out.println("Non hai inserito un numero corretto o il comando é sbagliato");
+                        }
+
+                    } else {
+                        System.out.println("La partita è già in corso, non puoi modificare il timer");
+                    }
+
+                    break;
                 case "/mostragriglia":
                     if (partita.statoPartita()) {
                         partita.stampaGriglia();
@@ -157,7 +182,8 @@ public class Comando {
      */
     public void stampaDescrizione() {
         System.out.println("Benvenuto in battaglia navale \n"
-        + "l'obbiettivo del gioco e' distruggere tutte le navi dell'avversario entro un tot di mosse \n"
+        + "l'obbiettivo del gioco e' distruggere tutte le navi dell'avversario entro un tot di mosse, "
+        + "ricorda che di default non avrai un tempo limite \n"
         + "scrivi /help per ulteriori informazioni");
     }
 
@@ -184,5 +210,34 @@ public class Comando {
         } else if (partita.getNumMaxErrori() == Difficolta.valueOf("DIFFICILE").getValue()) {
             System.out.println("La difficoltà è impostata su 'DIFFICILE' con Max Errori = 10");
         }
+    }
+
+    /**
+     *Funzione che permette di controllare se una stringa contiene un valore numerico.
+     * @param str la stringa da controllare
+     * @return ritorna true se é un numero
+     */
+    public static boolean isInteger(final String str) {
+        if (str == null) {
+            return false;
+        }
+        int length = str.length();
+        if (length == 0) {
+            return false;
+        }
+        int i = 0;
+        if (str.charAt(0) == '-') {
+            if (length == 1) {
+                return false;
+            }
+            i = 1;
+        }
+        for (; i < length; i++) {
+            char c = str.charAt(i);
+            if (c < '0' || c > '9') {
+                return false;
+            }
+        }
+        return true;
     }
 }
