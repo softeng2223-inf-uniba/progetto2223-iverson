@@ -18,7 +18,7 @@ public class Comando {
     private String[] cStrings;
     private static final Scanner KEYBOARD = new Scanner(System.in, "UTF-8");
     private  Partita partita;
-
+    private boolean tentativiDiretti = false;
     /**
      * Construttore della classe Comando.
      */
@@ -153,6 +153,7 @@ public class Comando {
                         partita.setNumMaxErrori(Integer.parseInt(cStrings[1]));
                         System.out.println("OK!");
                         System.out.println("Numero dei tentativi impostato direttamente a " + Integer.parseInt(cStrings[1]) );
+                        tentativiDiretti = true;
                     } else {
                         System.out.println("Non hai inserito un numero corretto o il comando é sbagliato");
                     }
@@ -231,13 +232,19 @@ public class Comando {
      * La funzione mostra al giocatore il livello di difficoltà della partita.
      */
     private  void mostraLivello() {
-        if (partita.getNumMaxErrori() == Difficolta.valueOf("FACILE").getValue()) {
-            System.out.println("La difficoltà è impostata su 'FACILE' con Max Errori = 50");
-        } else if (partita.getNumMaxErrori() == Difficolta.valueOf("MEDIO").getValue()) {
-            System.out.println("La difficoltà è impostata su 'MEDIA' con Max Errori = 30");
-        } else if (partita.getNumMaxErrori() == Difficolta.valueOf("DIFFICILE").getValue()) {
-            System.out.println("La difficoltà è impostata su 'DIFFICILE' con Max Errori = 10");
+        if (tentativiDiretti == false){
+
+            if (partita.getNumMaxErrori() == Difficolta.valueOf("FACILE").getValue()) {
+                System.out.println("La difficoltà è impostata su 'FACILE' con Max Errori = 50");
+            } else if (partita.getNumMaxErrori() == Difficolta.valueOf("MEDIO").getValue()) {
+                System.out.println("La difficoltà è impostata su 'MEDIA' con Max Errori = 30");
+            } else if (partita.getNumMaxErrori() == Difficolta.valueOf("DIFFICILE").getValue()) {
+                System.out.println("La difficoltà è impostata su 'DIFFICILE' con Max Errori = 10");
+            }
+
         }
+        else System.out.println("Il numero massimo di errori è stato impostato in modo diretto a " + partita.getNumMaxErrori());
+        
     }
 
     /**
