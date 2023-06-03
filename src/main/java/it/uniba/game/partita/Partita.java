@@ -319,16 +319,21 @@ public class Partita {
         }
 
         String stato = griglia.inserisciColpo(riga, colonna);
+
         stampaGriglia();
         switch (stato){
             case "C":
                 System.out.print("colpito\n");
+                setColpiTotali(getColpiTotali() + 1);
                 break;
             case "CA":
                 System.out.print("colpito e affondato\n");
+                setColpiTotali(getColpiTotali() + 1);
                 break;
             case "V":
                 System.out.print("acqua\n");
+                setColpiTotali(getColpiTotali() +1 );
+                setErroriCorrenti(getErroriCorrenti() + 1);
                 break;
         }
         mostraTempo();
