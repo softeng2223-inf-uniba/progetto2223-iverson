@@ -1,5 +1,6 @@
 package it.uniba.game.UI;
 
+import it.uniba.game.eccezioni.PosizioneException;
 import it.uniba.game.partita.Partita;
 
 
@@ -32,7 +33,7 @@ public class Comando {
      * @throws NumeroCoordinateException se si inseriscono un numero diverso di
      * coordinate rispetto alla sua dimensione.
      */
-    public void avvia() throws NumeroCoordinateException {
+    public void avvia() throws NumeroCoordinateException, PosizioneException {
         do {
             System.out.print("\nInserisci un comando: ");
             comando = KEYBOARD.nextLine();
@@ -61,7 +62,11 @@ public class Comando {
                     break;
 
                 case "/colpisci":
-
+                    if (partita.statoPartita()) {
+                        partita.colpisci(cStrings[1]);
+                    } else {
+                        System.out.println("La partita non è stata inizializzata");
+                    }
                     break;
 
                 case "/tempo":

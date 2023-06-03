@@ -1,9 +1,8 @@
 package it.uniba.game.partita;
 
 import it.uniba.game.eccezioni.NumeroCoordinateException;
-
+import it.uniba.game.eccezioni.PosizioneException;
 import it.uniba.game.utility.Difficolta;
-
 import it.uniba.game.utility.Tempo;
 
 /**
@@ -288,6 +287,62 @@ public class Partita {
         long elapsedTime = System.currentTimeMillis() - startTime;
         long elapsedSeconds = elapsedTime / Tempo.valueOf("MILLISECONDI").getValue();
          return elapsedSeconds % Tempo.valueOf("SECONDI").getValue();
+    }
+
+    /**
+     * Consente di colpire una cella della griglia
+     * @throws PosizioneException nel caso in cui si inserisce una posizione non disponibile
+     */
+    public void colpisci(String input) throws PosizioneException {
+        int riga = 0;
+        int colonna = 0;
+        String[] sezioni = input.split("-");
+
+        if (sezioni.length == 2 && sezioni[0].length() == 1 && sezioni[1].matches("\\d+")) {
+            riga = Character.toUpperCase(input.charAt(0)) - 'A';
+            colonna = Integer.parseInt(sezioni[1]) - 1;
+
+            if(!(riga < griglia.getRighe() && riga >= 0)){
+                System.out.printf("La riga inserita è fuori range," +
+                        " la prego di reinserirla.\n");
+                return;
+            }
+            if(!(colonna < griglia.getColonne() && colonna >= 0)){
+                System.out.printf("La colonna inserita è fuori range," +
+                        " la prego di reinserirla.\n");
+                return;
+            }
+
+        }else {
+            System.out.println("Input non valido.");
+            return;
+        }
+
+        String stato = griglia.inserisciColpo(riga, colonna);
+        stampaGriglia();
+        switch (stato){
+            case "C":
+                System.out.print("colpito\n");
+                break;
+            case "CA":
+                System.out.print("colpito e affondato\n");
+                break;
+            case "V":
+                System.out.print("acqua\n");
+                break;
+        }
+        mostraTempo();
+        System.out.printf("Colpi effettuati : "+ getColpiTotali());
+        if(griglia.finepartita()){
+            this.inCorso = false;
+            System.out.printf("La partita è finita");
+        }else if(controllaTempoScaduto()){
+            this.inCorso = false;
+            System.out.printf("La partita è finita perché il tempo è finito");
+        }else if((getNumMaxErrori() - getColpiTotali()) == 0){
+            this.inCorso = false;
+            System.out.printf("La partita è finita perché hai finito il numero di tentativi");
+        }
     }
 
 
