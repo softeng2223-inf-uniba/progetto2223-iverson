@@ -289,6 +289,14 @@ public class Partita {
         long elapsedSeconds = elapsedTime / Tempo.valueOf("MILLISECONDI").getValue();
          return elapsedSeconds % Tempo.valueOf("SECONDI").getValue();
     }
+    /**
+     * Metodo che restituisce i tentativi già effettuati, i tentativi falliti e il numero massimo di tentativi falliti.
+     */
+    public void mostraTentativi() {
+        System.out.println("Il numero di tentativi effettuati è: " + this.colpiTotali);
+        System.out.println("Il numero di tentativi falliti è: " + this.erroriCorrenti);
+        System.out.println("Il numero massimo di tentativi falliti è: " + this.numMaxErrori);
+    }
 
 
 }

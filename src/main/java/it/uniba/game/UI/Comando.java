@@ -162,13 +162,17 @@ public class Comando {
                 } else {
                     System.out.println("La partita è già in corso, non puoi modificare i tentativi disponibili");
                 }
-
-
                 break;
+                case "/mostratentativi":
+                    if (partita.statoPartita()) {
+                        partita.mostraTentativi();
+                    } else {
+                        System.out.println("Comando disponibile solo a partita in corso");
+                    }
+                    break;
                 case "/esci":
                     esci();
                     break;
-
                 default:
                     System.out.println("Comando non riconosciuto");
                     break;

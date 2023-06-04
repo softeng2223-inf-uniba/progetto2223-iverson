@@ -12,7 +12,7 @@ repositories {
 
 dependencies {
     testImplementation(platform('org.junit:junit-bom:5.9.2'))
-	testImplementation('org.junit.jupiter:junit-jupiter')
+	testImplementation('org.junit.jupiter:junit-jupiter:5.9.2')
     compileOnly("com.github.spotbugs:spotbugs-annotations:${spotbugs.toolVersion.get()}")
 }
 
