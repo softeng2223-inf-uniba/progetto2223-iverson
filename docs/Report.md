@@ -1,6 +1,15 @@
 # Report
 ---
+## INDICE:
+- 1)INTRODUZIONE 
+- 2)MODELLO DI DOMINIO
+- 3)REQUISITI SPECIFICI
+  - 3.1) REQUISITI FUNZIONALI
+  - 3.2) REQUISITI NON FUNZIONALI
+- 7)MANUALE UTENTE
+- 9)RETROSPETTIVA
 
+---
 ## 1)INTRODUZIONE
 Il gioco realizzato è quello della battaglia navale, con una versione a giocatore singolo contro la CPU. Di seguito le regole del gioco:
 * Il sistema posiziona casualmente le navi su una griglia 10x10. Le navi posizionate sono molteplici: 
@@ -16,7 +25,10 @@ Il gioco realizzato è quello della battaglia navale, con una versione a giocato
 
 ## 2)MODELLO DI DOMINIO
 Il modello di dominio è un diagramma delle classi con prospettive concettuali, esso è una visuale di concetti caratteristici del dominio studiato
-![Schema_Star_Uml](./img/Schema_Star_Uml.png)
+
+![ModelloDominio](./img/ModelloDominio.PNG)
+
+L'entità fondamentale del gioco è la Partita. Una partita si compone di diversi attributi: il numero massimo di errori concessi al giocatore (NumeroMassimoErrori), il numero di tentativi totali effettuati (ColpiTotali), il numero di tentativi falliti (ErroriCorrenti) e uno stato che indica se la partita è effettivamente in corso (StatoDellaPartita). Una Partita si compone anche di una Mappa di Gioco, concetto rappresentante lo spazio dove si trovano le navi da colpire e di conseguenza le posizioni colpibili dal giocatore. Essa si compone di un certo numero di righe, un numero di colonne e una serie di posizioni dove può esserci una nave, l'acqua o un colpo andato a segno/mancato. Una mappa, quindi, si compone di tante navi, in particolare di 10 navi Una nave è caratterizzata dalla sua dimensione, uno stato che afferma se questa sia affondata o meno e una serie di coordinate (da 1 a 5 coordinate possibili) che identificano la sua posizione sulla mappa. Una coordinata è caratterizzata da un numero di riga, un numero di colonna e uno stato che afferma se in quella casella la nave sia stata colpita o meno. Il concetto di nave ha inoltre 4 specializzazioni, rappresentati i 4 tipi di nave disponibili nel gioco: Cacciatorpediniere, Portaerei, Corazzata, Incrociatore.
 
 ---
 ## 3)REQUISITI SPECIFICI
@@ -104,28 +116,34 @@ Criteri di accettazione:
 
 ## 7)MANUALE UTENTE
 Nel caso l'utente avvii il programma senza inserire nessun parametro verrà mostrato questo:
+
 ![Descrizione](./img/Descrizione.jpg)
 
-Nel caso l'utente avvii il programma inserendo il parametro "<span style="color:red">--help</span>" oppure "<span style="color:red">-help</span>" verrà mostrato questo:
+Nel caso l'utente avvii il programma inserendo il parametro "--help" oppure "-help" verrà mostrato questo:
+
 ![helpconparametro](./img/Helpconparametro.jpg)
 
-Nel caso l'utente inserisca <span style="color:red">/help</span> per avere piu' informazioni verrà stampato questo:
+Nel caso l'utente inserisca /help per avere piu' informazioni verrà stampato questo:
+
 ![helpbase](./img/helpbase.jpg)
 
-Nel caso l'utente inserisca il comando <span style="color:red">/gioca</span> verrà iniziata una nuova partita:
+Nel caso l'utente inserisca il comando /gioca verrà iniziata una nuova partita:
 
 ![NuovoGioca](./img/NuovoGioca.png)
 
-Nel caso l'utente inserisca il comando <span style="color:red">/mostranavi</span> verrà stampata una legenda delle navi disponibili:
+Nel caso l'utente inserisca il comando /mostranavi verrà stampata una legenda delle navi disponibili:
+
 ![Mostranavi](./img/MostraNavi.jpg)
 
-Nel caso l'utente (a partita in corso) inserisca il comando <span style="color:red">/svelagriglia</span> verrà mostrata la griglia con le navi posizionate:
+Nel caso l'utente (a partita in corso) inserisca il comando /svelagriglia verrà mostrata la griglia con le navi posizionate:
+
 ![StampaGriglia](./img/StampaGriglia.jpg)
 
-Nel caso l'utente inserisca il comando <span style="color:red">/mostralivello</span> verrà visualizzato il livello al quale l'utente sta giocando, il livello è impostabile quando la partita inizia (tramite i comandi "<span style="color:red">/facile</span>", "<span style="color:red">/medio</span>", "<span style="color:red">/difficile</span>") e non è modificabile a partita in corso:
+Nel caso l'utente inserisca il comando /mostralivello verrà visualizzato il livello al quale l'utente sta giocando, il livello è impostabile quando la partita inizia (tramite i comandi "/facile", "/medio", "/difficile") e non è modificabile a partita in corso:
+
 ![mostralivello](./img/mostralivello.jpg)
 
-Nel caso l'utente inserisca il comando "<span style="color:red">/esci</span>" prima gli verrà chiesta conferma di uscita e in seguito ad un risposta affermativa l'applicazione si chiuderà:
+Nel caso l'utente inserisca il comando "/esci" prima gli verrà chiesta conferma di uscita e in seguito ad un risposta affermativa l'applicazione si chiuderà:
 
 ![esci](./img/esci.jpg)
 
@@ -133,9 +151,7 @@ Nel caso l'utente inserisca il comando "<span style="color:red">/esci</span>" pr
 ---
 
 ## 9)RETROSPETTIVA
-Di seguito la retrospettiva degli sprint precedenti. Sono state raccolte le 
-osservazioni e le opinioni dei membri del team riguardo al lavoro svolto in
-un modello di retrospettiva "sad,mad,glad".
+Di seguito la retrospettiva degli sprint precedenti. Sono state raccolte le  osservazioni e le opinioni dei membri del team riguardo al lavoro svolto in un modello di retrospettiva "sad,mad,glad".
 ### 9.1) SPRINT 0
 
-![Retrospettiva](./img/Retrospettiva.png)
+![Retrospettivasprint0.png](./img/Retrospettivasprint0.png)
