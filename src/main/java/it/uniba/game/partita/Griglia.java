@@ -1,5 +1,6 @@
 package it.uniba.game.partita;
 
+import it.uniba.game.eccezioni.PosizioneException;
 import it.uniba.game.nave.Cacciatorpediniere;
 import it.uniba.game.nave.Coordinata;
 import it.uniba.game.nave.Corazzata;
@@ -144,8 +145,7 @@ class Griglia {
      * Imposta la posizione della navi sulla Griglia casualmente.
      *
      * @throws NumeroCoordinateException se si inseriscono un numero diverso di
-     *                                   coordinate
-     *                                   rispetto alla sua dimensione
+     * coordinate rispetto alla sua dimensione
      */
     private void impostaNavi() throws NumeroCoordinateException {
         this.navi = new ArrayList<ArrayList<Nave>>();
@@ -192,23 +192,6 @@ class Griglia {
         return strGriglia.toString();
     }
 
-    /**
-     * Restituisce vero se tutte le navi sono state abbattute.
-     *
-     * @return vero se tutte le navi sono state abbattute
-     */
-    boolean finepartita() {
-        return true;
-    }
-
-    /**
-     * Inserisce il colpo alla posizione inserita in input.
-     *
-     * @param riga    : riga su cui si inserisce il colpo
-     * @param colonna : colonna su cui inserisce il colpo
-     */
-    void inserisciColpo(final int riga, final int colonna) {
-    }
 
     /**
      * Restituisce una cella della Griglia.
@@ -220,5 +203,75 @@ class Griglia {
     public String getCella(final int i, final int j) {
         return griglia[i][j];
     }
+
+    /**
+     * Restituisce vero se tutte le navi sono state abbattute.
+     *
+     * @return vero se tutte le navi sono state abbattute
+     */
+    boolean finepartita() {
+        int numNavi = 0;
+        int affondate = 0;
+        for (int i = 0; i < this.navi.size(); i++) {
+            for (int j = 0; j < this.navi.get(i).size(); j++) {
+                numNavi++;
+                if (this.navi.get(i).get(j).getaffondata()) {
+                    affondate++;
+                }
+            }
+        }
+
+        if (affondate == numNavi) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Inserisce il colpo alla posizione inserita in input.
+     *
+     * @param riga : riga su cui si inserisce il colpo
+     * @param colonna : colonna su cui inserisce il colpo
+     * @return stato del colpo
+     * @throws PosizioneException quando la posizione inserita è sbagliata
+     */
+    String inserisciColpo(final int riga, final int colonna) throws PosizioneException {
+        String stato = "";
+        boolean esitoTrovato = false;
+        int abbattuta = 0;
+        for (int i = 0; i < this.navi.size() && !esitoTrovato; i++) {
+            for (int j = 0; j < this.navi.get(i).size()  && !esitoTrovato; j++) {
+                for (int k = 0; k < this.navi.get(i).get(j).getdim()  && !esitoTrovato; k++) {
+                    if (this.navi.get(i).get(j).getcoordinate(k).getriga() == riga
+                            && this.navi.get(i).get(j).getcoordinate(k).getcolonna() == colonna) {
+
+                        this.navi.get(i).get(j).getcoordinate(k).setcolpito();
+                        this.griglia[riga][colonna] = "NC";
+                        esitoTrovato = true;
+                        stato = "C";
+                    }
+                    if (esitoTrovato) {
+                        for (k = 0; k < this.navi.get(i).get(j).getdim(); k++) {
+                            if (this.navi.get(i).get(j).getcoordinate(k).getcolpito()) {
+                                abbattuta++;
+                            }
+                        }
+                    }
+                    if (abbattuta == this.navi.get(i).get(j).getdim()) {
+                        this.navi.get(i).get(j).setaffondata();
+                        stato = stato + "A";
+                    }
+                }
+            }
+        }
+
+
+        if (!esitoTrovato) {
+            this.griglia[riga][colonna] = "VC";
+            stato = "V";
+        }
+        return stato;
+    }
+
 
 }
