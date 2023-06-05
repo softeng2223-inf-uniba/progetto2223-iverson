@@ -52,16 +52,17 @@ public class Partita {
     }
 
     /**
-     * Restituisce il dizionario con le corrispondenze livello/numero di errori.
-     * @return corrispondenze livello / errori concessi
+     * Restituisce il numero di errori concessi per il livello dato in input.
+     * @param pLivello : nome del livello del quale si vogliono sapere gli errori concessi
+     * @return corrispondenza livello / errori concessi
      */
-    public Map<String, Integer> getErroriPerLivello() {
-        return this.erroriPerLivello;
+    public int getErrorePerLivello(final String pLivello) {
+        return erroriPerLivello.get(pLivello);
     }
     /**
      * Modifica una corrispondenza livello/numero di errori nel dizionario.
-     * @param livello : nome del livello di difficoltà
-     * @param errori : numero di errori da impostare per quel livello
+     * @param pLivello : nome del livello di difficoltà
+     * @param pErrori : numero di errori da impostare per quel livello
      */
     public void setErroriPerLivello(final String pLivello, final int pErrori) {
         this.erroriPerLivello.put(pLivello, pErrori);
@@ -76,7 +77,7 @@ public class Partita {
     }
   /**
   * Imposta il livello di difficoltà.
-  * @param livello
+  * @param pLivello
   */
     public void setLivello(final String pLivello) {
         this.livello = pLivello;

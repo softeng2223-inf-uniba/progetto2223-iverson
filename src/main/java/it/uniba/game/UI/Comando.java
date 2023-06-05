@@ -110,35 +110,83 @@ public class Comando {
                     break;
 
                 case "/facile":
-                    if (!partita.statoPartita()) {
-                        partita.setNumMaxErrori(Difficolta.valueOf("FACILE").getValue());
-                        System.out.println("OK \n difficolta' impostata a facile");
+                if (!partita.statoPartita()) {
+
+                    if (cStrings.length == 1) {
+                    partita.setNumMaxErrori(partita.getErrorePerLivello("FACILE"));
+                    partita.setLivello("FACILE");
+                    System.out.println("OK \n difficolta' impostata a facile");
+
+                    } else if (isInteger(cStrings[1])) {
+
+                       partita.setErroriPerLivello("FACILE",
+                        Integer.parseInt(cStrings[1]));
+                       //if (partita.getLivello().equals("FACILE")){partita.setNumMaxErrori(Integer.parseInt(cStrings[1])); }
+
+                       System.out.println("OK \n numero massimo di errori per il livello FACILE impostato a: "
+                        + Integer.parseInt(cStrings[1]));
+
                     } else {
-                        System.out.println("Impossibile modificare la difficoltà, la partita è gia in corso");
-
+                        System.out.println("Non hai inserito un numero corretto o il comando é sbagliato");
                     }
-                break;
+                } else {
+                    System.out.println("Impossibile modificare la difficoltà, la partita è gia in corso");
+
+                }
+            break;
 
 
-                case "/medio":
-                    if (!partita.statoPartita()) {
-                        partita.setNumMaxErrori(Difficolta.valueOf("MEDIO").getValue());
-                        System.out.println("OK \n difficolta' impostata a medio");
-                    } else {
-                        System.out.println("Impossibile modificare la difficoltà, la partita è gia in corso");
+            case "/medio":
+            if (!partita.statoPartita()) {
 
-                    }
-                    break;
+                if (cStrings.length == 1) {
+                partita.setNumMaxErrori(partita.getErrorePerLivello("MEDIO"));
+                partita.setLivello("MEDIO");
+                System.out.println("OK \n difficolta' impostata a medio");
 
-                case "/difficile":
-                    if (!partita.statoPartita()) {
-                    partita.setNumMaxErrori(Difficolta.valueOf("DIFFICILE").getValue());
-                    System.out.println("OK \n difficolta' impostata a difficile");
-                    } else {
-                        System.out.println("Impossibile modificare la difficoltà, la partita è gia in corso");
+                } else if (isInteger(cStrings[1])) {
 
-                    }
-                    break;
+                   partita.setErroriPerLivello("MEDIO", Integer.parseInt(cStrings[1]));
+                   //if (partita.getLivello().equals("MEDIO")){partita.setNumMaxErrori(Integer.parseInt(cStrings[1])); }
+
+                   System.out.println("OK \n numero massimo di errori per il livello MEDIO impostato a: "
+                   + Integer.parseInt(cStrings[1]));
+
+                } else {
+                    System.out.println("Non hai inserito un numero corretto o il comando é sbagliato");
+                }
+            } else {
+                System.out.println("Impossibile modificare la difficoltà, la partita è gia in corso");
+
+            }
+        break;
+
+            case "/difficile":
+            if (!partita.statoPartita()) {
+
+                if (cStrings.length == 1) {
+                partita.setNumMaxErrori(partita.getErrorePerLivello("DIFFICILE"));
+                partita.setLivello("DIFFICILE");
+                System.out.println("OK \n difficolta' impostata a difficile");
+
+                } else if (isInteger(cStrings[1])) {
+
+                   partita.setErroriPerLivello("DIFFICILE",
+                   Integer.parseInt(cStrings[1]));
+                   //if (partita.getLivello().equals("DIFFICILE")){partita.setNumMaxErrori(Integer.parseInt(cStrings[1])); }
+
+                   System.out.println("OK \n numero massimo di errori per il livello DIFFICILE impostato a: "
+                    + Integer.parseInt(cStrings[1]));
+
+                } else {
+                    System.out.println("Non hai inserito un numero corretto o il comando é sbagliato");
+                }
+            } else {
+                System.out.println("Impossibile modificare la difficoltà, la partita è gia in corso");
+
+            }
+        break;
+
 
                 case "/mostranavi":
                     mostraNavi();
