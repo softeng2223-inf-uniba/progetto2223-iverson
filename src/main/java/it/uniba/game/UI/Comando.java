@@ -40,7 +40,6 @@ public class Comando {
             cStrings = comando.split(" ");
 
 
-
             switch (cStrings[0]) {
 
                 case "/gioca":
