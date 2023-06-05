@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 import it.uniba.game.eccezioni.NumeroCoordinateException;
 
-import it.uniba.game.utility.Difficolta;
+
 
 /**
  * Classe che ha la la funzione di menu e permette all'utente di inserire i vari comandi
@@ -19,7 +19,7 @@ public class Comando {
     private String[] cStrings;
     private static final Scanner KEYBOARD = new Scanner(System.in, "UTF-8");
     private  Partita partita;
-    private boolean tentativiDiretti = false;
+
     /**
      * Construttore della classe Comando.
      */
@@ -38,7 +38,6 @@ public class Comando {
             System.out.print("\nInserisci un comando: ");
             comando = KEYBOARD.nextLine();
             cStrings = comando.split(" ");
-
 
 
             switch (cStrings[0]) {
@@ -111,35 +110,86 @@ public class Comando {
                     break;
 
                 case "/facile":
-                    if (!partita.statoPartita()) {
-                        partita.setNumMaxErrori(Difficolta.valueOf("FACILE").getValue());
-                        System.out.println("OK \n difficolta' impostata a facile");
+                if (!partita.statoPartita()) {
+
+                    if (cStrings.length == 1) {
+                    partita.setNumMaxErrori(partita.getErrorePerLivello("FACILE"));
+                    partita.setLivello("FACILE");
+                    System.out.println("OK \n difficolta' impostata a facile");
+
+                    } else if (isInteger(cStrings[1])) {
+
+                       partita.setErroriPerLivello("FACILE",
+                        Integer.parseInt(cStrings[1]));
+                       //if (partita.getLivello().equals("FACILE")){
+                      //partita.setNumMaxErrori(Integer.parseInt(cStrings[1])); }
+
+                       System.out.println("OK \n numero massimo di errori per il livello FACILE impostato a: "
+                        + Integer.parseInt(cStrings[1]));
+
                     } else {
-                        System.out.println("Impossibile modificare la difficoltà, la partita è gia in corso");
-
+                        System.out.println("Non hai inserito un numero corretto o il comando é sbagliato");
                     }
-                break;
+                } else {
+                    System.out.println("Impossibile modificare la difficoltà, la partita è gia in corso");
+
+                }
+            break;
 
 
-                case "/medio":
-                    if (!partita.statoPartita()) {
-                        partita.setNumMaxErrori(Difficolta.valueOf("MEDIO").getValue());
-                        System.out.println("OK \n difficolta' impostata a medio");
-                    } else {
-                        System.out.println("Impossibile modificare la difficoltà, la partita è gia in corso");
+            case "/medio":
+            if (!partita.statoPartita()) {
 
-                    }
-                    break;
+                if (cStrings.length == 1) {
+                partita.setNumMaxErrori(partita.getErrorePerLivello("MEDIO"));
+                partita.setLivello("MEDIO");
+                System.out.println("OK \n difficolta' impostata a medio");
 
-                case "/difficile":
-                    if (!partita.statoPartita()) {
-                    partita.setNumMaxErrori(Difficolta.valueOf("DIFFICILE").getValue());
-                    System.out.println("OK \n difficolta' impostata a difficile");
-                    } else {
-                        System.out.println("Impossibile modificare la difficoltà, la partita è gia in corso");
+                } else if (isInteger(cStrings[1])) {
 
-                    }
-                    break;
+                   partita.setErroriPerLivello("MEDIO", Integer.parseInt(cStrings[1]));
+                   //if (partita.getLivello().equals("MEDIO"))
+                   //{partita.setNumMaxErrori(Integer.parseInt(cStrings[1])); }
+
+                   System.out.println("OK \n numero massimo di errori per il livello MEDIO impostato a: "
+                   + Integer.parseInt(cStrings[1]));
+
+                } else {
+                    System.out.println("Non hai inserito un numero corretto o il comando é sbagliato");
+                }
+            } else {
+                System.out.println("Impossibile modificare la difficoltà, la partita è gia in corso");
+
+            }
+        break;
+
+            case "/difficile":
+            if (!partita.statoPartita()) {
+
+                if (cStrings.length == 1) {
+                partita.setNumMaxErrori(partita.getErrorePerLivello("DIFFICILE"));
+                partita.setLivello("DIFFICILE");
+                System.out.println("OK \n difficolta' impostata a difficile");
+
+                } else if (isInteger(cStrings[1])) {
+
+                   partita.setErroriPerLivello("DIFFICILE",
+                   Integer.parseInt(cStrings[1]));
+                   //if (partita.getLivello().equals("DIFFICILE"))
+                   //{partita.setNumMaxErrori(Integer.parseInt(cStrings[1])); }
+
+                   System.out.println("OK \n numero massimo di errori per il livello DIFFICILE impostato a: "
+                    + Integer.parseInt(cStrings[1]));
+
+                } else {
+                    System.out.println("Non hai inserito un numero corretto o il comando é sbagliato");
+                }
+            } else {
+                System.out.println("Impossibile modificare la difficoltà, la partita è gia in corso");
+
+            }
+        break;
+
 
                 case "/mostranavi":
                     mostraNavi();
@@ -159,7 +209,6 @@ public class Comando {
                         System.out.println("OK!");
                         System.out.println("Numero dei tentativi impostato direttamente a "
                          + Integer.parseInt(cStrings[1]));
-                        tentativiDiretti = true;
                     } else {
                         System.out.println("Non hai inserito un numero corretto o il comando é sbagliato");
                     }
@@ -242,20 +291,8 @@ public class Comando {
      * La funzione mostra al giocatore il livello di difficoltà della partita.
      */
     private void mostraLivello() {
-        if (!tentativiDiretti) {
-
-            if (partita.getNumMaxErrori() == Difficolta.valueOf("FACILE").getValue()) {
-                System.out.println("La difficoltà è impostata su 'FACILE' con Max Errori = 50");
-            } else if (partita.getNumMaxErrori() == Difficolta.valueOf("MEDIO").getValue()) {
-                System.out.println("La difficoltà è impostata su 'MEDIA' con Max Errori = 30");
-            } else if (partita.getNumMaxErrori() == Difficolta.valueOf("DIFFICILE").getValue()) {
-                System.out.println("La difficoltà è impostata su 'DIFFICILE' con Max Errori = 10");
-            }
-
-        } else {
-            System.out.println("Il numero massimo di errori è stato impostato in modo diretto a "
-             + partita.getNumMaxErrori());
-        }
+        System.out.println("La difficoltà è impostata a: " + partita.getLivello());
+        System.out.println("Il numero massimo di tentativi falliti è: " + partita.getNumMaxErrori());
 
     }
 

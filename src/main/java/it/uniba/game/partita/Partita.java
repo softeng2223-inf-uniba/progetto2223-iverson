@@ -1,5 +1,8 @@
 package it.uniba.game.partita;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import it.uniba.game.eccezioni.NumeroCoordinateException;
 import it.uniba.game.eccezioni.PosizioneException;
 import it.uniba.game.utility.Difficolta;
@@ -14,6 +17,8 @@ public class Partita {
     private int erroriCorrenti;
     private boolean inCorso;
     private Griglia griglia;
+    private String livello;
+    private Map<String, Integer> erroriPerLivello;
     private static final int DIMMAX = 10;
     private int tempoMax = 0;
     private long startTime;
@@ -25,7 +30,12 @@ public class Partita {
         this.inCorso = false;
         this.erroriCorrenti = 0;
         this.colpiTotali = 0;
-        this.numMaxErrori = Difficolta.valueOf("FACILE").getValue();
+        this.livello = "FACILE";
+        this.erroriPerLivello = new HashMap<String, Integer>();
+        this.erroriPerLivello.put("FACILE", Difficolta.valueOf("FACILE").getValue());
+        this.erroriPerLivello.put("MEDIO", Difficolta.valueOf("MEDIO").getValue());
+        this.erroriPerLivello.put("DIFFICILE", Difficolta.valueOf("DIFFICILE").getValue());
+        this.numMaxErrori = erroriPerLivello.get("FACILE");
     }
 
 
@@ -41,7 +51,37 @@ public class Partita {
         startTime = System.currentTimeMillis();
     }
 
+    /**
+     * Restituisce il numero di errori concessi per il livello dato in input.
+     * @param pLivello : nome del livello del quale si vogliono sapere gli errori concessi
+     * @return corrispondenza livello / errori concessi
+     */
+    public int getErrorePerLivello(final String pLivello) {
+        return erroriPerLivello.get(pLivello);
+    }
+    /**
+     * Modifica una corrispondenza livello/numero di errori nel dizionario.
+     * @param pLivello : nome del livello di difficoltà
+     * @param pErrori : numero di errori da impostare per quel livello
+     */
+    public void setErroriPerLivello(final String pLivello, final int pErrori) {
+        this.erroriPerLivello.put(pLivello, pErrori);
+    }
 
+    /**
+     * Restituisce il livelllo di difficoltà impostato.
+     * @return livello di difficoltà
+     */
+    public String getLivello() {
+        return this.livello;
+    }
+  /**
+  * Imposta il livello di difficoltà.
+  * @param pLivello
+  */
+    public void setLivello(final String pLivello) {
+        this.livello = pLivello;
+    }
 
     /**
      * Restituisce il numero massimo di errori.
