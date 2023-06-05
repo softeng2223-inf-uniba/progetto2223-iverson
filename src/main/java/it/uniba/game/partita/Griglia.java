@@ -212,51 +212,61 @@ class Griglia {
     boolean finepartita() {
         int numNavi = 0;
         int affondate = 0;
-        for(int i = 0; i < this.navi.size(); i++)
-            for(int j = 0; j < this.navi.get(i).size(); j++){
+        for (int i = 0; i < this.navi.size(); i++) {
+            for (int j = 0; j < this.navi.get(i).size(); j++) {
                 numNavi++;
-                if(this.navi.get(i).get(j).getaffondata() == true)
+                if (this.navi.get(i).get(j).getaffondata()) {
                     affondate++;
+                }
             }
-        if(affondate == numNavi)
+        }
+
+        if (affondate == numNavi) {
             return true;
+        }
         return false;
     }
 
     /**
-     * Inserisce il colpo alla posizione inserita in input
+     * Inserisce il colpo alla posizione inserita in input.
      *
      * @param riga : riga su cui si inserisce il colpo
      * @param colonna : colonna su cui inserisce il colpo
      * @return stato del colpo
      * @throws PosizioneException quando la posizione inserita è sbagliata
      */
-    String inserisciColpo(int riga,int colonna) throws PosizioneException {
-        String stato = new String("");
+    String inserisciColpo(final int riga, final int colonna) throws PosizioneException {
+        String stato = "";
         boolean esitoTrovato = false;
         int abbattuta = 0;
-        for(int i = 0; i < this.navi.size() && esitoTrovato == false ; i++)
-            for(int j = 0; j < this.navi.get(i).size()  && esitoTrovato == false; j++)
-                for(int k = 0; k < this.navi.get(i).get(j).getdim()  && esitoTrovato == false; k++){
-                    if(this.navi.get(i).get(j).getcoordinate(k).getriga() == riga &&
-                            this.navi.get(i).get(j).getcoordinate(k).getcolonna() == colonna){
+        for (int i = 0; i < this.navi.size() && !esitoTrovato; i++) {
+            for (int j = 0; j < this.navi.get(i).size()  && !esitoTrovato; j++) {
+                for (int k = 0; k < this.navi.get(i).get(j).getdim()  && !esitoTrovato; k++) {
+                    if (this.navi.get(i).get(j).getcoordinate(k).getriga() == riga
+                            && this.navi.get(i).get(j).getcoordinate(k).getcolonna() == colonna) {
 
                         this.navi.get(i).get(j).getcoordinate(k).setcolpito();
                         this.griglia[riga][colonna] = "NC";
                         esitoTrovato = true;
                         stato = "C";
                     }
-                    if(esitoTrovato == true)
-                        for(k = 0; k < this.navi.get(i).get(j).getdim(); k++)
-                            if(this.navi.get(i).get(j).getcoordinate(k).getcolpito() == true)
+                    if (esitoTrovato) {
+                        for (k = 0; k < this.navi.get(i).get(j).getdim(); k++) {
+                            if (this.navi.get(i).get(j).getcoordinate(k).getcolpito()) {
                                 abbattuta++;
-                    if(abbattuta == this.navi.get(i).get(j).getdim()){
+                            }
+                        }
+                    }
+                    if (abbattuta == this.navi.get(i).get(j).getdim()) {
                         this.navi.get(i).get(j).setaffondata();
                         stato = stato + "A";
                     }
-
                 }
-        if(esitoTrovato == false){
+            }
+        }
+
+
+        if (!esitoTrovato) {
             this.griglia[riga][colonna] = "VC";
             stato = "V";
         }
