@@ -144,10 +144,18 @@ public class Partita {
 
     /**
      * Imposta la dimensione massima della griglia di gioco.
-     * @param pDimMax
+     * @param pDimMax un intero che permette di settare le dimensioni della mappa di gioco
      */
     public void setDimMax(final int pDimMax) {
         this.dimMax = pDimMax;
+    }
+
+    /**
+     * Imposta lo stato della partita in inCorso.
+     * @param pInCorso un booleano che permette di modificare lo stato della partita in inCorso
+     */
+    public void setInCorso(final boolean pInCorso) {
+        this.inCorso = pInCorso;
     }
 
     /**
@@ -411,6 +419,5 @@ public class Partita {
             System.out.printf("La partita è finita perché hai finito il numero di tentativi");
         }
     }
-
 
 }
