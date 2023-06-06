@@ -20,7 +20,7 @@ public class Comando {
     private String comando;
     private String[] cStrings;
     private static final Scanner KEYBOARD = new Scanner(System.in, "UTF-8");
-    private  Partita partita;
+    private Partita partita;
 
     /**
      * Construttore della classe Comando.
@@ -232,6 +232,7 @@ public class Comando {
                 case "/standard":
                     if (partita.statoPartita()) {
                         partita.setDimMax(Tabella.valueOf("STANDARD").getValue());
+                        System.out.println("OK!");
                     } else {
                         System.out.println("La partita è già in corso");
                     }
@@ -239,6 +240,7 @@ public class Comando {
                 case "/large":
                     if (partita.statoPartita()) {
                         partita.setDimMax(Tabella.valueOf("LARGE").getValue());
+                        System.out.println("OK!");
                     } else {
                         System.out.println("La partita è già in corso");
                     }
@@ -246,6 +248,14 @@ public class Comando {
                 case "/extralarge":
                     if (partita.statoPartita()) {
                         partita.setDimMax(Tabella.valueOf("EXTRALARGE").getValue());
+                        System.out.println("OK!");
+                    } else {
+                        System.out.println("La partita è già in corso");
+                    }
+                    break;
+                case "/abbandona":
+                    if (partita.statoPartita()) {
+                        abbandona();
                     } else {
                         System.out.println("La partita è già in corso");
                     }
@@ -316,6 +326,20 @@ public class Comando {
         System.out.println("La difficoltà è impostata a: " + partita.getLivello());
         System.out.println("Il numero massimo di tentativi falliti è: " + partita.getNumMaxErrori());
 
+    }
+
+    /**
+     * La funzione permette di abbandonare la partita in corso.
+     */
+    private void abbandona() {
+        System.out.print("Sei sicuro di voler abbandonare la partita? Se si digitare 'y' "
+        + "altrimenti scrivi qualsiasi altra cosa: ");
+        String conferma = KEYBOARD.nextLine();
+        if (conferma.equals("y")) {
+            partita.svelaGriglia();
+            partita.setInCorso(false);
+            System.out.println("Partita abbandonata!");
+        }
     }
 
     /**
