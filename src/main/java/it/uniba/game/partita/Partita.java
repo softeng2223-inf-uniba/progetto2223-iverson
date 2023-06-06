@@ -151,6 +151,13 @@ public class Partita {
     }
 
     /**
+     * Ritorna la dimensione massima della griglia di gioco.
+     * @return dimMax un intero che restituisce le dimensioni della mappa di gioco
+     */
+    public int getDimMax() {
+        return dimMax;
+    }
+    /**
      * Imposta lo stato della partita in inCorso.
      * @param pInCorso un booleano che permette di modificare lo stato della partita in inCorso
      */
@@ -390,15 +397,15 @@ public class Partita {
         stampaGriglia();
         switch (stato) {
             case "C":
-                System.out.print("colpito\n");
+                System.out.print("Colpito!\n");
                 setColpiTotali(getColpiTotali() + 1);
                 break;
             case "CA":
-                System.out.print("colpito e affondato\n");
+                System.out.print("Colpito e affondato!!!\n");
                 setColpiTotali(getColpiTotali() + 1);
                 break;
             case "V":
-                System.out.print("acqua\n");
+                System.out.print("Acqua :c\n");
                 setColpiTotali(getColpiTotali() + 1);
                 setErroriCorrenti(getErroriCorrenti() + 1);
                 break;
