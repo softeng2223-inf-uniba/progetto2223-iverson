@@ -232,6 +232,7 @@ public class Comando {
                 case "/standard":
                     if (partita.statoPartita()) {
                         partita.setDimMax(Tabella.valueOf("STANDARD").getValue());
+                        System.out.println("OK!");
                     } else {
                         System.out.println("La partita è già in corso");
                     }
@@ -239,6 +240,7 @@ public class Comando {
                 case "/large":
                     if (partita.statoPartita()) {
                         partita.setDimMax(Tabella.valueOf("LARGE").getValue());
+                        System.out.println("OK!");
                     } else {
                         System.out.println("La partita è già in corso");
                     }
@@ -246,6 +248,7 @@ public class Comando {
                 case "/extralarge":
                     if (partita.statoPartita()) {
                         partita.setDimMax(Tabella.valueOf("EXTRALARGE").getValue());
+                        System.out.println("OK!");
                     } else {
                         System.out.println("La partita è già in corso");
                     }
