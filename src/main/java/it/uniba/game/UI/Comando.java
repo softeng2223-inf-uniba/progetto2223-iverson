@@ -8,6 +8,8 @@ import java.util.Scanner;
 
 import it.uniba.game.eccezioni.NumeroCoordinateException;
 
+import it.uniba.game.utility.Tabella;
+
 
 
 /**
@@ -227,10 +229,30 @@ public class Comando {
                 case "/esci":
                     esci();
                     break;
+                case "/standard":
+                    if (partita.statoPartita()) {
+                        partita.setDimMax(Tabella.valueOf("STANDARD").getValue());
+                    } else {
+                        System.out.println("La partita è già in corso");
+                    }
+                    break;
+                case "/large":
+                    if (partita.statoPartita()) {
+                        partita.setDimMax(Tabella.valueOf("LARGE").getValue());
+                    } else {
+                        System.out.println("La partita è già in corso");
+                    }
+                    break;
+                case "/extralarge":
+                    if (partita.statoPartita()) {
+                        partita.setDimMax(Tabella.valueOf("EXTRALARGE").getValue());
+                    } else {
+                        System.out.println("La partita è già in corso");
+                    }
+                    break;
                 default:
                     System.out.println("Comando non riconosciuto");
                     break;
-
             }
 
         } while (true);
