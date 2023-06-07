@@ -87,6 +87,7 @@ public class GrigliaLogic {
                 while (i < dimnave) {
                     griglia.setCella(triga + 1, tcolonna, "N");
                     coordinate[i] = new Coordinata(triga + i, tcolonna);
+
                     i++;
                 }
                 return coordinate;
@@ -98,6 +99,7 @@ public class GrigliaLogic {
                 while (i < dimnave) {
                     griglia.setCella(triga, tcolonna + 1, "N");
                     coordinate[i] = new Coordinata(triga, tcolonna + i);
+
                     i++;
                 }
                 return coordinate;
@@ -113,6 +115,7 @@ public class GrigliaLogic {
      * coordinate rispetto alla sua dimensione
      */
     public void impostaNavi() throws NumeroCoordinateException {
+
 
         //Istanziamento delle navi di ogni tipo
         for (int i = 0; i < Dimensioni.valueOf("CACCIATORPEDINIERE").getEsemplari(); i++) {

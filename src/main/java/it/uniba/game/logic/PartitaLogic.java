@@ -100,8 +100,8 @@ public class PartitaLogic {
     /**
      * @return
      */
-    public GrigliaLogic getGrigliaLogic() {
-        return grigliaLogic;
+    public String getGrigliaLogicCella(final int i, final int j) {
+        return grigliaLogic.getStatoCella(i, j);
     }
 
     /**

@@ -21,6 +21,7 @@ public class Stampa {
      *
      */
     public void svelaGriglia(final PartitaLogic partitaLogic) {
+        
         final char orizzontale = '\u2501'; // carattere Unicode della linea orizzontale
         final char verticale = '\u2503'; // carattere Unicode della linea verticale
         final char nave = '\u26F4'; // carattere Unicode della nave
@@ -45,7 +46,8 @@ public class Stampa {
             System.out.print((char) (i + valoreChiocciola) + " " + verticale);
 
             for (int j = 0; j < partitaLogic.getDimMax(); j++) {
-                String cella = partitaLogic.getGrigliaLogic().getStatoCella(i, j);
+                String cella = partitaLogic.getGrigliaLogicCella(i, j);
+
                 switch (cella) {
                     case "N":
                         System.out.print(" " + nave + " " + verticale);
@@ -110,7 +112,7 @@ public class Stampa {
             System.out.print((char) (i + valoreChiocciola) + " " + verticale);
 
             for (int j = 0; j < partitaLogic.getDimMax(); j++) {
-                String cella = partitaLogic.getGrigliaLogic().getStatoCella(i, j);
+                String cella = partitaLogic.getGrigliaLogicCella(i, j);
                 switch (cella) {
                     case "V":
                         System.out.print("   " + verticale);

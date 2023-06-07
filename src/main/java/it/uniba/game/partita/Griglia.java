@@ -111,15 +111,19 @@ public class Griglia {
         switch (index) {
             case 0:
                 this.navi.get(index).add(new Cacciatorpediniere(coordinata));
+
                 break;
             case 1:
-                this.navi.get(index).add(new Corazzata(coordinata));
+                this.navi.get(index).add(new Incrociatore(coordinata));
+
                 break;
             case 2:
-                this.navi.get(index).add(new Incrociatore(coordinata));
+                this.navi.get(index).add(new Corazzata(coordinata));
+
                 break;
             default:
                 this.navi.get(index).add(new Portaerei(coordinata));
+                
                 break;
         }
     }
