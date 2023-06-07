@@ -257,4 +257,126 @@ public class Comando {
 
     }
 
+     /**
+     * Restituisce la griglia di gioco stampata in Unicode.
+     */
+    public void svelaGriglia() {
+        final char orizzontale = '\u2501'; // carattere Unicode della linea orizzontale
+        final char verticale = '\u2503'; // carattere Unicode della linea verticale
+        final char nave = '\u26F4'; // carattere Unicode della nave
+        final char mancato = '\u25BD'; // carattere Unicode che rappresenta il mancato con un triangolino vuoto
+        final char colpito = '\u25BC'; // carattere Unicode che rappresenta il colpito con un triangolino pieno
+        final int valoreChiocciola = 65;
+        // Stampa delle righe superiori della griglia
+        System.out.print("   ");
+        for (int i = 1; i <= dimMax; i++) {
+            System.out.print(" " + i + "  ");
+        }
+        System.out.println();
+        // Stampa della prima linea verticale della griglia
+        System.out.print("  " + verticale);
+        // Stampa delle linee orizzontali della griglia
+        for (int j = 0; j < dimMax; j++) {
+            System.out.print(orizzontale + "" + orizzontale + "" + orizzontale + verticale);
+        }
+        System.out.println();
+        // Stampa delle linee orizzontali e verticali della griglia
+        for (int i = 0; i < dimMax; i++) {
+            System.out.print((char) (i + valoreChiocciola) + " " + verticale);
+
+            for (int j = 0; j < dimMax; j++) {
+                String cella = griglia.getCella(i, j);
+                switch (cella) {
+                    case "N":
+                        System.out.print(" " + nave + " " + verticale);
+                        break;
+                    case "V":
+                        System.out.print("   " + verticale);
+                        break;
+                    case "NC":
+                        System.out.print(" " + colpito + " " + verticale);
+                        break;
+                    case "VC":
+                        System.out.print(" " + mancato + " " + verticale);
+                        break;
+                    default:
+                        System.out.print("   " + verticale);
+                        break;
+
+                }
+
+            }
+
+            System.out.println();
+
+            // Stampa della prima linea verticale della griglia
+            System.out.print("  " + verticale);
+            // Stampa delle linee orizzontali della griglia
+            for (int j = 0; j < dimMax; j++) {
+                System.out.print(orizzontale + "" + orizzontale + "" + orizzontale + verticale);
+            }
+            System.out.println();
+        }
+    }
+
+    /**
+     * Restituisce la griglia di gioco stampata in Unicode a differenza si
+     * svelaGriglia() non mostra le navi dell'avversario.
+     */
+    public void stampaGriglia() {
+        final char orizzontale = '\u2501'; // carattere Unicode della linea orizzontale
+        final char verticale = '\u2503'; // carattere Unicode della linea verticale
+        final char mancato = '\u25BD'; // carattere Unicode che rappresenta il mancato con un triangolino vuoto
+        final char colpito = '\u25BC'; // carattere Unicode che rappresenta il colpito con un triangolino pieno
+        final int valoreChiocciola = 65;
+
+        // Stampa delle righe superiori della griglia
+        System.out.print("   ");
+        for (int i = 1; i <= dimMax; i++) {
+            System.out.print(" " + i + "  ");
+        }
+        System.out.println();
+        // Stampa della prima linea verticale della griglia
+        System.out.print("  " + verticale);
+        // Stampa delle linee orizzontali della griglia
+        for (int j = 0; j < dimMax; j++) {
+            System.out.print(orizzontale + "" + orizzontale + "" + orizzontale + verticale);
+        }
+        System.out.println();
+        // Stampa delle linee orizzontali e verticali della griglia
+        for (int i = 0; i < dimMax; i++) {
+            System.out.print((char) (i + valoreChiocciola) + " " + verticale);
+
+            for (int j = 0; j < dimMax; j++) {
+                String cella = griglia.getCella(i, j);
+                switch (cella) {
+                    case "V":
+                        System.out.print("   " + verticale);
+                        break;
+                    case "NC":
+                        System.out.print(" " + colpito + " " + verticale);
+                        break;
+                    case "VC":
+                        System.out.print(" " + mancato + " " + verticale);
+                        break;
+                    default:
+                        System.out.print("   " + verticale);
+                        break;
+
+                }
+
+            }
+
+            System.out.println();
+
+            // Stampa della prima linea verticale della griglia
+            System.out.print("  " + verticale);
+            // Stampa delle linee orizzontali della griglia
+            for (int j = 0; j < dimMax; j++) {
+                System.out.print(orizzontale + "" + orizzontale + "" + orizzontale + verticale);
+            }
+            System.out.println();
+        }
+    }
+
 }

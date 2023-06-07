@@ -18,10 +18,9 @@ import it.uniba.game.eccezioni.NumeroCoordinateException;
 /**
  * Classe che definisce la griglia di gioco e la inizializza.
  */
-class Griglia {
+public class Griglia {
     private int righe;
     private int colonne;
-    private static final Random RAND = new Random();
     private String[][] griglia;
     private ArrayList<ArrayList<Nave>> navi;
 
@@ -35,7 +34,7 @@ class Griglia {
      * @throws NumeroCoordinateException se si inseriscono un numero diverso di
      * coordinate rispetto alla sua dimensione
      */
-    Griglia(final int pRighe, final int pColonne) throws NumeroCoordinateException {
+    public Griglia(final int pRighe, final int pColonne) throws NumeroCoordinateException {
         this.righe = pRighe;
         this.colonne = pColonne;
         this.griglia = new String[this.righe][this.colonne];
@@ -44,8 +43,7 @@ class Griglia {
                 this.griglia[i][j] = "V";
             }
         }
-
-        impostaNavi();
+        this.navi = new ArrayList<ArrayList<Nave>>();
 
     }
 
@@ -54,7 +52,7 @@ class Griglia {
      *
      * @return numero di righe
      */
-    int getRighe() {
+    public int getRighe() {
         return this.righe;
     }
 
@@ -63,118 +61,9 @@ class Griglia {
      *
      * @return numero di colonne
      */
-    int getColonne() {
+    public int getColonne() {
         return this.colonne;
     }
-
-    /**
-     * Restituisce un array di coordinate consecutive prendendo
-     * in input la dimensione di tale array considerando che le posizioni
-     * siano disponibili.
-     *
-     * @param dimnave : dimensione della nave su cui trovare celle vuote
-     * @return un array di coordinate consecutive
-     */
-    private Coordinata[] trovaCellaVuota(final int dimnave) {
-        RAND.setSeed(System.currentTimeMillis());
-        int triga;
-        int tcolonna;
-        boolean esitoTrovato = false;
-
-        do {
-            do {
-                triga = RAND.nextInt(this.righe);
-                tcolonna = RAND.nextInt(this.colonne);
-
-            } while (!this.griglia[triga][tcolonna].equals("V"));
-            boolean esitoR = false;
-            if ((dimnave + triga) < this.righe) {
-                boolean esito = true;
-                int i = 0;
-                while (i < dimnave && esito) {
-                    if (!this.griglia[triga + i][tcolonna].equals("V")) {
-                        esito = false;
-                    }
-                    i++;
-                }
-                if (esito) {
-                    esitoR = true;
-                }
-            }
-            boolean esitoC = false;
-            if ((dimnave + tcolonna) < this.colonne && !esitoR) {
-                boolean esito = true;
-                int i = 0;
-                while (i < dimnave && esito) {
-                    if (!this.griglia[triga][tcolonna + i].equals("V")) {
-                        esito = false;
-                    }
-                    i++;
-                }
-                if (esito) {
-                    esitoC = true;
-                }
-            }
-            if (esitoR) {
-                esitoTrovato = true;
-                int i = 0;
-                Coordinata[] coordinate = new Coordinata[dimnave];
-                while (i < dimnave) {
-                    this.griglia[triga + i][tcolonna] = "N";
-                    coordinate[i] = new Coordinata(triga + i, tcolonna);
-                    i++;
-                }
-                return coordinate;
-
-            } else if (esitoC) {
-                esitoTrovato = true;
-                int i = 0;
-                Coordinata[] coordinate = new Coordinata[dimnave];
-                while (i < dimnave) {
-                    this.griglia[triga][tcolonna + i] = "N";
-                    coordinate[i] = new Coordinata(triga, tcolonna + i);
-                    i++;
-                }
-                return coordinate;
-            }
-        } while (!esitoTrovato);
-        return null;
-    }
-
-    /**
-     * Imposta la posizione della navi sulla Griglia casualmente.
-     *
-     * @throws NumeroCoordinateException se si inseriscono un numero diverso di
-     * coordinate rispetto alla sua dimensione
-     */
-    private void impostaNavi() throws NumeroCoordinateException {
-        this.navi = new ArrayList<ArrayList<Nave>>();
-        int tipiNavi = Dimensioni.values().length;
-        // Istanziamento dei tipi di navi
-        for (int i = 0; i < tipiNavi; i++) {
-            this.navi.add(i, new ArrayList<Nave>());
-        }
-
-        //Istanziamento delle navi di ogni tipo
-        for (int i = 0; i < Dimensioni.valueOf("CACCIATORPEDINIERE").getEsemplari(); i++) {
-            this.navi.get(Dimensioni.valueOf("CACCIATORPEDINIERE").getIndex()).add(new Cacciatorpediniere(
-                trovaCellaVuota(Dimensioni.valueOf("CACCIATORPEDINIERE").getDim())));
-        }
-        for (int i = 0; i < Dimensioni.valueOf("INCROCIATORE").getEsemplari(); i++) {
-            this.navi.get(Dimensioni.valueOf("INCROCIATORE").getIndex()).add(new Incrociatore(
-                trovaCellaVuota(Dimensioni.valueOf("INCROCIATORE").getDim())));
-        }
-        for (int i = 0; i < Dimensioni.valueOf("CORAZZATA").getEsemplari(); i++) {
-            this.navi.get(Dimensioni.valueOf("CORAZZATA").getIndex()).add(new Corazzata(
-                trovaCellaVuota(Dimensioni.valueOf("CORAZZATA").getDim())));
-        }
-        for (int i = 0; i < Dimensioni.valueOf("PORTAEREI").getEsemplari(); i++) {
-            this.navi.get(Dimensioni.valueOf("PORTAEREI").getIndex()).add(new Portaerei(
-                trovaCellaVuota(Dimensioni.valueOf("PORTAEREI").getDim())));
-        }
-
-    }
-
 
     /**
      * Descrive lo stato della Griglia.
@@ -204,74 +93,25 @@ class Griglia {
         return griglia[i][j];
     }
 
-    /**
-     * Restituisce vero se tutte le navi sono state abbattute.
+       /**
+     * Restituisce l'oggetto nave.
      *
-     * @return vero se tutte le navi sono state abbattute
+     * @return singola cella della Griglia
      */
-    boolean finepartita() {
-        int numNavi = 0;
-        int affondate = 0;
-        for (int i = 0; i < this.navi.size(); i++) {
-            for (int j = 0; j < this.navi.get(i).size(); j++) {
-                numNavi++;
-                if (this.navi.get(i).get(j).getaffondata()) {
-                    affondate++;
-                }
-            }
-        }
-
-        if (affondate == numNavi) {
-            return true;
-        }
-        return false;
+    public ArrayList<ArrayList<Nave>> getNavi() {
+        return navi;
     }
 
     /**
-     * Inserisce il colpo alla posizione inserita in input.
-     *
-     * @param riga : riga su cui si inserisce il colpo
-     * @param colonna : colonna su cui inserisce il colpo
-     * @return stato del colpo
-     * @throws PosizioneException quando la posizione inserita è sbagliata
+     * Modifica una cella della Griglia.
+     * @param i : numero di riga della cella da modificare
+     * @param j : numero di collona della cella da modificare
+     * @param str : stringa da inserire nella cella
      */
-    String inserisciColpo(final int riga, final int colonna) throws PosizioneException {
-        String stato = "";
-        boolean esitoTrovato = false;
-        int abbattuta = 0;
-        for (int i = 0; i < this.navi.size() && !esitoTrovato; i++) {
-            for (int j = 0; j < this.navi.get(i).size()  && !esitoTrovato; j++) {
-                for (int k = 0; k < this.navi.get(i).get(j).getdim()  && !esitoTrovato; k++) {
-                    if (this.navi.get(i).get(j).getcoordinate(k).getriga() == riga
-                            && this.navi.get(i).get(j).getcoordinate(k).getcolonna() == colonna) {
-
-                        this.navi.get(i).get(j).getcoordinate(k).setcolpito();
-                        this.griglia[riga][colonna] = "NC";
-                        esitoTrovato = true;
-                        stato = "C";
-                    }
-                    if (esitoTrovato) {
-                        for (k = 0; k < this.navi.get(i).get(j).getdim(); k++) {
-                            if (this.navi.get(i).get(j).getcoordinate(k).getcolpito()) {
-                                abbattuta++;
-                            }
-                        }
-                    }
-                    if (abbattuta == this.navi.get(i).get(j).getdim()) {
-                        this.navi.get(i).get(j).setaffondata();
-                        stato = stato + "A";
-                    }
-                }
-            }
-        }
-
-
-        if (!esitoTrovato) {
-            this.griglia[riga][colonna] = "VC";
-            stato = "V";
-        }
-        return stato;
+    public void setCella(final int i, final int j, final String str){
+        this.griglia[i][j] = str;
     }
+
 
 
 }

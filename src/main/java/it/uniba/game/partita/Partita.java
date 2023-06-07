@@ -9,6 +9,7 @@ import it.uniba.game.utility.Difficolta;
 import it.uniba.game.utility.Tabella;
 import it.uniba.game.utility.Tempo;
 
+
 /**
  * Classe che inizializza una Partita e la sua relativa Griglia di gioco.
  */
@@ -17,7 +18,7 @@ public class Partita {
     private int colpiTotali;
     private int erroriCorrenti;
     private boolean inCorso;
-    private Griglia griglia;
+  
     private String livello;
     private Map<String, Integer> erroriPerLivello;
     private int dimMax;
@@ -46,9 +47,11 @@ public class Partita {
      *
      * @throws NumeroCoordinateException se si inseriscono un numero diverso di
      * coordinate rispetto alla sua dimensione
+     * 
+     * logica
      */
     public void avvia() throws NumeroCoordinateException {
-        this.griglia = new Griglia(dimMax, dimMax);
+        this.grigliaLogic = new GrigliaLogic(dimMax, dimMax);
         this.inCorso = true;
         startTime = System.currentTimeMillis();
     }
@@ -167,6 +170,8 @@ public class Partita {
 
     /**
      * Restituisce la griglia di gioco stampata in Unicode.
+     * 
+     * CLASSE <STAMPA>
      */
     public void svelaGriglia() {
         final char orizzontale = '\u2501'; // carattere Unicode della linea orizzontale
@@ -193,7 +198,7 @@ public class Partita {
             System.out.print((char) (i + valoreChiocciola) + " " + verticale);
 
             for (int j = 0; j < dimMax; j++) {
-                String cella = griglia.getCella(i, j);
+                String cella = grigliaLogic.getGriglia().getCella(i, j);
                 switch (cella) {
                     case "N":
                         System.out.print(" " + nave + " " + verticale);
@@ -230,6 +235,8 @@ public class Partita {
     /**
      * Restituisce la griglia di gioco stampata in Unicode a differenza si
      * svelaGriglia() non mostra le navi dell'avversario.
+     * 
+     * CLASSE <STAMPA>
      */
     public void stampaGriglia() {
         final char orizzontale = '\u2501'; // carattere Unicode della linea orizzontale
@@ -256,7 +263,7 @@ public class Partita {
             System.out.print((char) (i + valoreChiocciola) + " " + verticale);
 
             for (int j = 0; j < dimMax; j++) {
-                String cella = griglia.getCella(i, j);
+                String cella = grigliaLogic.getGriglia().getCella(i, j);
                 switch (cella) {
                     case "V":
                         System.out.print("   " + verticale);
@@ -293,7 +300,7 @@ public class Partita {
      * @return stato di Partita
      */
     public String toString() {
-        return griglia.toString();
+        return grigliaLogic.getGriglia().toString();
     }
 
     /**
@@ -307,7 +314,7 @@ public class Partita {
     /**
      * Metodo che controlla se il tempo del timer é scaduto.
      */
-    private boolean controllaTempoScaduto() {
+    public boolean controllaTempoScaduto() {
 
         if (tempoMax != 0 && tempoMax > tempoAttuale()) {
             System.out.println("Il tempo é scaduto");
@@ -320,6 +327,7 @@ public class Partita {
 
     /**
      * Metodo che restituisce il tempo massimo del timer e il tempo corrente.
+     * <STAMPA>
      */
     public void mostraTempo() {
         long secondi = Tempo.valueOf("SECONDI").getValue() -  restoTempoAttuale();
@@ -355,6 +363,8 @@ public class Partita {
     }
     /**
      * Metodo che restituisce i tentativi già effettuati, i tentativi falliti e il numero massimo di tentativi falliti.
+     * 
+     * <STAMPA>
      */
     public void mostraTentativi() {
         System.out.println("Il numero di tentativi effettuati è: " + this.colpiTotali);
@@ -376,12 +386,12 @@ public class Partita {
             riga = Character.toUpperCase(input.charAt(0)) - 'A';
             colonna = Integer.parseInt(sezioni[1]) - 1;
 
-            if (!(riga < griglia.getRighe() && riga >= 0)) {
+            if (!(riga < grigliaLogic.getGriglia().getRighe() && riga >= 0)) {
                 System.out.printf("La riga inserita è fuori range,"
                         + " la prego di reinserirla.%n");
                 return;
             }
-            if (!(colonna < griglia.getColonne() && colonna >= 0)) {
+            if (!(colonna < grigliaLogic.getGriglia().getColonne() && colonna >= 0)) {
                 System.out.printf("La colonna inserita è fuori range,"
                         + " la prego di reinserirla.%n");
                 return;
@@ -392,7 +402,7 @@ public class Partita {
             return;
         }
 
-        String stato = griglia.inserisciColpo(riga, colonna);
+        String stato = grigliaLogic.inserisciColpo(riga, colonna);
 
         stampaGriglia();
         switch (stato) {
@@ -415,7 +425,7 @@ public class Partita {
         }
         mostraTempo();
         System.out.printf("Colpi effettuati : " + getColpiTotali());
-        if (griglia.finepartita()) {
+        if (grigliaLogic.finepartita()) {
             this.inCorso = false;
             System.out.printf("La partita è finita");
         } else if (controllaTempoScaduto()) {
