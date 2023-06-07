@@ -3,7 +3,7 @@ package it.uniba.game.partita;
 import java.util.HashMap;
 import java.util.Map;
 
-import it.uniba.game.logic.GrigliaLogic;
+
 import it.uniba.game.utility.Difficolta;
 import it.uniba.game.utility.Tabella;
 
@@ -15,7 +15,6 @@ public class Partita {
     private int colpiTotali;
     private int erroriCorrenti;
     private boolean inCorso;
-    private GrigliaLogic grigliaLogic;
     private String livello;
     private Map<String, Integer> erroriPerLivello;
     private int dimMax;
@@ -49,10 +48,10 @@ public class Partita {
 
     /**
      * Imposta il tempo di inizio della partita ad un dato valore.
-     * @param startTime : valore a cui impostare il tempo di inizio
+     * @param pStartTime : valore a cui impostare il tempo di inizio
      */
-    public void setStartTime(long startTime) {
-        this.startTime = startTime;
+    public void setStartTime(final long pStartTime) {
+        this.startTime = pStartTime;
     }
 
     /**
@@ -177,21 +176,21 @@ public class Partita {
     }
 
     /**
-     * restituisce il tempo massimo di gioco
+     * restituisce il tempo massimo di gioco.
      * @return tempo massimo di svolgimento della partita
      */
     public int getTempoMax() {
         return tempoMax;
     }
-    
+
     /**
      * Descrive lo stato della Partita.
      *
      * @return stato di Partita
      */
-    public String toString() {
-        return grigliaLogic.getGriglia().toString();
-    }
+   // public String toString() {
+       // return grigliaLogic.getGriglia().toString();
+   // }
 
 
 }

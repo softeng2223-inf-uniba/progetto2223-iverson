@@ -2,6 +2,7 @@ package it.uniba.game.partita;
 
 
 import it.uniba.game.nave.Nave;
+import it.uniba.game.utility.Dimensioni;
 
 import java.util.ArrayList;
 
@@ -28,6 +29,7 @@ public class Griglia {
      * coordinate rispetto alla sua dimensione
      */
     public Griglia(final int pRighe, final int pColonne) throws NumeroCoordinateException {
+        
         this.righe = pRighe;
         this.colonne = pColonne;
         this.griglia = new String[this.righe][this.colonne];
@@ -37,6 +39,13 @@ public class Griglia {
             }
         }
         this.navi = new ArrayList<ArrayList<Nave>>();
+
+        int tipiNavi = Dimensioni.values().length;
+        // Istanziamento dei tipi di navi
+        for (int i = 0; i < tipiNavi; i++) {
+           this.navi.add(i, new ArrayList<Nave>());
+            
+        }
 
     }
 
@@ -58,6 +67,7 @@ public class Griglia {
         return this.colonne;
     }
 
+    
     /**
      * Descrive lo stato della Griglia.
      *
@@ -91,8 +101,8 @@ public class Griglia {
      *
      * @return singola cella della Griglia
      */
-    public ArrayList<ArrayList<Nave>> getNavi() {
-        return navi;
+    public void addNavi() {
+        
     }
 
     /**
@@ -101,10 +111,12 @@ public class Griglia {
      * @param j : numero di collona della cella da modificare
      * @param str : stringa da inserire nella cella
      */
-    public void setCella(final int i, final int j, final String str){
+    public void setCella(final int i, final int j, final String str) {
         this.griglia[i][j] = str;
     }
 
-
+    public int naviSize() {
+        return navi.size();
+    }
 
 }

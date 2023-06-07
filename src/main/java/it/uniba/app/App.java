@@ -1,6 +1,7 @@
 package it.uniba.app;
 
 import it.uniba.game.UI.Comando;
+import it.uniba.game.UI.Stampa;
 import it.uniba.game.eccezioni.NumeroCoordinateException;
 import it.uniba.game.eccezioni.PosizioneException;
 
@@ -25,14 +26,15 @@ public final class App {
      */
     public static void main(final String[] args) {
         Comando comando = new Comando();
-        comando.stampaDescrizione();
+        Stampa stampa = new Stampa();
+        stampa.stampaDescrizione();
         for (String string : args) {
             if (string.equals("--help") || string.equals("-h")) {
-                comando.stampaHelp();
+                stampa.stampaHelp();
             }
         }
         try {
-            comando.menú();
+            comando.menu();
         } catch (NumeroCoordinateException | PosizioneException e) {
             System.out.println(e.getMessage());
         }

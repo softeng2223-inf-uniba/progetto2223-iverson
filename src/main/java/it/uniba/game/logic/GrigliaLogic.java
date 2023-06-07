@@ -17,29 +17,30 @@ import java.util.Random;
 
 
 /**
- * CONTROL
- * 
+ * CONTROL.
+ *
  */
 
 public class GrigliaLogic {
     private Griglia griglia;
     private static final Random RAND = new Random();
     /**
-     * Costruttore della classe. Inizializza la griglia di gioco e posiziona le navi
+     * Costruttore della classe. Inizializza la griglia di gioco e posiziona le navi.
      * @param pRighe : numero di righe che la griglia dovra avere
      * @param pColonne : numero di colonne che la griglia dovra avere
      * @throws NumeroCoordinateException
      */
-    public GrigliaLogic(final int pRighe, final int pColonne) throws NumeroCoordinateException{
+    public GrigliaLogic(final int pRighe, final int pColonne) throws NumeroCoordinateException {
         griglia = new Griglia(pRighe, pColonne);
         impostaNavi();
     }
 
 /**
- * 
+ *
  * @return griglia rappresentante la mappa di gioco
  */
-    public Griglia getGriglia(){
+   /**
+    * public Griglia getGriglia() {
         return griglia;
     }
 
@@ -61,13 +62,13 @@ public class GrigliaLogic {
             do {
                 triga = RAND.nextInt(griglia.getRighe());
                 tcolonna = RAND.nextInt(griglia.getColonne());
-            } while (!griglia.getCella(triga,tcolonna).equals("V"));
+            } while (!griglia.getCella(triga, tcolonna).equals("V"));
             boolean esitoR = false;
             if ((dimnave + triga) < griglia.getRighe()) {
                 boolean esito = true;
                 int i = 0;
                 while (i < dimnave && esito) {
-                    if (!griglia.getCella(triga,tcolonna).equals("V")) {
+                    if (!griglia.getCella(triga, tcolonna).equals("V")) {
                         esito = false;
                     }
                     i++;
@@ -81,7 +82,7 @@ public class GrigliaLogic {
                 boolean esito = true;
                 int i = 0;
                 while (i < dimnave && esito) {
-                    if (!griglia.getCella(triga,tcolonna+1).equals("V")) {
+                    if (!griglia.getCella(triga, tcolonna + 1).equals("V")) {
                         esito = false;
                     }
                     i++;
@@ -95,8 +96,7 @@ public class GrigliaLogic {
                 int i = 0;
                 Coordinata[] coordinate = new Coordinata[dimnave];
                 while (i < dimnave) {
-                    
-                    griglia.setCella(triga+1, tcolonna, "N");
+                    griglia.setCella(triga + 1, tcolonna, "N");
                     coordinate[i] = new Coordinata(triga + i, tcolonna);
                     i++;
                 }
@@ -107,7 +107,7 @@ public class GrigliaLogic {
                 int i = 0;
                 Coordinata[] coordinate = new Coordinata[dimnave];
                 while (i < dimnave) {
-                    griglia.setCella(triga, tcolonna+1, "N");;
+                    griglia.setCella(triga, tcolonna + 1, "N");
                     coordinate[i] = new Coordinata(triga, tcolonna + i);
                     i++;
                 }
@@ -125,16 +125,12 @@ public class GrigliaLogic {
      */
     public void impostaNavi() throws NumeroCoordinateException {
 
-        int tipiNavi = Dimensioni.values().length;
-        // Istanziamento dei tipi di navi
-        for (int i = 0; i < tipiNavi; i++) {
-            griglia.getNavi().add(i, new ArrayList<Nave>());
-        }
-
         //Istanziamento delle navi di ogni tipo
         for (int i = 0; i < Dimensioni.valueOf("CACCIATORPEDINIERE").getEsemplari(); i++) {
-            griglia.getNavi().get(Dimensioni.valueOf("CACCIATORPEDINIERE").getIndex()).add(new Cacciatorpediniere(
+
+            this.navi.get(Dimensioni.valueOf("CACCIATORPEDINIERE").getIndex()).add(new Cacciatorpediniere(
                 trovaCellaVuota(Dimensioni.valueOf("CACCIATORPEDINIERE").getDim())));
+
         }
         for (int i = 0; i < Dimensioni.valueOf("INCROCIATORE").getEsemplari(); i++) {
             griglia.getNavi().get(Dimensioni.valueOf("INCROCIATORE").getIndex()).add(new Incrociatore(
@@ -161,10 +157,10 @@ public class GrigliaLogic {
     public boolean finepartita() {
         int numNavi = 0;
         int affondate = 0;
-        for (int i = 0; i <  griglia.getNavi().size(); i++) {
+        for (int i = 0; i <  griglia.naviSize(); i++) {
             for (int j = 0; j <  griglia.getNavi().get(i).size(); j++) {
                 numNavi++;
-                if ( griglia.getNavi().get(i).get(j).getaffondata()) {
+                if (griglia.getNavi().get(i).get(j).getaffondata()) {
                     affondate++;
                 }
             }
@@ -188,14 +184,14 @@ public class GrigliaLogic {
         String stato = "";
         boolean esitoTrovato = false;
         int abbattuta = 0;
-        for (int i = 0; i < griglia.getNavi().size() && !esitoTrovato; i++) {
+        for (int i = 0; i < griglia.naviSize() && !esitoTrovato; i++) {
             for (int j = 0; j < griglia.getNavi().get(i).size()  && !esitoTrovato; j++) {
                 for (int k = 0; k < griglia.getNavi().get(i).get(j).getdim()  && !esitoTrovato; k++) {
                     if (griglia.getNavi().get(i).get(j).getcoordinate(k).getriga() == riga
                             && griglia.getNavi().get(i).get(j).getcoordinate(k).getcolonna() == colonna) {
 
                         griglia.getNavi().get(i).get(j).getcoordinate(k).setcolpito();
-                        griglia.setCella(riga,colonna,"NC");
+                        griglia.setCella(riga, colonna, "NC");
                         esitoTrovato = true;
                         stato = "C";
                     }
@@ -216,12 +212,14 @@ public class GrigliaLogic {
 
 
         if (!esitoTrovato) {
-            griglia.setCella(riga,colonna,"VC");
+            griglia.setCella(riga, colonna, "VC");
             stato = "V";
         }
         return stato;
     }
 
-
+    public String getStatoCella(final int i, final int j) {
+        return griglia.getCella(i, j);
+    }
 
 }
