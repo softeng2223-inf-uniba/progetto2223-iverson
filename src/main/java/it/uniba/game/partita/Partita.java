@@ -57,6 +57,22 @@ public class Partita {
     }
 
     /**
+     * Restituisce il tempo di inizio della partita.
+     * @return tempo di inizio della partita
+     */
+    public long getStartTime() {
+        return startTime;
+    }
+
+/**
+ * Imposta il tempo di inizio della partita ad un dato valore.
+ * @param startTime : valore a cui impostare il tempo di inizio
+ */
+    public void setStartTime(long startTime) {
+        this.startTime = startTime;
+    }
+
+    /**
      * Restituisce il numero di errori concessi per il livello dato in input.
      * @param pLivello : nome del livello del quale si vogliono sapere gli errori concessi
      * @return corrispondenza livello / errori concessi

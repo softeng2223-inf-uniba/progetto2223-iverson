@@ -1,5 +1,6 @@
 package it.uniba.game.logic;
 
+import it.uniba.game.eccezioni.NumeroCoordinateException;
 import it.uniba.game.eccezioni.PosizioneException;
 import it.uniba.game.partita.Partita;
 
@@ -9,6 +10,21 @@ import it.uniba.game.partita.Partita;
 public class PartitaLogic {
     private Partita partita;
     private GrigliaLogic grigliaLogic;
+
+    public PartitaLogic() {
+        partita = new Partita();
+    }
+
+    public void avvia() throws NumeroCoordinateException {
+        grigliaLogic = new GrigliaLogic(partita.getDimMax(), partita.getDimMax());
+        partita.setInCorso(true);
+        partita.setStartTime(System.currentTimeMillis());
+
+    }
+
+    public Partita getPartita() {
+        return partita;
+    }
     
     /**
      * Consente di colpire una cella della griglia.
@@ -40,7 +56,7 @@ public class PartitaLogic {
             return;
         }
 
-        String stato = griglia.inserisciColpo(riga, colonna);
+        String stato = grigliaLogic.inserisciColpo(riga, colonna);
 
         partita.stampaGriglia();
         switch (stato) {
@@ -63,7 +79,7 @@ public class PartitaLogic {
         }
        partita.mostraTempo();
         System.out.printf("Colpi effettuati : " + partita.getColpiTotali());
-        if (griglia.finepartita()) {
+        if (grigliaLogic.finepartita()) {
             partita.setInCorso(false); 
             System.out.printf("La partita è finita");
         } else if (partita.controllaTempoScaduto()) {
