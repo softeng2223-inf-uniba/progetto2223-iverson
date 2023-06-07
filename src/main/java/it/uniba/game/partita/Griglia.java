@@ -1,13 +1,19 @@
 package it.uniba.game.partita;
 
 
+import it.uniba.game.nave.Cacciatorpediniere;
+import it.uniba.game.nave.Coordinata;
+import it.uniba.game.nave.Corazzata;
+import it.uniba.game.nave.Incrociatore;
 import it.uniba.game.nave.Nave;
+import it.uniba.game.nave.Portaerei;
 import it.uniba.game.utility.Dimensioni;
 
 import java.util.ArrayList;
 
 
 import it.uniba.game.eccezioni.NumeroCoordinateException;
+import it.uniba.game.eccezioni.PosizioneException;
 
 /**
  * Classe che definisce la griglia di gioco e la inizializza.
@@ -29,7 +35,7 @@ public class Griglia {
      * coordinate rispetto alla sua dimensione
      */
     public Griglia(final int pRighe, final int pColonne) throws NumeroCoordinateException {
-        
+
         this.righe = pRighe;
         this.colonne = pColonne;
         this.griglia = new String[this.righe][this.colonne];
@@ -38,13 +44,12 @@ public class Griglia {
                 this.griglia[i][j] = "V";
             }
         }
-        this.navi = new ArrayList<ArrayList<Nave>>();
 
+        this.navi = new ArrayList<ArrayList<Nave>>();
         int tipiNavi = Dimensioni.values().length;
         // Istanziamento dei tipi di navi
         for (int i = 0; i < tipiNavi; i++) {
            this.navi.add(i, new ArrayList<Nave>());
-            
         }
 
     }
@@ -67,7 +72,7 @@ public class Griglia {
         return this.colonne;
     }
 
-    
+
     /**
      * Descrive lo stato della Griglia.
      *
@@ -100,9 +105,23 @@ public class Griglia {
      * Restituisce l'oggetto nave.
      *
      * @return singola cella della Griglia
+     * @throws NumeroCoordinateException
      */
-    public void addNavi() {
-        
+    public void addNavi(final Coordinata[] coordinata, final int index) throws NumeroCoordinateException {
+        switch (index) {
+            case 0:
+                this.navi.get(index).add(new Cacciatorpediniere(coordinata));
+                break;
+            case 1:
+                this.navi.get(index).add(new Corazzata(coordinata));
+                break;
+            case 2:
+                this.navi.get(index).add(new Incrociatore(coordinata));
+                break;
+            default:
+                this.navi.get(index).add(new Portaerei(coordinata));
+                break;
+        }
     }
 
     /**
@@ -119,4 +138,35 @@ public class Griglia {
         return navi.size();
     }
 
+    public int getSize(final int i) {
+        return this.navi.get(i).size();
+    }
+
+    public int getDim(final int i, final int j) {
+        return this.navi.get(i).get(j).getdim();
+    }
+
+    public void setAffondata(final int i, final int j) {
+        this.navi.get(i).get(j).setaffondata();
+    }
+
+     public boolean getAffondata(final int i, final int j) {
+        return this.navi.get(i).get(j).getaffondata();
+    }
+
+    public int getRiga(final int i, final int j, final int k) throws PosizioneException {
+        return this.navi.get(i).get(j).getcoordinate(k).getriga();
+    }
+
+    public int getColonna(final int i, final int j, final int k) throws PosizioneException {
+        return this.navi.get(i).get(j).getcoordinate(k).getcolonna();
+    }
+
+    public boolean getColpito(final int i, final int j, final int k) throws PosizioneException {
+        return this.navi.get(i).get(j).getcoordinate(k).getcolpito();
+    }
+
+    public void setColpito(final int i, final int j, final int k) throws PosizioneException {
+        this.navi.get(i).get(j).getcoordinate(k).setcolpito();
+    }
 }

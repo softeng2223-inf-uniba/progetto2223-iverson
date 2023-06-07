@@ -2,16 +2,12 @@ package it.uniba.game.logic;
 
 import it.uniba.game.eccezioni.NumeroCoordinateException;
 import it.uniba.game.eccezioni.PosizioneException;
-import it.uniba.game.nave.Cacciatorpediniere;
+
 import it.uniba.game.nave.Coordinata;
-import it.uniba.game.nave.Corazzata;
-import it.uniba.game.nave.Incrociatore;
-import it.uniba.game.nave.Nave;
-import it.uniba.game.nave.Portaerei;
+
 import it.uniba.game.partita.Griglia;
 import it.uniba.game.utility.Dimensioni;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -35,14 +31,7 @@ public class GrigliaLogic {
         impostaNavi();
     }
 
-/**
- *
- * @return griglia rappresentante la mappa di gioco
- */
-   /**
-    * public Griglia getGriglia() {
-        return griglia;
-    }
+
 
     /**
      * Restituisce un array di coordinate consecutive prendendo
@@ -127,22 +116,23 @@ public class GrigliaLogic {
 
         //Istanziamento delle navi di ogni tipo
         for (int i = 0; i < Dimensioni.valueOf("CACCIATORPEDINIERE").getEsemplari(); i++) {
-
-            this.navi.get(Dimensioni.valueOf("CACCIATORPEDINIERE").getIndex()).add(new Cacciatorpediniere(
-                trovaCellaVuota(Dimensioni.valueOf("CACCIATORPEDINIERE").getDim())));
-
+            griglia.addNavi(trovaCellaVuota(Dimensioni.valueOf("CACCIATORPEDINIERE").getDim()),
+                Dimensioni.valueOf("CACCIATORPEDINIERE").getIndex());
         }
+
         for (int i = 0; i < Dimensioni.valueOf("INCROCIATORE").getEsemplari(); i++) {
-            griglia.getNavi().get(Dimensioni.valueOf("INCROCIATORE").getIndex()).add(new Incrociatore(
-                trovaCellaVuota(Dimensioni.valueOf("INCROCIATORE").getDim())));
+            griglia.addNavi(trovaCellaVuota(Dimensioni.valueOf("INCROCIATORE").getDim()),
+            Dimensioni.valueOf("INCROCIATORE").getIndex());
         }
+
         for (int i = 0; i < Dimensioni.valueOf("CORAZZATA").getEsemplari(); i++) {
-            griglia.getNavi().get(Dimensioni.valueOf("CORAZZATA").getIndex()).add(new Corazzata(
-                trovaCellaVuota(Dimensioni.valueOf("CORAZZATA").getDim())));
+            griglia.addNavi(trovaCellaVuota(Dimensioni.valueOf("CORAZZATA").getDim()),
+                Dimensioni.valueOf("CORAZZATA").getIndex());
         }
+
         for (int i = 0; i < Dimensioni.valueOf("PORTAEREI").getEsemplari(); i++) {
-            griglia.getNavi().get(Dimensioni.valueOf("PORTAEREI").getIndex()).add(new Portaerei(
-                trovaCellaVuota(Dimensioni.valueOf("PORTAEREI").getDim())));
+            griglia.addNavi(trovaCellaVuota(Dimensioni.valueOf("PORTAEREI").getDim()),
+                Dimensioni.valueOf("PORTAEREI").getIndex());
         }
 
     }
@@ -158,9 +148,9 @@ public class GrigliaLogic {
         int numNavi = 0;
         int affondate = 0;
         for (int i = 0; i <  griglia.naviSize(); i++) {
-            for (int j = 0; j <  griglia.getNavi().get(i).size(); j++) {
+            for (int j = 0; j <  griglia.getSize(i); j++) {
                 numNavi++;
-                if (griglia.getNavi().get(i).get(j).getaffondata()) {
+                if (griglia.getAffondata(i, j)) {
                     affondate++;
                 }
             }
@@ -185,25 +175,24 @@ public class GrigliaLogic {
         boolean esitoTrovato = false;
         int abbattuta = 0;
         for (int i = 0; i < griglia.naviSize() && !esitoTrovato; i++) {
-            for (int j = 0; j < griglia.getNavi().get(i).size()  && !esitoTrovato; j++) {
-                for (int k = 0; k < griglia.getNavi().get(i).get(j).getdim()  && !esitoTrovato; k++) {
-                    if (griglia.getNavi().get(i).get(j).getcoordinate(k).getriga() == riga
-                            && griglia.getNavi().get(i).get(j).getcoordinate(k).getcolonna() == colonna) {
+            for (int j = 0; j < griglia.getSize(i)  && !esitoTrovato; j++) {
+                for (int k = 0; k < griglia.getDim(i, j)  && !esitoTrovato; k++) {
+                    if (griglia.getRiga(i, j, k) == riga && griglia.getColonna(i, j, k) == colonna) {
 
-                        griglia.getNavi().get(i).get(j).getcoordinate(k).setcolpito();
+                        griglia.setColpito(i, j, k);
                         griglia.setCella(riga, colonna, "NC");
                         esitoTrovato = true;
                         stato = "C";
                     }
                     if (esitoTrovato) {
-                        for (k = 0; k < griglia.getNavi().get(i).get(j).getdim(); k++) {
-                            if (griglia.getNavi().get(i).get(j).getcoordinate(k).getcolpito()) {
+                        for (k = 0; k < griglia.getDim(i, j); k++) {
+                            if (griglia.getColpito(i, j, k)) {
                                 abbattuta++;
                             }
                         }
                     }
-                    if (abbattuta == griglia.getNavi().get(i).get(j).getdim()) {
-                        griglia.getNavi().get(i).get(j).setaffondata();
+                    if (abbattuta == griglia.getDim(i, j)) {
+                        griglia.setAffondata(i, j);
                         stato = stato + "A";
                     }
                 }

@@ -28,11 +28,13 @@ public class PartitaLogic {
      *
      */
     public void avvia() throws NumeroCoordinateException {
-        
+
         grigliaLogic = new GrigliaLogic(partita.getDimMax(), partita.getDimMax());
         partita.setInCorso(true);
         partita.setStartTime(System.currentTimeMillis());
-        
+        partita.setColpiTotali(0);
+        partita.setErroriCorrenti(0);
+
     }
 
     /**
@@ -148,6 +150,10 @@ public class PartitaLogic {
         partita.setDimMax(pDimMax);
     }
 
+    public void setTempoMax(final int pTempoMax) {
+        partita.setTempoMax(pTempoMax);
+    }
+
     public void setNumMaxErrori(final int pNumMaxErrori) {
         partita.setNumMaxErrori(pNumMaxErrori);
     }
@@ -155,9 +161,9 @@ public class PartitaLogic {
     public int getErrorePerLivello(final String pLivello) {
         return partita.getErrorePerLivello(pLivello);
     }
-    
 
-    public void setLivello(final String pLivello){
+
+    public void setLivello(final String pLivello) {
         partita.setLivello(pLivello);
     }
 
@@ -165,27 +171,27 @@ public class PartitaLogic {
         partita.setErroriPerLivello(pLivello, pErrori);
     }
 
-    public void setIncorso( final boolean pInCorso){
+    public void setInCorso(final boolean pInCorso) {
         partita.setInCorso(pInCorso);
     }
-
-   public int getColpiTotali(){
+ 
+   public int getColpiTotali() {
     return partita.getColpiTotali();
     }
     
-    public int getTempoMax(){
+    public int getTempoMax() {
         return partita.getTempoMax();   
     }
 
-    public int getNumMaxErrori(){
+    public int getNumMaxErrori() {
         return partita.getNumMaxErrori();
     }
 
-    public int getErroriCorrenti(){
+    public int getErroriCorrenti() {
         return partita.getErroriCorrenti();
     }
     
-    public String getLivello(){
+    public String getLivello() {
         return partita.getLivello();
     }
 

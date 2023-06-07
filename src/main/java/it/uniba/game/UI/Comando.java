@@ -42,7 +42,7 @@ public class Comando {
     public void menu() throws NumeroCoordinateException, PosizioneException {
         do {
             cStrings = getComando();
-            if (partitaLogic.getPartita().statoPartita()) {
+            if (partitaLogic.statoPartita()) {
                 switch (cStrings[0]) {
                     case "/svelagriglia":
                         stampa.svelaGriglia(partitaLogic);
@@ -72,7 +72,7 @@ public class Comando {
                         abbandona();
                         break;
                     default:
-                    if (controlli.isCoordinata(cStrings[0], partitaLogic.getPartita())) {
+                    if (controlli.isCoordinata(cStrings[0], partitaLogic)) {
                             String[] output = partitaLogic.colpisci(cStrings[0]);
                             stampa.stampaRisultatoColpo(output[0], partitaLogic);
                             stampa.stampaFinePartita(output[1]);
@@ -92,7 +92,7 @@ public class Comando {
                         if (cStrings.length == 1) {
                             System.out.println("Non hai inserito nessun tempo");
                         } else if (controlli.isInteger(cStrings[1])) {
-                            partitaLogic.getPartita().setTempoMax(Integer.parseInt(cStrings[1]));
+                            partitaLogic.setTempoMax(Integer.parseInt(cStrings[1]));
                             System.out.println("OK!");
                         } else {
                             System.out.println("Non hai inserito un numero corretto o il comando è sbagliato");
@@ -109,12 +109,12 @@ public class Comando {
                         break;
                     case "/facile":
                         if (cStrings.length == 1) {
-                            partitaLogic.getPartita().setNumMaxErrori(
-                                partitaLogic.getPartita().getErrorePerLivello("FACILE"));
-                            partitaLogic.getPartita().setLivello("FACILE");
+                            partitaLogic.setNumMaxErrori(
+                                partitaLogic.getErrorePerLivello("FACILE"));
+                            partitaLogic.setLivello("FACILE");
                             System.out.println("OK \n difficoltà impostata a facile");
                         } else if (controlli.isInteger(cStrings[1])) {
-                            partitaLogic.getPartita().setErroriPerLivello("FACILE", Integer.parseInt(cStrings[1]));
+                            partitaLogic.setErroriPerLivello("FACILE", Integer.parseInt(cStrings[1]));
                             System.out.println("OK \n numero massimo di errori per il livello FACILE impostato a: "
                             + Integer.parseInt(cStrings[1]));
                         } else {
@@ -123,12 +123,12 @@ public class Comando {
                         break;
                     case "/medio":
                         if (cStrings.length == 1) {
-                            partitaLogic.getPartita().setNumMaxErrori(
-                                partitaLogic.getPartita().getErrorePerLivello("MEDIO"));
-                            partitaLogic.getPartita().setLivello("MEDIO");
+                            partitaLogic.setNumMaxErrori(
+                                partitaLogic.getErrorePerLivello("MEDIO"));
+                            partitaLogic.setLivello("MEDIO");
                             System.out.println("OK \n difficoltà impostata a medio");
                         } else if (controlli.isInteger(cStrings[1])) {
-                            partitaLogic.getPartita().setErroriPerLivello("MEDIO", Integer.parseInt(cStrings[1]));
+                            partitaLogic.setErroriPerLivello("MEDIO", Integer.parseInt(cStrings[1]));
                             System.out.println("OK \n numero massimo di errori per il livello MEDIO impostato a: "
                             + Integer.parseInt(cStrings[1]));
                         } else {
@@ -137,12 +137,12 @@ public class Comando {
                         break;
                     case "/difficile":
                         if (cStrings.length == 1) {
-                            partitaLogic.getPartita().setNumMaxErrori(
-                                partitaLogic.getPartita().getErrorePerLivello("DIFFICILE"));
-                            partitaLogic.getPartita().setLivello("DIFFICILE");
+                            partitaLogic.setNumMaxErrori(
+                                partitaLogic.getErrorePerLivello("DIFFICILE"));
+                            partitaLogic.setLivello("DIFFICILE");
                             System.out.println("OK \n difficoltà impostata a difficile");
                         } else if (controlli.isInteger(cStrings[1])) {
-                            partitaLogic.getPartita().setErroriPerLivello("DIFFICILE", Integer.parseInt(cStrings[1]));
+                            partitaLogic.setErroriPerLivello("DIFFICILE", Integer.parseInt(cStrings[1]));
                             System.out.println("OK \n numero massimo di errori per il livello DIFFICILE impostato a: "
                             + Integer.parseInt(cStrings[1]));
                         } else {
@@ -153,7 +153,7 @@ public class Comando {
                         if (cStrings.length == 1) {
                             System.out.println("Non hai inserito nessun numero di tentativi");
                         } else if (controlli.isInteger(cStrings[1])) {
-                            partitaLogic.getPartita().setNumMaxErrori(Integer.parseInt(cStrings[1]));
+                            partitaLogic.setNumMaxErrori(Integer.parseInt(cStrings[1]));
                             System.out.println("OK!");
                             System.out.println("Numero dei tentativi impostato direttamente a "
                             + Integer.parseInt(cStrings[1]));
@@ -162,15 +162,15 @@ public class Comando {
                         }
                         break;
                     case "/standard":
-                        partitaLogic.getPartita().setDimMax(Tabella.valueOf("STANDARD").getValue());
+                        partitaLogic.setDimMax(Tabella.valueOf("STANDARD").getValue());
                         System.out.println("OK!");
                         break;
                     case "/large":
-                        partitaLogic.getPartita().setDimMax(Tabella.valueOf("LARGE").getValue());
+                        partitaLogic.setDimMax(Tabella.valueOf("LARGE").getValue());
                         System.out.println("OK!");
                         break;
                     case "/extralarge":
-                        partitaLogic.getPartita().setDimMax(Tabella.valueOf("EXTRALARGE").getValue());
+                        partitaLogic.setDimMax(Tabella.valueOf("EXTRALARGE").getValue());
                         System.out.println("OK!");
                         break;
                     case "/esci":
@@ -209,7 +209,7 @@ public class Comando {
         String conferma = KEYBOARD.nextLine();
         if (conferma.equals("y")) {
             stampa.svelaGriglia(partitaLogic);
-            partitaLogic.getPartita().setInCorso(false);
+            partitaLogic.setInCorso(false);
             System.out.println("Partita abbandonata!");
         }
     }

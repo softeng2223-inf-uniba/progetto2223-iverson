@@ -29,22 +29,22 @@ public class Stampa {
         final int valoreChiocciola = 65;
         // Stampa delle righe superiori della griglia
         System.out.print("   ");
-        for (int i = 1; i <= partitaLogic.getPartita().getDimMax(); i++) {
+        for (int i = 1; i <= partitaLogic.getDimMax(); i++) {
             System.out.print(" " + i + "  ");
         }
         System.out.println();
         // Stampa della prima linea verticale della griglia
         System.out.print("  " + verticale);
         // Stampa delle linee orizzontali della griglia
-        for (int j = 0; j < partitaLogic.getPartita().getDimMax(); j++) {
+        for (int j = 0; j < partitaLogic.getDimMax(); j++) {
             System.out.print(orizzontale + "" + orizzontale + "" + orizzontale + verticale);
         }
         System.out.println();
         // Stampa delle linee orizzontali e verticali della griglia
-        for (int i = 0; i < partitaLogic.getPartita().getDimMax(); i++) {
+        for (int i = 0; i < partitaLogic.getDimMax(); i++) {
             System.out.print((char) (i + valoreChiocciola) + " " + verticale);
 
-            for (int j = 0; j < partitaLogic.getPartita().getDimMax(); j++) {
+            for (int j = 0; j < partitaLogic.getDimMax(); j++) {
                 String cella = partitaLogic.getGrigliaLogic().getStatoCella(i, j);
                 switch (cella) {
                     case "N":
@@ -72,7 +72,7 @@ public class Stampa {
             // Stampa della prima linea verticale della griglia
             System.out.print("  " + verticale);
             // Stampa delle linee orizzontali della griglia
-            for (int j = 0; j < partitaLogic.getPartita().getDimMax(); j++) {
+            for (int j = 0; j < partitaLogic.getDimMax(); j++) {
                 System.out.print(orizzontale + "" + orizzontale + "" + orizzontale + verticale);
             }
             System.out.println();
@@ -94,22 +94,22 @@ public class Stampa {
 
         // Stampa delle righe superiori della griglia
         System.out.print("   ");
-        for (int i = 1; i <= partitaLogic.getPartita().getDimMax(); i++) {
+        for (int i = 1; i <= partitaLogic.getDimMax(); i++) {
             System.out.print(" " + i + "  ");
         }
         System.out.println();
         // Stampa della prima linea verticale della griglia
         System.out.print("  " + verticale);
         // Stampa delle linee orizzontali della griglia
-        for (int j = 0; j < partitaLogic.getPartita().getDimMax(); j++) {
+        for (int j = 0; j < partitaLogic.getDimMax(); j++) {
             System.out.print(orizzontale + "" + orizzontale + "" + orizzontale + verticale);
         }
         System.out.println();
         // Stampa delle linee orizzontali e verticali della griglia
-        for (int i = 0; i < partitaLogic.getPartita().getDimMax(); i++) {
+        for (int i = 0; i < partitaLogic.getDimMax(); i++) {
             System.out.print((char) (i + valoreChiocciola) + " " + verticale);
 
-            for (int j = 0; j < partitaLogic.getPartita().getDimMax(); j++) {
+            for (int j = 0; j < partitaLogic.getDimMax(); j++) {
                 String cella = partitaLogic.getGrigliaLogic().getStatoCella(i, j);
                 switch (cella) {
                     case "V":
@@ -134,7 +134,7 @@ public class Stampa {
             // Stampa della prima linea verticale della griglia
             System.out.print("  " + verticale);
             // Stampa delle linee orizzontali della griglia
-            for (int j = 0; j < partitaLogic.getPartita().getDimMax(); j++) {
+            for (int j = 0; j < partitaLogic.getDimMax(); j++) {
                 System.out.print(orizzontale + "" + orizzontale + "" + orizzontale + verticale);
             }
             System.out.println();
@@ -147,12 +147,12 @@ public class Stampa {
      */
     public void mostraTempo(final PartitaLogic partitaLogic) {
         long secondi = Tempo.valueOf("SECONDI").getValue() -  partitaLogic.restoTempoAttuale();
-        long minuti = partitaLogic.getPartita().getTempoMax() - partitaLogic.tempoAttuale();
+        long minuti = partitaLogic.getTempoMax() - partitaLogic.tempoAttuale();
         minuti--;
         System.out.println("Attualmente sono passati: " + partitaLogic.tempoAttuale()
         + " minuti e " + partitaLogic.restoTempoAttuale() + " secondi");
-        if (partitaLogic.getPartita().getTempoMax() != 0) {
-            System.out.println("Tempo massimo del timer: " + partitaLogic.getPartita().getTempoMax() + " minuti");
+        if (partitaLogic.getTempoMax() != 0) {
+            System.out.println("Tempo massimo del timer: " + partitaLogic.getTempoMax() + " minuti");
             System.out.println("Tempo rimanente: " + minuti + " minuti e " + "secondi " + secondi);
         } else {
             System.out.println("Non avendo scelto un tempo non hai limite!!");
@@ -165,9 +165,9 @@ public class Stampa {
      * @param partitaLogic
      */
     public void mostraTentativi(final PartitaLogic partitaLogic) {
-        System.out.println("Il numero di tentativi effettuati è: " + partitaLogic.getPartita().getColpiTotali());
-        System.out.println("Il numero di tentativi falliti è: " + partitaLogic.getPartita().getErroriCorrenti());
-        System.out.println("Il numero massimo di tentativi falliti è: " + partitaLogic.getPartita().getNumMaxErrori());
+        System.out.println("Il numero di tentativi effettuati è: " + partitaLogic.getColpiTotali());
+        System.out.println("Il numero di tentativi falliti è: " + partitaLogic.getErroriCorrenti());
+        System.out.println("Il numero massimo di tentativi falliti è: " + partitaLogic.getNumMaxErrori());
     }
 
 
@@ -186,8 +186,8 @@ public class Stampa {
      * @param partitaLogic
      */
     public void mostraLivello(final PartitaLogic partitaLogic) {
-        System.out.println("La difficoltà è impostata a: " + partitaLogic.getPartita().getLivello());
-        System.out.println("Il numero massimo di tentativi falliti è: " + partitaLogic.getPartita().getNumMaxErrori());
+        System.out.println("La difficoltà è impostata a: " + partitaLogic.getLivello());
+        System.out.println("Il numero massimo di tentativi falliti è: " + partitaLogic.getNumMaxErrori());
 
     }
 
@@ -243,7 +243,7 @@ public class Stampa {
                 break;
         }
         mostraTempo(partitaLogic);
-        System.out.printf("Colpi effettuati : " + partitaLogic.getPartita().getColpiTotali());
+        System.out.printf("Colpi effettuati : " + partitaLogic.getColpiTotali());
     }
 
     /**

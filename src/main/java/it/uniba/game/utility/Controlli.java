@@ -1,6 +1,6 @@
 package it.uniba.game.utility;
 
-import it.uniba.game.partita.Partita;
+import it.uniba.game.logic.PartitaLogic;
 
 /**
  * Classe controlli utilizzata per effettura controlli su int e delle coordinate.
@@ -49,7 +49,7 @@ public class Controlli {
      * @param partita un oggetto contenente la partita dalla quale ricaviamo la dimensione massima
      * @return ritorna true se é una coordinata
      */
-    public boolean isCoordinata(final String input, final Partita partita) {
+    public boolean isCoordinata(final String input, final PartitaLogic partita) {
         final int[] dimMaxString = {3, 4};
         final int startNumString = 2;
 
