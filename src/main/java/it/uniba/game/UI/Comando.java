@@ -38,7 +38,7 @@ public class Comando {
      * @throws NumeroCoordinateException se si inseriscono un numero diverso di
      * coordinate rispetto alla sua dimensione.
      */
-    public void avvia() throws NumeroCoordinateException, PosizioneException {
+    public void menú() throws NumeroCoordinateException, PosizioneException {
         do {
             cStrings = getComando();
             if (partita.statoPartita()) {

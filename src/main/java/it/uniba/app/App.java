@@ -32,7 +32,7 @@ public final class App {
             }
         }
         try {
-            comando.avvia();
+            comando.menú();
         } catch (NumeroCoordinateException | PosizioneException e) {
             System.out.println(e.getMessage());
         }

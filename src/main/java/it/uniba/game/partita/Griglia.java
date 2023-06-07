@@ -1,17 +1,10 @@
 package it.uniba.game.partita;
 
-import it.uniba.game.eccezioni.PosizioneException;
-import it.uniba.game.nave.Cacciatorpediniere;
-import it.uniba.game.nave.Coordinata;
-import it.uniba.game.nave.Corazzata;
-import it.uniba.game.nave.Incrociatore;
-import it.uniba.game.nave.Nave;
-import it.uniba.game.nave.Portaerei;
 
-import it.uniba.game.utility.Dimensioni;
+import it.uniba.game.nave.Nave;
 
 import java.util.ArrayList;
-import java.util.Random;
+
 
 import it.uniba.game.eccezioni.NumeroCoordinateException;
 
