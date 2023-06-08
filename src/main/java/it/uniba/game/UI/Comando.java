@@ -1,7 +1,7 @@
 package it.uniba.game.UI;
 
 import it.uniba.game.eccezioni.PosizioneException;
-import it.uniba.game.partita.Partita;
+import it.uniba.game.logic.PartitaLogic;
 
 
 import java.util.Scanner;
@@ -21,15 +21,16 @@ public class Comando {
     private String comando;
     private String[] cStrings;
     private static final Scanner KEYBOARD = new Scanner(System.in, "UTF-8");
-    private Partita partita;
+    private PartitaLogic partitaLogic;
     private Controlli controlli;
-
+    private Stampa stampa;
     /**
      * Construttore della classe Comando.
      */
     public Comando() {
-        partita = new Partita();
+        partitaLogic = new PartitaLogic();
         controlli = new Controlli();
+        stampa = new Stampa();
     }
 
     /**
@@ -38,31 +39,31 @@ public class Comando {
      * @throws NumeroCoordinateException se si inseriscono un numero diverso di
      * coordinate rispetto alla sua dimensione.
      */
-    public void avvia() throws NumeroCoordinateException, PosizioneException {
+    public void menu() throws NumeroCoordinateException, PosizioneException {
         do {
             cStrings = getComando();
-            if (partita.statoPartita()) {
+            if (partitaLogic.statoPartita()) {
                 switch (cStrings[0]) {
                     case "/svelagriglia":
-                        partita.svelaGriglia();
+                        stampa.svelaGriglia(partitaLogic);
                         break;
                     case "/mostratempo":
-                        partita.mostraTempo();
+                        stampa.mostraTempo(partitaLogic);
                         break;
                     case "/mostragriglia":
-                        partita.stampaGriglia();
-                        break;
-                    case "/mostranavi":
-                        mostraNavi();
+                        stampa.stampaGriglia(partitaLogic);
                         break;
                     case "/help":
-                        stampaHelp();
+                        stampa.stampaHelp();
                         break;
                     case "/mostralivello":
-                        mostraLivello();
+                        stampa.mostraLivello(partitaLogic);
+                        break;
+                    case "/mostranavi":
+                        stampa.mostraNavi();
                         break;
                     case "/mostratentativi":
-                        partita.mostraTentativi();
+                        stampa.mostraTentativi(partitaLogic);
                         break;
                     case "/esci":
                         esci();
@@ -71,8 +72,10 @@ public class Comando {
                         abbandona();
                         break;
                     default:
-                    if (controlli.isCoordinata(cStrings[0], partita)) {
-                            partita.colpisci(cStrings[0]);
+                    if (controlli.isCoordinata(cStrings[0], partitaLogic)) {
+                            String[] output = partitaLogic.colpisci(cStrings[0]);
+                            stampa.stampaRisultatoColpo(output[0], partitaLogic);
+                            stampa.stampaFinePartita(output[1]);
                         } else {
                             System.out.println("Comando non riconosciuto o partita giá avviata");
                         }
@@ -81,30 +84,37 @@ public class Comando {
             } else {
                 switch (cStrings[0]) {
                     case "/gioca":
-                        partita.avvia();
-                        partita.stampaGriglia();
+                        partitaLogic.avvia();
+                        stampa.stampaGriglia(partitaLogic);
                         System.out.println("La partita è stata avviata");
                         break;
                     case "/tempo":
                         if (cStrings.length == 1) {
                             System.out.println("Non hai inserito nessun tempo");
                         } else if (controlli.isInteger(cStrings[1])) {
-                            partita.setTempoMax(Integer.parseInt(cStrings[1]));
+                            partitaLogic.setTempoMax(Integer.parseInt(cStrings[1]));
                             System.out.println("OK!");
                         } else {
                             System.out.println("Non hai inserito un numero corretto o il comando è sbagliato");
                         }
                         break;
+                    case "/mostralivello":
+                        stampa.mostraLivello(partitaLogic);
+                        break;
+                    case "/mostranavi":
+                        stampa.mostraNavi();
+                        break;
                     case "/help":
-                        stampaHelp();
+                        stampa.stampaHelp();
                         break;
                     case "/facile":
                         if (cStrings.length == 1) {
-                            partita.setNumMaxErrori(partita.getErrorePerLivello("FACILE"));
-                            partita.setLivello("FACILE");
+                            partitaLogic.setNumMaxErrori(
+                                partitaLogic.getErrorePerLivello("FACILE"));
+                            partitaLogic.setLivello("FACILE");
                             System.out.println("OK \n difficoltà impostata a facile");
                         } else if (controlli.isInteger(cStrings[1])) {
-                            partita.setErroriPerLivello("FACILE", Integer.parseInt(cStrings[1]));
+                            partitaLogic.setErroriPerLivello("FACILE", Integer.parseInt(cStrings[1]));
                             System.out.println("OK \n numero massimo di errori per il livello FACILE impostato a: "
                             + Integer.parseInt(cStrings[1]));
                         } else {
@@ -113,11 +123,12 @@ public class Comando {
                         break;
                     case "/medio":
                         if (cStrings.length == 1) {
-                            partita.setNumMaxErrori(partita.getErrorePerLivello("MEDIO"));
-                            partita.setLivello("MEDIO");
+                            partitaLogic.setNumMaxErrori(
+                                partitaLogic.getErrorePerLivello("MEDIO"));
+                            partitaLogic.setLivello("MEDIO");
                             System.out.println("OK \n difficoltà impostata a medio");
                         } else if (controlli.isInteger(cStrings[1])) {
-                            partita.setErroriPerLivello("MEDIO", Integer.parseInt(cStrings[1]));
+                            partitaLogic.setErroriPerLivello("MEDIO", Integer.parseInt(cStrings[1]));
                             System.out.println("OK \n numero massimo di errori per il livello MEDIO impostato a: "
                             + Integer.parseInt(cStrings[1]));
                         } else {
@@ -126,11 +137,12 @@ public class Comando {
                         break;
                     case "/difficile":
                         if (cStrings.length == 1) {
-                            partita.setNumMaxErrori(partita.getErrorePerLivello("DIFFICILE"));
-                            partita.setLivello("DIFFICILE");
+                            partitaLogic.setNumMaxErrori(
+                                partitaLogic.getErrorePerLivello("DIFFICILE"));
+                            partitaLogic.setLivello("DIFFICILE");
                             System.out.println("OK \n difficoltà impostata a difficile");
                         } else if (controlli.isInteger(cStrings[1])) {
-                            partita.setErroriPerLivello("DIFFICILE", Integer.parseInt(cStrings[1]));
+                            partitaLogic.setErroriPerLivello("DIFFICILE", Integer.parseInt(cStrings[1]));
                             System.out.println("OK \n numero massimo di errori per il livello DIFFICILE impostato a: "
                             + Integer.parseInt(cStrings[1]));
                         } else {
@@ -141,7 +153,7 @@ public class Comando {
                         if (cStrings.length == 1) {
                             System.out.println("Non hai inserito nessun numero di tentativi");
                         } else if (controlli.isInteger(cStrings[1])) {
-                            partita.setNumMaxErrori(Integer.parseInt(cStrings[1]));
+                            partitaLogic.setNumMaxErrori(Integer.parseInt(cStrings[1]));
                             System.out.println("OK!");
                             System.out.println("Numero dei tentativi impostato direttamente a "
                             + Integer.parseInt(cStrings[1]));
@@ -150,15 +162,15 @@ public class Comando {
                         }
                         break;
                     case "/standard":
-                        partita.setDimMax(Tabella.valueOf("STANDARD").getValue());
+                        partitaLogic.setDimMax(Tabella.valueOf("STANDARD").getValue());
                         System.out.println("OK!");
                         break;
                     case "/large":
-                        partita.setDimMax(Tabella.valueOf("LARGE").getValue());
+                        partitaLogic.setDimMax(Tabella.valueOf("LARGE").getValue());
                         System.out.println("OK!");
                         break;
                     case "/extralarge":
-                        partita.setDimMax(Tabella.valueOf("EXTRALARGE").getValue());
+                        partitaLogic.setDimMax(Tabella.valueOf("EXTRALARGE").getValue());
                         System.out.println("OK!");
                         break;
                     case "/esci":
@@ -172,43 +184,7 @@ public class Comando {
         } while (true);
     }
 
-    /**
-     * La funzione mostra il numero di esemplari e le dimensioni delle navi.
-     */
-    private static void mostraNavi() {
-        System.out.println("Le navi disponibili sono: \n");
-        System.out.println("Cacciatorpediniere \u26F4 \u26F4  esemplari: 4 \n");
-        System.out.println("Incrociatore \u26F4 \u26F4 \u26F4  esemplari: 3 \n");
-        System.out.println("Corazzata \u26F4 \u26F4 \u26F4 \u26F4  esemplari: 2 \n");
-        System.out.println("Portaerei \u26F4 \u26F4 \u26F4 \u26F4 \u26F4  esemplari: 1 \n");
-    }
 
-    /**
-     * La funzione stampa il comando il /help che descrive i vari comandi disponibili.
-     */
-    public void stampaHelp() {
-        System.out.print("Comandi applicabili: \n"
-        + "/gioca (Comando che inizializza una nuova partita)\n"
-        + "/svelagriglia (Comando eseguibile solo a partita in corso, mostra la griglia con le navi posizionate)\n"
-        + "/help (Comando che mostra la lista dei comandi)\n"
-        + "/mostranavi (Comando che mostra una legenda delle navi disponibili nel gioco)\n"
-        + "/mostralivello (Comando che mostra il livello al quale si sta giocando fra facile, medio e difficile)\n"
-        + "/esci (Comando che fa uscire dalla partita)\n"
-        + "/facile (Comando chiamabile solamente prima di iniziare la partita, imposta il livello di difficolta')\n"
-        + "/medio (Comando chiamabile solamente prima di iniziare la partita, imposta il livello di difficolta')\n"
-        + "/difficile (Comando chiamabile solamente prima di iniziare la partita,"
-        + "imposta il livello di difficolta')\n");
-    }
-
-    /**
-     * La funzione stampa la descrizione del gioco all'avvio.
-     */
-    public void stampaDescrizione() {
-        System.out.println("Benvenuto in battaglia navale \n"
-        + "l'obbiettivo del gioco e' distruggere tutte le navi dell'avversario entro un tot di mosse, "
-        + "ricorda che di default non avrai un tempo limite \n"
-        + "scrivi /help per ulteriori informazioni");
-    }
 
     /**
      * La funzione permette di chiudere il gioco, dopo aver richiesto un input da tastiera allo studente.
@@ -222,14 +198,7 @@ public class Comando {
         }
     }
 
-    /**
-     * La funzione mostra al giocatore il livello di difficoltà della partita.
-     */
-    private void mostraLivello() {
-        System.out.println("La difficoltà è impostata a: " + partita.getLivello());
-        System.out.println("Il numero massimo di tentativi falliti è: " + partita.getNumMaxErrori());
 
-    }
 
     /**
      * La funzione permette di abbandonare la partita in corso.
@@ -239,8 +208,8 @@ public class Comando {
         + "altrimenti scrivi qualsiasi altra cosa: ");
         String conferma = KEYBOARD.nextLine();
         if (conferma.equals("y")) {
-            partita.svelaGriglia();
-            partita.setInCorso(false);
+            stampa.svelaGriglia(partitaLogic);
+            partitaLogic.setInCorso(false);
             System.out.println("Partita abbandonata!");
         }
     }
@@ -256,5 +225,6 @@ public class Comando {
         return comando.split(" ");
 
     }
+
 
 }

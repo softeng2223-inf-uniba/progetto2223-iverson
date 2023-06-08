@@ -4,8 +4,8 @@ package it.uniba.game.utility;
  */
 public enum Dimensioni {
     CACCIATORPEDINIERE(0, 2, 4),
-    CORAZZATA(1, 4, 3),
-    INCROCIATORE(2, 3, 2),
+    INCROCIATORE(1, 3, 3),
+    CORAZZATA(2, 4, 2),
     PORTAEREI(3, 5, 1);
 
     private int dim;
