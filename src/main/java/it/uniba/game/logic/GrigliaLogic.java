@@ -13,7 +13,8 @@ import java.util.Random;
 
 
 /**
- * CONTROL.
+ * <<Control>> Classe che permette l'utilizzo della griglia di gioco. Gestisce l'inserimento delle navi nella mappa, gli aggiornamenti di quest'ultima
+ *  in seguito ad un colpo ed i controlli riguardanti l'affondamento delle navi sulla mappa.
  *
  */
 

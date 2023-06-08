@@ -8,7 +8,7 @@ import it.uniba.game.utility.Difficolta;
 import it.uniba.game.utility.Tabella;
 
 /**
- * Classe che inizializza una Partita e la sua relativa Griglia di gioco.
+ * <<Entity>> Classe che definisce la partita giocata dal giocatore, comprendendo le statistiche di gioco e le impostazioni di gioco.
  */
 public class Partita {
     private int numMaxErrori;

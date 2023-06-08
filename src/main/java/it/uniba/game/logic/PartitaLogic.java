@@ -6,7 +6,8 @@ import it.uniba.game.partita.Partita;
 import it.uniba.game.utility.Tempo;
 
 /**
- * CONTROL.
+ * <<Control>> Classe che permette l'utilizzo dei dati della Partita. Gestisce l'avvio e la terminazione della partita, l'inserimento dei colpi 
+ * e i controlli riguardanti la vittoria/sconfitta del giocatore.
  */
 public class PartitaLogic {
     private Partita partita;

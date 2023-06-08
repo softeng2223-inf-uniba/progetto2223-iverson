@@ -1,7 +1,7 @@
 package it.uniba.game.eccezioni;
 
 /**
- * Eccezione da lanciare quando la posizione inserita è sbagliata.
+ * <<Control>> Eccezione da lanciare quando la posizione inserita è sbagliata.
  */
 public class PosizioneException extends Exception {
 
