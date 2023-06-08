@@ -174,7 +174,6 @@ public class Partita {
     public void setTempoMax(final int num) {
         tempoMax = num;
     }
-
     /**
      * restituisce il tempo massimo di gioco.
      * @return tempo massimo di svolgimento della partita

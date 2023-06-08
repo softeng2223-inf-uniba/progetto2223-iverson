@@ -155,7 +155,9 @@ public class Stampa {
         + " minuti e " + partitaLogic.restoTempoAttuale() + " secondi");
         if (partitaLogic.getTempoMax() != 0) {
             System.out.println("Tempo massimo del timer: " + partitaLogic.getTempoMax() + " minuti");
-            System.out.println("Tempo rimanente: " + minuti + " minuti e " + "secondi " + secondi);
+            if(partitaLogic.getTempoMax() > partitaLogic.tempoAttuale()) {
+                System.out.println("Tempo rimanente: " + minuti + " minuti e " + "secondi " + secondi);
+            }
         } else {
             System.out.println("Non avendo scelto un tempo non hai limite!!");
         }
@@ -245,7 +247,7 @@ public class Stampa {
                 break;
         }
         mostraTempo(partitaLogic);
-        System.out.printf("Colpi effettuati : " + partitaLogic.getColpiTotali());
+        System.out.println("Colpi effettuati : " + partitaLogic.getColpiTotali());
     }
 
     /**

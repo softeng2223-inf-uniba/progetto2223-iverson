@@ -109,8 +109,7 @@ public class PartitaLogic {
      */
     public boolean controllaTempoScaduto() {
 
-        if (partita.getTempoMax() != 0 && partita.getTempoMax() > tempoAttuale()) {
-            System.out.println("Il tempo é scaduto");
+        if (partita.getTempoMax() != 0 && partita.getTempoMax() <= tempoAttuale()) {
             return true;
         } else {
             return false;

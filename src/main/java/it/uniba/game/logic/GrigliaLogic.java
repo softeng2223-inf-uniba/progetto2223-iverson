@@ -85,7 +85,7 @@ public class GrigliaLogic {
                 int i = 0;
                 Coordinata[] coordinate = new Coordinata[dimnave];
                 while (i < dimnave) {
-                    griglia.setCella(triga + 1, tcolonna, "N");
+                    griglia.setCella(triga + i, tcolonna, "N");
                     coordinate[i] = new Coordinata(triga + i, tcolonna);
 
                     i++;
@@ -97,7 +97,7 @@ public class GrigliaLogic {
                 int i = 0;
                 Coordinata[] coordinate = new Coordinata[dimnave];
                 while (i < dimnave) {
-                    griglia.setCella(triga, tcolonna + 1, "N");
+                    griglia.setCella(triga, tcolonna + i, "N");
                     coordinate[i] = new Coordinata(triga, tcolonna + i);
 
                     i++;
