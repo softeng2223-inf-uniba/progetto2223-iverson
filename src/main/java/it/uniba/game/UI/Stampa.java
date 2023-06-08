@@ -194,7 +194,7 @@ public class Stampa {
 
     }
 
-        /**
+     /**
      * La funzione mostra il numero di esemplari e le dimensioni delle navi.
      */
     public void mostraNavi() {

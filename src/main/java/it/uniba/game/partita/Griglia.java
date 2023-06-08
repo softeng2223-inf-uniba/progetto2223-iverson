@@ -27,7 +27,7 @@ public class Griglia {
 
 
     /**
-     * Inizializza la griglia di gioco.
+     * Inizializza la griglia di gioco e le navi presenti in essa.
      *
      * @param pRighe   : numero di righe della griglia
      * @param pColonne : numero di colonne della griglia
@@ -101,10 +101,12 @@ public class Griglia {
         return griglia[i][j];
     }
 
-       /**
-     * Restituisce l'oggetto nave.
+    /**
+     * Aggiunge una singola nave alla lista delle navi istanziandola al suo interno,
+     * sapendone tipo e posizioni occupate sulla mappa
      *
-     * @return singola cella della Griglia
+     * @param coordinata : insieme delle coordinate occupate dalla nave sulla mappa
+     * @param index : indice identificativo del tipo di nave da aggiungere alla lista
      * @throws NumeroCoordinateException
      */
     public void addNavi(final Coordinata[] coordinata, final int index) throws NumeroCoordinateException {
@@ -138,38 +140,92 @@ public class Griglia {
         this.griglia[i][j] = str;
     }
 
+    /**
+     * Restituisce il numero di navi presenti sulla griglia.
+     * @return numero di navi presenti
+     */
     public int naviSize() {
         return navi.size();
     }
 
+    /**
+     * Restituisce il numero di navi di uno specifico tipo.
+     * @param i : indice del tipo di nave del quale si vuole sapere gli esemplari presenti
+     * @return numero delle navi  presenti del tipo indicizzato da i
+     */
     public int getSize(final int i) {
         return this.navi.get(i).size();
     }
 
+    /**
+     * Restituisce la dimensione di una specifica nave.
+     * @param i : indice del tipo di nave della quale si vuole sapere la dimensione
+     * @param j : indice della nave nella lista di navi del suo stesso tipo della quale si vuole sapere la dimensione
+     * @return dimensione della nave del tipo indicizzato da i e dell'istanza indicizzata da j
+     */
     public int getDim(final int i, final int j) {
         return this.navi.get(i).get(j).getdim();
     }
 
+    /**
+     * Imposta a "affondata" lo stato della nave del tipo indicizzato da i e dell'istanza indicizzata da j.
+     * @param i : indice del tipo di nave che si vuole impostare come affondata
+     * @param j : indice della nave nella lista di navi del suo stesso tipo che si vuole impostare come affondata
+     */
     public void setAffondata(final int i, final int j) {
         this.navi.get(i).get(j).setaffondata();
     }
 
+    /**
+     * Restituisce vero se una specifica nave è affondata, falso altrimenti.
+     * @param i : indice del tipo di nave 
+     * @param j : indice della nave nella lista di navi del suo stesso tipo 
+     * @return vero se la nave è affondata, falso altrimenti
+     */
      public boolean getAffondata(final int i, final int j) {
         return this.navi.get(i).get(j).getaffondata();
     }
 
+    /**
+     * Restituisce il valore della riga di una specifica coordinata di una specifica nave.
+     * @param i : indice del tipo di nave 
+     * @param j : indice della nave nella lista di navi del suo stesso tipo 
+     * @param k : indice della coordinata occupata dalla nave del quale si vuole sapere il valore della riga
+     * @return valore della riga della coordinata indicizzata da k, della nave indicizzata da j del tipo indicizzato da i
+     * @throws PosizioneException
+     */
     public int getRiga(final int i, final int j, final int k) throws PosizioneException {
         return this.navi.get(i).get(j).getcoordinate(k).getriga();
     }
-
+    /**
+     * Restituisce il valore della colonna di una specifica coordinata di una specifica nave.
+     * @param i : indice del tipo di nave 
+     * @param j : indice della nave nella lista di navi del suo stesso tipo 
+     * @param k : indice della coordinata occupata dalla nave 
+     * @return valore della colonna della coordinata indicizzata da k, della nave indicizzata da j del tipo indicizzato da i
+     * @throws PosizioneException
+     */
     public int getColonna(final int i, final int j, final int k) throws PosizioneException {
         return this.navi.get(i).get(j).getcoordinate(k).getcolonna();
     }
-
+     /**
+     * Restituisce vero se una posizione di una specifica nave è stata colpita, falso altrimenti.
+     * @param i : indice del tipo di nave 
+     * @param j : indice della nave nella lista di navi del suo stesso tipo 
+     * @param k : indice della coordinata occupata dalla nave della quale si vuole sapere l'avvenuto colpo
+     * @return vero se la posizione della coordinata  è stata colpita, falso altrimenti
+     * @throws PosizioneException
+     */
     public boolean getColpito(final int i, final int j, final int k) throws PosizioneException {
         return this.navi.get(i).get(j).getcoordinate(k).getcolpito();
     }
-
+    /**
+     * Imposta a "colpito" lo stato di una specifica posizione di una singola nave.
+     * @param i : indice del tipo di nave del quale si vuole cambiare lo stato di una singola coordinata
+     * @param j : indice della nave nella lista di navi del suo stesso tipo della quale si vuole cambiare lo stato di una coordinata
+     * @param k : indice della coordinata occupata dalla nave della quale su vuole cambiare lo stato
+     * @throws PosizioneException
+     */
     public void setColpito(final int i, final int j, final int k) throws PosizioneException {
         this.navi.get(i).get(j).getcoordinate(k).setcolpito();
     }

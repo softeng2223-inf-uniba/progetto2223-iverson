@@ -8,7 +8,8 @@ import it.uniba.game.utility.Difficolta;
 import it.uniba.game.utility.Tabella;
 
 /**
- * <<Entity>> Classe che definisce la partita giocata dal giocatore, comprendendo le statistiche di gioco e le impostazioni di gioco.
+ * <<Entity>> Classe che definisce la partita giocata dal giocatore, 
+ * comprendendo le statistiche di gioco e le impostazioni di gioco.
  */
 public class Partita {
     private int numMaxErrori;
@@ -182,14 +183,6 @@ public class Partita {
         return tempoMax;
     }
 
-    /**
-     * Descrive lo stato della Partita.
-     *
-     * @return stato di Partita
-     */
-   // public String toString() {
-       // return grigliaLogic.getGriglia().toString();
-   // }
 
 
 }

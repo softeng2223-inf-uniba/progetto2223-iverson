@@ -13,8 +13,9 @@ import java.util.Random;
 
 
 /**
- * <<Control>> Classe che permette l'utilizzo della griglia di gioco. Gestisce l'inserimento delle navi nella mappa, gli aggiornamenti di quest'ultima
- *  in seguito ad un colpo ed i controlli riguardanti l'affondamento delle navi sulla mappa.
+ * <<Control>> Classe che permette l'utilizzo della griglia di gioco. 
+ * Gestisce l'inserimento delle navi nella mappa, gli aggiornamenti di quest'ultima
+ * in seguito ad un colpo ed i controlli riguardanti l'affondamento delle navi sulla mappa.
  *
  */
 
@@ -123,7 +124,6 @@ public class GrigliaLogic {
             griglia.addNavi(trovaCellaVuota(Dimensioni.valueOf("CACCIATORPEDINIERE").getDim()),
                 Dimensioni.valueOf("CACCIATORPEDINIERE").getIndex());
         }
-
         for (int i = 0; i < Dimensioni.valueOf("INCROCIATORE").getEsemplari(); i++) {
             griglia.addNavi(trovaCellaVuota(Dimensioni.valueOf("INCROCIATORE").getDim()),
             Dimensioni.valueOf("INCROCIATORE").getIndex());
@@ -138,8 +138,7 @@ public class GrigliaLogic {
             griglia.addNavi(trovaCellaVuota(Dimensioni.valueOf("PORTAEREI").getDim()),
                 Dimensioni.valueOf("PORTAEREI").getIndex());
         }
-
-    }
+   }
 
 
 
