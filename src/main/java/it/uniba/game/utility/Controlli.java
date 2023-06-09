@@ -3,7 +3,7 @@ package it.uniba.game.utility;
 import it.uniba.game.logic.PartitaLogic;
 
 /**
- * Classe controlli utilizzata per effettura controlli su int e delle coordinate.
+ * <<Control>> Classe utile per svolgere dei controlli di validità di alcuni input dal punto di vista del gioco.
  */
 public class Controlli {
 

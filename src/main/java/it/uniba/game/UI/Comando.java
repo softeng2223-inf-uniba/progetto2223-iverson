@@ -14,8 +14,9 @@ import it.uniba.game.utility.Controlli;
 
 
 /**
- * Classe che ha la la funzione di menu e permette all'utente di inserire i vari comandi
- * tramite la funzione avvia().
+ * <<Boundary>> Classe che ha la la funzione di menu
+ * e permette all'utente di inserire i vari comandi e interagire con l'applicazione.
+ *
  */
 public class Comando {
     private String comando;

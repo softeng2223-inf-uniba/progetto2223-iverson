@@ -13,7 +13,9 @@ import java.util.Random;
 
 
 /**
- * CONTROL.
+ * <<Control>> Classe che permette l'utilizzo della griglia di gioco.
+ * Gestisce l'inserimento delle navi nella mappa, gli aggiornamenti di quest'ultima
+ * in seguito ad un colpo ed i controlli riguardanti l'affondamento delle navi sulla mappa.
  *
  */
 
@@ -122,7 +124,6 @@ public class GrigliaLogic {
             griglia.addNavi(trovaCellaVuota(Dimensioni.valueOf("CACCIATORPEDINIERE").getDim()),
                 Dimensioni.valueOf("CACCIATORPEDINIERE").getIndex());
         }
-
         for (int i = 0; i < Dimensioni.valueOf("INCROCIATORE").getEsemplari(); i++) {
             griglia.addNavi(trovaCellaVuota(Dimensioni.valueOf("INCROCIATORE").getDim()),
             Dimensioni.valueOf("INCROCIATORE").getIndex());
@@ -137,8 +138,7 @@ public class GrigliaLogic {
             griglia.addNavi(trovaCellaVuota(Dimensioni.valueOf("PORTAEREI").getDim()),
                 Dimensioni.valueOf("PORTAEREI").getIndex());
         }
-
-    }
+   }
 
 
 
@@ -210,6 +210,12 @@ public class GrigliaLogic {
         return stato;
     }
 
+    /**
+     * Restituisce lo stato della cella della griglia.
+     * @param i : indice di riga della cella
+     * @param j : indice di colonna della cella
+     * @return stringa contenente lo stato della cella
+     */
     public String getStatoCella(final int i, final int j) {
         return griglia.getCella(i, j);
     }

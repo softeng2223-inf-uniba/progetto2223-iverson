@@ -4,8 +4,8 @@ import it.uniba.game.logic.PartitaLogic;
 import it.uniba.game.utility.Tempo;
 
 /**
- *
- * blabla.
+ * <<Boundary>> Classe che gestisce tutte le stampe a schermo dell'applicazione,
+ *  ovvero tutte le informazioni visibili a video dall'utente.
  */
 public class Stampa {
 
@@ -21,7 +21,7 @@ public class Stampa {
      *
      */
     public void svelaGriglia(final PartitaLogic partitaLogic) {
-        
+
         final char orizzontale = '\u2501'; // carattere Unicode della linea orizzontale
         final char verticale = '\u2503'; // carattere Unicode della linea verticale
         final char nave = '\u26F4'; // carattere Unicode della nave
@@ -155,7 +155,7 @@ public class Stampa {
         + " minuti e " + partitaLogic.restoTempoAttuale() + " secondi");
         if (partitaLogic.getTempoMax() != 0) {
             System.out.println("Tempo massimo del timer: " + partitaLogic.getTempoMax() + " minuti");
-            if(partitaLogic.getTempoMax() > partitaLogic.tempoAttuale()) {
+            if (partitaLogic.getTempoMax() > partitaLogic.tempoAttuale()) {
                 System.out.println("Tempo rimanente: " + minuti + " minuti e " + "secondi " + secondi);
             }
         } else {
@@ -195,7 +195,7 @@ public class Stampa {
 
     }
 
-        /**
+     /**
      * La funzione mostra il numero di esemplari e le dimensioni delle navi.
      */
     public void mostraNavi() {
