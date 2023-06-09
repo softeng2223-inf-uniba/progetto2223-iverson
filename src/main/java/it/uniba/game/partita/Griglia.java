@@ -103,7 +103,7 @@ public class Griglia {
 
     /**
      * Aggiunge una singola nave alla lista delle navi istanziandola al suo interno,
-     * sapendone tipo e posizioni occupate sulla mappa
+     * sapendone tipo e posizioni occupate sulla mappa.
      *
      * @param coordinata : insieme delle coordinate occupate dalla nave sulla mappa
      * @param index : indice identificativo del tipo di nave da aggiungere alla lista
@@ -125,7 +125,7 @@ public class Griglia {
                 break;
             default:
                 this.navi.get(index).add(new Portaerei(coordinata));
-                
+
                 break;
         }
     }
@@ -178,8 +178,8 @@ public class Griglia {
 
     /**
      * Restituisce vero se una specifica nave è affondata, falso altrimenti.
-     * @param i : indice del tipo di nave 
-     * @param j : indice della nave nella lista di navi del suo stesso tipo 
+     * @param i : indice del tipo di nave
+     * @param j : indice della nave nella lista di navi del suo stesso tipo
      * @return vero se la nave è affondata, falso altrimenti
      */
      public boolean getAffondata(final int i, final int j) {
@@ -188,10 +188,10 @@ public class Griglia {
 
     /**
      * Restituisce il valore della riga di una specifica coordinata di una specifica nave.
-     * @param i : indice del tipo di nave 
-     * @param j : indice della nave nella lista di navi del suo stesso tipo 
+     * @param i : indice del tipo di nave
+     * @param j : indice della nave nella lista di navi del suo stesso tipo
      * @param k : indice della coordinata occupata dalla nave del quale si vuole sapere il valore della riga
-     * @return valore della riga della coordinata indicizzata da k, della nave indicizzata da j del tipo indicizzato da i
+     * @return valore della riga della coordinata
      * @throws PosizioneException
      */
     public int getRiga(final int i, final int j, final int k) throws PosizioneException {
@@ -199,10 +199,10 @@ public class Griglia {
     }
     /**
      * Restituisce il valore della colonna di una specifica coordinata di una specifica nave.
-     * @param i : indice del tipo di nave 
-     * @param j : indice della nave nella lista di navi del suo stesso tipo 
-     * @param k : indice della coordinata occupata dalla nave 
-     * @return valore della colonna della coordinata indicizzata da k, della nave indicizzata da j del tipo indicizzato da i
+     * @param i : indice del tipo di nave
+     * @param j : indice della nave nella lista di navi del suo stesso tipo
+     * @param k : indice della coordinata occupata dalla nave
+     * @return valore della colonna della coordinata
      * @throws PosizioneException
      */
     public int getColonna(final int i, final int j, final int k) throws PosizioneException {
@@ -210,10 +210,10 @@ public class Griglia {
     }
      /**
      * Restituisce vero se una posizione di una specifica nave è stata colpita, falso altrimenti.
-     * @param i : indice del tipo di nave 
-     * @param j : indice della nave nella lista di navi del suo stesso tipo 
+     * @param i : indice del tipo di nave
+     * @param j : indice della nave nella lista di navi del suo stesso tipo
      * @param k : indice della coordinata occupata dalla nave della quale si vuole sapere l'avvenuto colpo
-     * @return vero se la posizione della coordinata  è stata colpita, falso altrimenti
+     * @return vero se la posizione della coordinata è stata colpita, falso altrimenti
      * @throws PosizioneException
      */
     public boolean getColpito(final int i, final int j, final int k) throws PosizioneException {
@@ -221,8 +221,8 @@ public class Griglia {
     }
     /**
      * Imposta a "colpito" lo stato di una specifica posizione di una singola nave.
-     * @param i : indice del tipo di nave del quale si vuole cambiare lo stato di una singola coordinata
-     * @param j : indice della nave nella lista di navi del suo stesso tipo della quale si vuole cambiare lo stato di una coordinata
+     * @param i : indice del tipo di nave
+     * @param j : indice della nave nella lista di navi del suo stesso tipo
      * @param k : indice della coordinata occupata dalla nave della quale su vuole cambiare lo stato
      * @throws PosizioneException
      */
