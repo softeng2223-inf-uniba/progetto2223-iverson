@@ -4,6 +4,7 @@ import it.uniba.game.eccezioni.NumeroCoordinateException;
 import it.uniba.game.eccezioni.PosizioneException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -33,6 +34,7 @@ class GrigliaLogicTest {
      * Test per il metodo finepartita().
      */
     @Test
+    @DisplayName("Test per testFinepartita()")
     void testFinepartita() {
         Assertions.assertFalse(grigliaLogic.finepartita(), "La partita dovrebbe continuare senza colpi");
 
@@ -54,6 +56,7 @@ class GrigliaLogicTest {
      * @throws PosizioneException se si verifica un'eccezione nell'inserimento del colpo
      */
     @Test
+    @DisplayName("Test per testInserisciColpoVuoto()")
     void testInserisciColpoVuoto() throws PosizioneException {
         String stato = grigliaLogic.inserisciColpo(0, 0);
 
@@ -67,6 +70,7 @@ class GrigliaLogicTest {
      * @throws PosizioneException se si verifica un'eccezione nell'inserimento del colpo
      */
     @Test
+    @DisplayName("Test per testInserisciColpoNave()")
     void testInserisciColpoNave() throws PosizioneException {
         String stato = grigliaLogic.inserisciColpo(0, 0);
 
@@ -79,6 +83,7 @@ class GrigliaLogicTest {
      * Test per il metodo getStatoCellaVuota().
      */
     @Test
+    @DisplayName("Test per testGetStatoCellaVuota()")
     void testGetStatoCellaVuota() {
         String stato = grigliaLogic.getStatoCella(0, 0);
 
@@ -90,6 +95,7 @@ class GrigliaLogicTest {
      * Test per il metodo getStatoCellaVuotoColpito().
      */
     @Test
+    @DisplayName("Test per testGetStatoCellaVuotoColpito()")
     void testGetStatoCellaVuotoColpito() {
         String stato = grigliaLogic.getStatoCella(0, 0);
 
@@ -101,6 +107,7 @@ class GrigliaLogicTest {
      * Test per il metodo getStatoCellaNave().
      */
     @Test
+    @DisplayName("Test per testGetStatoCellaNave()")
     void testGetStatoCellaNave() {
 
         try {
@@ -117,6 +124,7 @@ class GrigliaLogicTest {
      * Test per il metodo getStatoCellaNaveColpita().
      */
     @Test
+    @DisplayName("Test per testGetStatoCellaNaveColpita()")
     void testGetStatoCellaNaveColpita() {
 
         try {
@@ -134,6 +142,7 @@ class GrigliaLogicTest {
      * Verifica che il metodo getnaviSize restituisca il numero corretto di navi presenti sulla griglia.
      */
     @Test
+    @DisplayName("Test per testGetnaviSize()")
     void testGetnaviSize() {
         int expectedSize = QUATTRO;
         int actualSize = grigliaLogic.getnaviSize();
@@ -144,6 +153,7 @@ class GrigliaLogicTest {
      * Verifica che il metodo getSize restituisca il numero corretto di navi di uno specifico tipo.
      */
     @Test
+    @DisplayName("Test per testGetSize()")
     void testGetSize() {
         int tipoNave = 2;
         int expectedSize = 2;
@@ -155,6 +165,7 @@ class GrigliaLogicTest {
      * Verifica che il metodo setAffondato imposti correttamente lo stato di una nave come "affondata".
      */
     @Test
+    @DisplayName("Test per testSetAffondato()")
     void testSetAffondato() {
         int tipoNave = 1;
         int indiceNave = 0;
@@ -166,6 +177,7 @@ class GrigliaLogicTest {
      * Verifica che il metodo setCella modifichi correttamente una cella della griglia.
      */
     @Test
+    @DisplayName("Test per testSetCella()")
     void testSetCella() {
         int riga = 2;
         int colonna = TRE;
@@ -180,6 +192,7 @@ class GrigliaLogicTest {
      * @throws PosizioneException se la posizione specificata non è valida
      */
     @Test
+    @DisplayName("Test per testSetColpito()")
     void testSetColpito() throws PosizioneException {
         int tipoNave = 1;
         int indiceNave = 0;

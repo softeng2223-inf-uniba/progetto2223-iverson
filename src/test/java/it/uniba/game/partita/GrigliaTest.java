@@ -5,6 +5,7 @@ import it.uniba.game.eccezioni.PosizioneException;
 import it.uniba.game.nave.Coordinata;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -33,6 +34,7 @@ class GrigliaTest {
      * Verifica che il numero di righe corrisponda a quello impostato.
      */
     @Test
+    @DisplayName("Test per testGetRighe()")
     void testGetRighe() {
         Assertions.assertEquals(DIECI, griglia.getRighe(), "Il numero di righe non corrisponde");
     }
@@ -42,6 +44,7 @@ class GrigliaTest {
      * Verifica che il numero di colonne corrisponda a quello impostato.
      */
     @Test
+    @DisplayName("Test per testGetColonne()")
     void testGetColonne() {
         Assertions.assertEquals(DIECI, griglia.getColonne(), "Il numero di colonne non corrisponde");
     }
@@ -51,6 +54,7 @@ class GrigliaTest {
      * Verifica che la rappresentazione in stringa della griglia corrisponda a quella attesa.
      */
     @Test
+    @DisplayName("Test per testToString()")
     void testToString() {
         String expected = "V V V V V V V V V V \n"
                 + "V V V V V V V V V V \n"
@@ -70,6 +74,7 @@ class GrigliaTest {
      * Verifica che il valore della cella corrisponda a quello atteso.
      */
     @Test
+    @DisplayName("Test per testGetCella()")
     void testGetCella() {
         Assertions.assertEquals("V", griglia.getCella(0, 0), "Il valore della cella non corrisponde");
     }
@@ -79,6 +84,7 @@ class GrigliaTest {
      * Verifica che il valore della cella sia impostato correttamente.
      */
     @Test
+    @DisplayName("Test per testSetCella()")
     void testSetCella() {
         griglia.setCella(0, 0, "X");
         Assertions.assertEquals("X", griglia.getCella(0, 0), "Il valore della cella impostato correttamente");
@@ -89,6 +95,7 @@ class GrigliaTest {
      * Verifica che la dimensione delle navi corrisponda a quella attesa dopo l'aggiunta di una nave.
      */
     @Test
+    @DisplayName("Test per testAddNavi()")
     void testAddNavi() {
         try {
             Coordinata[] coordinata = {new Coordinata(0, 0), new Coordinata(0, 1)};
@@ -104,6 +111,7 @@ class GrigliaTest {
      * Verifica che la dimensione della nave corrisponda a quella attesa.
      */
     @Test
+    @DisplayName("Test per testGetSize()")
     void testGetSize() {
         try {
             Coordinata[] coordinata = {new Coordinata(0, 0), new Coordinata(0, 1)};
@@ -119,6 +127,7 @@ class GrigliaTest {
      * Verifica che la dimensione della coordinata corrisponda a quella attesa.
      */
     @Test
+    @DisplayName("Test per testGetDim()")
     void testGetDim() {
         try {
             Coordinata[] coordinata = {new Coordinata(0, 0), new Coordinata(0, 1)};
@@ -134,6 +143,7 @@ class GrigliaTest {
      * Verifica che la nave non sia stata affondata correttamente.
      */
     @Test
+    @DisplayName("Test per testGetAffondata()")
     void testGetAffondata() {
         try {
             Coordinata[] coordinata = {new Coordinata(0, 0), new Coordinata(0, 1)};
@@ -149,6 +159,7 @@ class GrigliaTest {
      * Verifica che la nave sia stata segnata come affondata correttamente.
      */
     @Test
+    @DisplayName("Test per testSetAffondata()")
     void testSetAffondata() {
         try {
             Coordinata[] coordinata = {new Coordinata(0, 0), new Coordinata(0, 1)};
@@ -166,6 +177,7 @@ class GrigliaTest {
      * @throws PosizioneException se si verifica un'eccezione durante l'accesso alla coordinata.
      */
     @Test
+    @DisplayName("Test per testGetRiga()")
     void testGetRiga() {
         try {
             Coordinata[] coordinata = {new Coordinata(0, 0), new Coordinata(0, 1)};
@@ -187,6 +199,7 @@ class GrigliaTest {
      * @throws PosizioneException se si verifica un'eccezione durante l'accesso alla coordinata.
      */
     @Test
+    @DisplayName("Test per testGetColonna()")
     void testGetColonna() {
         try {
             Coordinata[] coordinata = {new Coordinata(0, 0), new Coordinata(0, 1)};
@@ -208,6 +221,7 @@ class GrigliaTest {
      * @throws PosizioneException se si verifica un'eccezione durante l'accesso alla coordinata.
      */
     @Test
+    @DisplayName("Test per testGetColpito()")
     void testGetColpito() {
         try {
             Coordinata[] coordinata = {new Coordinata(0, 0), new Coordinata(0, 1)};
@@ -228,6 +242,7 @@ class GrigliaTest {
      * @throws PosizioneException se si verifica un'eccezione durante l'accesso alla coordinata.
      */
     @Test
+    @DisplayName("Test per testSetColpito()")
     void testSetColpito() {
         try {
             Coordinata[] coordinata = {new Coordinata(0, 0), new Coordinata(0, 1)};
