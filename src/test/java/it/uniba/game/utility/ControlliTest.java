@@ -1,7 +1,6 @@
-package it.uniba.utility;
+package it.uniba.game.utility;
 
 import it.uniba.game.logic.PartitaLogic;
-import it.uniba.game.utility.Controlli;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,7 +19,6 @@ class ControlliTest {
     void setUp() {
         controlli = new Controlli();
         partita = new PartitaLogic();
-        // Inizializza oggetto PartitaLogic secondo le tue esigenze
     }
 
     /**
@@ -76,7 +74,5 @@ class ControlliTest {
         boolean result = controlli.isCoordinata("A-11", partita);
         Assertions.assertFalse(result);
     }
-
-    // Altri test per i diversi casi possibili
 
 }

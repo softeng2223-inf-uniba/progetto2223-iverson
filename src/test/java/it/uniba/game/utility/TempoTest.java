@@ -1,6 +1,5 @@
-package it.uniba.utility;
+package it.uniba.game.utility;
 
-import it.uniba.game.utility.Tempo;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

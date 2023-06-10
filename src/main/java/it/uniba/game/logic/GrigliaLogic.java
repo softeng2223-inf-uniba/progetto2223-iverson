@@ -220,4 +220,80 @@ public class GrigliaLogic {
         return griglia.getCella(i, j);
     }
 
+    /**
+     * Restituisce il numero di navi presenti sulla griglia.
+     * @return numero di navi presenti
+     */
+    public int getnaviSize() {
+        return griglia.naviSize();
+    }
+
+    /**
+     * Restituisce il numero di navi di uno specifico tipo.
+     * @param i : indice del tipo di nave del quale si vuole sapere gli esemplari presenti
+     * @return numero delle navi  presenti del tipo indicizzato da i
+     */
+    public int getSize(final int i) {
+        return griglia.getSize(i);
+    }
+    /**
+     * Imposta a "affondata" lo stato della nave del tipo indicizzato da i e dell'istanza indicizzata da j.
+     * @param i : indice del tipo di nave che si vuole impostare come affondata
+     * @param j : indice della nave nella lista di navi del suo stesso tipo che si vuole impostare come affondata
+     */
+    public void setAffondato(final int i, final int j) {
+        griglia.setAffondata(i, j);
+    }
+
+    /**
+     * Modifica una cella della Griglia.
+     * @param i : numero di riga della cella da modificare
+     * @param j : numero di collona della cella da modificare
+     * @param str : stringa da inserire nella cella
+     */
+    public void setCella(final int i, final int j, final String str) {
+        griglia.setCella(i, j, str);
+    }
+
+    /**
+     * Imposta a "colpito" lo stato di una specifica posizione di una singola nave.
+     * @param i : indice del tipo di nave
+     * @param j : indice della nave nella lista di navi del suo stesso tipo
+     * @param k : indice della coordinata occupata dalla nave della quale su vuole cambiare lo stato
+     * @throws PosizioneException
+     */
+    public void setColpito(final int i, final int j, final int k) throws PosizioneException {
+        griglia.setColpito(i, j, k);
+    }
+    /**
+     * Restituisce vero se una specifica nave è affondata, falso altrimenti.
+     * @param i : indice del tipo di nave
+     * @param j : indice della nave nella lista di navi del suo stesso tipo
+     * @return vero se la nave è affondata, falso altrimenti
+     */
+    public boolean getAffondata(final int i, final int j) {
+        return griglia.getAffondata(i, j);
+    }
+    /**
+     * Restituisce una cella della Griglia.
+     *
+     * @param i : numero di riga della cella della griglia da restituire
+     * @param j : numero di colonna della cella della griglia da restituire
+     * @return singola cella della Griglia
+     */
+    public String getCella(final int i, final int j) {
+        return griglia.getCella(i, j);
+    }
+    /**
+     * Restituisce vero se una posizione di una specifica nave è stata colpita, falso altrimenti.
+     * @param i : indice del tipo di nave
+     * @param j : indice della nave nella lista di navi del suo stesso tipo
+     * @param k : indice della coordinata occupata dalla nave della quale si vuole sapere l'avvenuto colpo
+     * @return vero se la posizione della coordinata è stata colpita, falso altrimenti
+     * @throws PosizioneException
+     */
+    public boolean getColpito(final int i, final int j, final int k) throws PosizioneException {
+        return griglia.getColpito(i, j, k);
+    }
+
 }

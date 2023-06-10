@@ -1,6 +1,5 @@
-package it.uniba.utility;
+package it.uniba.game.utility;
 
-import it.uniba.game.utility.Dimensioni;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
