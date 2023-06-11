@@ -28,10 +28,16 @@ public class Stampa {
         final char mancato = '\u25BD'; // carattere Unicode che rappresenta il mancato con un triangolino vuoto
         final char colpito = '\u25BC'; // carattere Unicode che rappresenta il colpito con un triangolino pieno
         final int valoreChiocciola = 65;
+        final int ultimoNumUnaCifra = 9;
+
         // Stampa delle righe superiori della griglia
         System.out.print("   ");
         for (int i = 1; i <= partitaLogic.getDimMax(); i++) {
-            System.out.print(" " + i + "  ");
+            if (i <= ultimoNumUnaCifra) {
+                System.out.print(" " + i + "  ");
+            } else {
+                System.out.print(" " + i + " ");
+            }
         }
         System.out.println();
         // Stampa della prima linea verticale della griglia
@@ -93,11 +99,16 @@ public class Stampa {
         final char mancato = '\u25BD'; // carattere Unicode che rappresenta il mancato con un triangolino vuoto
         final char colpito = '\u25BC'; // carattere Unicode che rappresenta il colpito con un triangolino pieno
         final int valoreChiocciola = 65;
+        final int ultimoNumUnaCifra = 9;
 
         // Stampa delle righe superiori della griglia
         System.out.print("   ");
         for (int i = 1; i <= partitaLogic.getDimMax(); i++) {
-            System.out.print(" " + i + "  ");
+             if (i <= ultimoNumUnaCifra) {
+                System.out.print(" " + i + "  ");
+            } else {
+                System.out.print(" " + i + " ");
+            }
         }
         System.out.println();
         // Stampa della prima linea verticale della griglia
