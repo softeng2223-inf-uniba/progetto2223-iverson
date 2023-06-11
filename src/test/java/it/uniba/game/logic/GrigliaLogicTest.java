@@ -2,13 +2,14 @@ package it.uniba.game.logic;
 
 import it.uniba.game.eccezioni.NumeroCoordinateException;
 import it.uniba.game.eccezioni.PosizioneException;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 /**
  * Classe di test per la classe GrigliaLogic.
@@ -31,17 +32,29 @@ class GrigliaLogicTest {
     }
 
     /**
-     * Test per il metodo finepartita().
+     * Test per il metodo testFinepartitaNonFinita().
      */
     @Test
-    @DisplayName("Test per testFinepartita()")
-    void testFinepartita() {
-        Assertions.assertFalse(grigliaLogic.finepartita(), "La partita dovrebbe continuare senza colpi");
-
+    @DisplayName("Test per testFinepartitaNonFinita()")
+    void testFinepartitaNonFinita() {
+        assertFalse(grigliaLogic.finepartita(), "La partita dovrebbe continuare senza colpi");
+    }
+    /**
+     * Test per il metodo testFinepartitaNaviColpite().
+     */
+    @Test
+    @DisplayName("Test per testFinepartitaNaviColpite()")
+    void testFinepartitaNaviColpite() {
         grigliaLogic.setAffondato(0, 0);
         grigliaLogic.setAffondato(1, 0);
-        Assertions.assertFalse(grigliaLogic.finepartita(), "Solo alcune navi sono state affondate");
-
+        assertFalse(grigliaLogic.finepartita(), "Solo alcune navi sono state affondate");
+    }
+    /**
+     * Test per il metodo testFinepartitaNaviAffondate().
+     */
+    @Test
+    @DisplayName("Test per testFinepartitaNaviAffondate()")
+    void testFinepartitaNaviAffondate() {
         for (int i = 0; i < grigliaLogic.getnaviSize(); i++) {
             for (int j = 0; j < grigliaLogic.getSize(i); j++) {
                 grigliaLogic.setAffondato(i, j);

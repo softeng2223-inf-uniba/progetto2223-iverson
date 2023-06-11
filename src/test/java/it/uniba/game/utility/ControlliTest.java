@@ -1,10 +1,13 @@
 package it.uniba.game.utility;
 
 import it.uniba.game.logic.PartitaLogic;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 /**
  * Classe di test per la classe Controlli.
  */
@@ -29,7 +32,7 @@ class ControlliTest {
     @DisplayName("Test per testIsIntegerConNumeroValido()")
      void testIsIntegerConNumeroValido() {
         boolean result = controlli.isInteger("123");
-        Assertions.assertTrue(result);
+        assertTrue(result, "Stringa con numero non valido");
     }
 
     /**
@@ -39,7 +42,7 @@ class ControlliTest {
     @DisplayName("Test per testIsIntegerConNumeroNonValido()")
     void testIsIntegerConNumeroNonValido() {
         boolean result = controlli.isInteger("123a");
-        Assertions.assertFalse(result);
+        assertFalse(result, "Stringa con numero valido");
     }
 
     /**
@@ -49,7 +52,7 @@ class ControlliTest {
     @DisplayName("Test per testIsIntegerConStringaNull()")
     void testIsIntegerConStringaNull() {
         boolean result = controlli.isInteger(null);
-        Assertions.assertFalse(result);
+        assertFalse(result, "Stringa non null");
     }
 
     /**
@@ -59,7 +62,7 @@ class ControlliTest {
     @DisplayName("Test per testIsIntegerConStringaVuota()")
     void testIsIntegerConStringaVuota() {
         boolean result = controlli.isInteger("");
-        Assertions.assertFalse(result);
+        assertFalse(result, "Stringa non vuota");
     }
 
     /**
@@ -69,7 +72,7 @@ class ControlliTest {
     @DisplayName("Test per testIsCoordinataConCoordinataValida()")
     void testIsCoordinataConCoordinataValida() {
         boolean result = controlli.isCoordinata("A-1", partita);
-        Assertions.assertTrue(result);
+        assertTrue(result, "Coordinata non valida");
     }
 
     /**
@@ -79,7 +82,7 @@ class ControlliTest {
     @DisplayName("Test per testIsCoordinataConCoordinataNonValida()")
     void testIsCoordinataConCoordinataNonValida() {
         boolean result = controlli.isCoordinata("A-11", partita);
-        Assertions.assertFalse(result);
+        assertFalse(result, "Coordinata valida");
     }
 
 }
