@@ -8,6 +8,8 @@
   - 3.2) REQUISITI NON FUNZIONALI
 - 7)MANUALE UTENTE
 - 9)RETROSPETTIVA
+   - 9.1) SPRINT 0
+   - 9.2) SPRINT 1   
 
 ---
 ## 1)INTRODUZIONE
@@ -203,31 +205,75 @@ Nel caso l'utente avvii il programma senza inserire nessun parametro verrà most
 
 Nel caso l'utente avvii il programma inserendo il parametro "--help" oppure "-help" verrà mostrato questo:
 
-![helpconparametro](./img/Helpconparametro.jpg)
+![helpconparametronuovo](./img/helpconparametronuovo.png)
 
-Nel caso l'utente inserisca /help per avere piu' informazioni verrà stampato questo:
+Nel caso l'utente inserisca "/help" per avere piu' informazioni verrà stampato questo:
 
-![helpbase](./img/helpbase.jpg)
+![helpnuovo](./img/helpnuovo.png)
 
-Nel caso l'utente inserisca il comando /gioca verrà iniziata una nuova partita:
+Nel caso l'utente inserisca il comando "/gioca" verrà iniziata una nuova partita:
 
 ![NuovoGioca](./img/NuovoGioca.png)
 
-Nel caso l'utente inserisca il comando /mostranavi verrà stampata una legenda delle navi disponibili:
+Nel caso l'utente inserisca il comando "/mostranavi" verrà stampata una legenda delle navi disponibili:
 
 ![Mostranavi](./img/MostraNavi.jpg)
 
-Nel caso l'utente (a partita in corso) inserisca il comando /svelagriglia verrà mostrata la griglia con le navi posizionate:
+Nel caso l'utente (a partita in corso) inserisca il comando "/svelagriglia" verrà mostrata la griglia con le navi posizionate:
 
 ![StampaGriglia](./img/StampaGriglia.jpg)
 
-Nel caso l'utente inserisca il comando /mostralivello verrà visualizzato il livello al quale l'utente sta giocando, il livello è impostabile quando la partita inizia (tramite i comandi "/facile", "/medio", "/difficile") e non è modificabile a partita in corso:
+Nel caso l'utente inserisca il comando "/mostralivello" verrà visualizzato la difficoltà alla quale l'utente sta giocando, la difficoltà è impostabile quando la partita non è iniziata (tramite i comandi "/facile", "/medio", "/difficile"; è possibile aggiungere accanto al comando un numero, quel numero diventerà il numero massimo di tentativi falliti per la difficoltà. In alternativa è possivile inserire il comando "/tentativi numero" che andrà ad impostare il numero massimo di tentativi falliti al numero inserito) e non è modificabile a partita in corso:
 
 ![mostralivello](./img/mostralivello.jpg)
+
+Nel caso l'utente inserisca il comando "/mostratentativi" verranno visualizzati il numero di tentativi già effetuati, il numero di tentativi falliti e il numero massimo di tentativi fallibili. Comando chiamabile solo a partita in corso:
+
+![mostratentativi](./img/mostratentativi.png)
+
+Nel caso l'utente inserisca il comando "/tempo numero", l'applicazione imposterà a numero il tempo a disposizione del giocatore per finire la partita (in minuti). Questo comando è chiamabile solo prima di iniziare la partita:
+
+![temponumero](./img/temponumero.png)
+
+Nel caso l'utente inserisca il comando "/mostratempo" verrà visualizzato il tempo rimasto al giocatore per finire la partita. Questo comando è chiamabile solo a partita in corso:
+
+![mostratempo](./img/mostratempo.png)
+
+Nel caso l'utente inserisca il comando "/mostragriglia" verrà visualizzata una griglia con righe e colonne numerate e che mostrarà le navi già affondate e le parti di navi colpite. Comando chiamabile solo a partita in corso.
+
+![mostragriglia](./img/mostragriglia.png)
+
+Nel caso l'utente inserisca il comando "/standard" verrà impostata la dimensione della griglia a 10x10 (è il default). Comando chiamabile solo prima di iniziare una partita: 
+
+![standard](./img/standard.png)
+
+Nel caso l'utente inserisca il comando "/large" verrà impostata la dimensione della griglia a 18x18. Comando chiamabile solo prima di iniziare una partita:
+
+![large](./img/large.png)
+
+Nel caso l'utente inserisca il comando "/large" verrà impostata la dimensione della griglia a 26x26. Comando chiamabile solo prima di iniziare una partita:
+
+![extralarge](./img/extralarge.png)
+
+Digitando a partita in corso una coppia di caratteri separati da un trattino, corrispondenti rispettivamente al numero di riga e alla lettera della colonna, (es. B-4), l’applicazione risponde 
+• “acqua” se sulla cella non è posizionata nessuna nave;
+• "colpito" se sulla cella è posizionata una nave;
+• "colpito e affondato" se sulla cella è posizionata una nave ed è l’ultima cella non colpita della nave. 
+Qualunque sia l’esito del tentativo, l’applicazione mostra la griglia con le navi colpite parzialmente o affondate, il numero di tentativi già effettuati, e il tempo trascorso. 
+La partita termina con successo se il tentativo ha affondato l’ultima nave.
+La partita termina con insuccesso se è stato raggiunto il numero massimo di tentativi falliti o se è scaduto il tempo di gioco: 
+
+![colpo](./img/colpo.png)
+
+Nel caso l'utente inserisca il comando "/abbandona" verrà prima chiesta conferma di abbandono, in caso di risposta affermativa l'applicazione risponderà visualizzando la griglia con la posizione di tutte le navi e si predispone a ricevere nuovi comandi. Nel caso di risposta negativa l'applicazione si predispone a ricevere nuovi comandi  Chiamabile solo a partita in corso:
+
+![abbandona](./img/abbandona.png)
 
 Nel caso l'utente inserisca il comando "/esci" prima gli verrà chiesta conferma di uscita e in seguito ad un risposta affermativa l'applicazione si chiuderà:
 
 ![esci](./img/esci.jpg)
+
+
 
 
 ---
