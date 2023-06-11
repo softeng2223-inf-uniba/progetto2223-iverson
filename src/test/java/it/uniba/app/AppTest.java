@@ -10,7 +10,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.nio.charset.Charset;
 
-
+/**
+ * Test sulla classe di App.java.
+ */
 class AppTest {
 
     /**
