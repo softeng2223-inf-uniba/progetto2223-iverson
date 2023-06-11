@@ -155,3 +155,9 @@ Di seguito la retrospettiva degli sprint precedenti. Sono state raccolte le  oss
 ### 9.1) SPRINT 0
 
 ![Retrospettivasprint0.png](./img/Retrospettivasprint0.png)
+
+### 9.1) SPRINT 1
+
+![Retrospettivasprint1.png](./img/Retrospettivasprint1.png)
+
+
