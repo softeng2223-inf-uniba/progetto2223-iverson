@@ -10,17 +10,26 @@ import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+/**
+ * Test sulla classe Coordinata.
+ */
 class CoordinataTest {
     private static final int RIGA = 3;
     private static final int COLONNA = 4;
 
     private Coordinata coordinata;
 
+    /**
+     * Settaggio test preliminari.
+     */
     @BeforeEach
     void setUp() {
         coordinata = new Coordinata(RIGA, COLONNA);
     }
 
+    /**
+     * Test sulla restituzione corretta della riga.
+     */
     @Test
     @DisplayName("Test restituzione corretta della riga")
     void testGetRiga() {
@@ -28,6 +37,9 @@ class CoordinataTest {
         "La riga restituita non è corretta");
     }
 
+    /**
+     * Test sulla restituzione corretta della colonna.
+     */
     @Test
     @DisplayName("Test restituzione corretta della colonna")
     void testGetColonna() {
@@ -35,6 +47,9 @@ class CoordinataTest {
         "La colonna restituita non è corretta");
     }
 
+    /**
+     * Test sulla restituzioen corretta dello stato colpito.
+     */
     @Test
     @DisplayName("Test restituzione corretta stato colpito")
     void testIsColpito() {
@@ -42,14 +57,20 @@ class CoordinataTest {
         "Lo stato 'colpito' restituito non è corretto");
     }
 
+    /**
+     * Test sull' impostare lo stato corretto del colpo.
+     */
     @Test
-    @DisplayName("Test serraggio corretto stato colpito")
+    @DisplayName("Test settaggio corretto stato colpito")
     void testSetColpito() {
         coordinata.setcolpito();
         assertTrue(coordinata.getcolpito(),
         "Lo stato 'colpito' non è stato impostato correttamente");
     }
 
+    /**
+     * Test sul clonaggio esatto delle coordinate delle navi.
+     */
     @Test
     @DisplayName("Test clonaggio corretto Coordinata")
     void testClone() {
@@ -62,6 +83,9 @@ class CoordinataTest {
         }
     }
 
+    /**
+     * Test sulla corrispondenza della riga della nave clonata.
+     */
     @Test
     @DisplayName("Test corrispondenza riga dell'oggetto clonato")
     void testClonedRiga() {
@@ -74,6 +98,9 @@ class CoordinataTest {
         }
     }
 
+    /**
+     * Test sulla corrispondenza della colonna della nave clonata.
+     */
     @Test
     @DisplayName("Test corrispondenza colonna dell'oggetto clonato")
     void testClonedColonna() {
@@ -86,6 +113,9 @@ class CoordinataTest {
         }
     }
 
+    /**
+     * Test corrispondenza che controlla se lo stato colpito è stato assegnato correttamente.
+     */
     @Test
     @DisplayName("Test corrispondenza stato 'colpito' dell'oggetto clonato")
     void testClonedColpito() {
@@ -98,6 +128,9 @@ class CoordinataTest {
         }
     }
 
+    /**
+     * Test che controlla se si restituisce correttamente la stringa.
+     */
     @Test
     @DisplayName("Test restituzione corretta del ToString")
     void testToString() {

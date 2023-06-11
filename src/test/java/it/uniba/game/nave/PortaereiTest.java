@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;;
 
+/**
+ * Test sulla classe Portaerei.
+ */
 class PortaereiTest {
     private static final int COORDINATE_RIGA_1 = 1;
     private static final int COORDINATE_COLONNA_1 = 1;
@@ -15,6 +18,9 @@ class PortaereiTest {
     private static final int COORDINATE_COLONNA_4 = 4;
     private static final int COORDINATE_COLONNA_5 = 5;
 
+    /**
+     * Test che verifica se il costruttore è corretto per portaerei.
+     */
     @Test
     @DisplayName("Test costruttore corretto")
     void testCostruttoreCorretto() {
@@ -30,6 +36,9 @@ class PortaereiTest {
         "La creazione dell' portaerei non dovrebbe generare eccezioni.");
     }
 
+     /**
+     * Test che verifica se il costruttore ha un numero di coordinate errato per portaerei.
+     */
     @Test
     @DisplayName("Test costruttore con numero di coordinate errato")
     void testCostruttoreNumeroCoordinateErrato() {
@@ -45,6 +54,11 @@ class PortaereiTest {
         "La creazione della portaerei con un numero di coordinate errato dovrebbe generare un'eccezione.");
     }
 
+     /**
+     * Test che verifica il posizionamento di portaerei.
+     *
+     * @throws NumeroCoordinateException
+     */
     @Test
     @DisplayName("Test toString")
     void testToString() throws NumeroCoordinateException {

@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+/**
+ * Test sulla classe Corazzata.
+ */
 class CorazzataTest {
     private static final int COORDINATE_RIGA_1 = 1;
     private static final int COORDINATE_COLONNA_1 = 1;
@@ -14,6 +17,9 @@ class CorazzataTest {
     private static final int COORDINATE_COLONNA_3 = 3;
     private static final int COORDINATE_COLONNA_4 = 4;
 
+    /**
+     * Test che verifica se il costruttore è corretto per corazzata.
+     */
     @Test
     @DisplayName("Test costruttore corretto")
     void testCostruttoreCorretto() {
@@ -28,6 +34,9 @@ class CorazzataTest {
         "La creazione della corazzata non dovrebbe generare eccezioni.");
     }
 
+    /**
+     * Test che verifica se il costruttore ha un numero di coordinate errato per corazzata.
+     */
     @Test
     @DisplayName("Test costruttore con numero di coordinate errato")
     void testCostruttoreNumeroCoordinateErrato() {
@@ -40,6 +49,11 @@ class CorazzataTest {
         "La creazione della corazzata con un numero di coordinate errato dovrebbe generare un'eccezione.");
     }
 
+     /**
+     * Test che verifica il posizionamento di corazzata.
+     *
+     * @throws NumeroCoordinateException
+     */
     @Test
     @DisplayName("Test toString")
     void testToString() throws NumeroCoordinateException {

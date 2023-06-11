@@ -1,9 +1,12 @@
 package it.uniba.game.nave;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import it.uniba.game.eccezioni.CloneException;
 import it.uniba.game.eccezioni.NumeroCoordinateException;
@@ -45,7 +48,8 @@ class NaveTest {
     @DisplayName("Test restituzione corretta della dimensione")
     void testGetDim() {
         int dim = portaerei.getdim();
-        Assertions.assertEquals(COORDINATE_COLONNA_5, dim);
+        assertEquals(COORDINATE_COLONNA_5, dim,
+        "Errore i valori delle dimensioni non sono quelli previsti");
     }
 
     /**
@@ -57,8 +61,10 @@ class NaveTest {
     @DisplayName("Test restituzione corretta della coordinata")
     void testGetCoordinate() throws PosizioneException {
         Coordinata coordinata = portaerei.getcoordinate(2);
-        Assertions.assertEquals(1, coordinata.getriga());
-        Assertions.assertEquals(COORDINATE_COLONNA_3, coordinata.getcolonna());
+        int[] result = {1, COORDINATE_COLONNA_3};
+        int[] expectedResult = {coordinata.getriga(), coordinata.getcolonna()};
+        assertArrayEquals(expectedResult, result,
+        "Errore i valori delle coordinate non sono quelli previsti");
     }
 
     /**
@@ -73,8 +79,10 @@ class NaveTest {
         Coordinata nuovaCoordinata = new Coordinata(2, 2);
         portaerei.setcoordinate(1, nuovaCoordinata);
         Coordinata coordinata = portaerei.getcoordinate(1);
-        Assertions.assertEquals(2, coordinata.getriga());
-        Assertions.assertEquals(2, coordinata.getcolonna());
+        int[] result = {2, 2};
+        int[] expectedResult = {coordinata.getriga(), coordinata.getcolonna()};
+        assertArrayEquals(expectedResult, result,
+        "Errore i valori valori delle coordinate non sono impostati correttamente");
     }
 
     /**
@@ -85,7 +93,8 @@ class NaveTest {
     void testSetAffondata() {
         portaerei.setaffondata();
         boolean affondata = portaerei.getaffondata();
-        Assertions.assertTrue(affondata);
+        assertTrue(affondata,
+        "Errore non è stato impostata correttamente il valor edi affondato");
     }
 
     /**
@@ -95,7 +104,8 @@ class NaveTest {
     @DisplayName("Test restituzione corretta dello stato")
     void testToString() {
         String stato = portaerei.toString();
-        Assertions.assertEquals("false", stato);
+        assertEquals("false", stato,
+        "Errore non è stato restituito il valore corretto dello stato");
     }
 }
 

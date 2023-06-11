@@ -8,12 +8,18 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+/**
+ * Test sulla classe Incrociatore.
+ */
 class IncrociatoreTest {
     private static final int COORDINATE_RIGA_1 = 1;
     private static final int COORDINATE_COLONNA_1 = 1;
     private static final int COORDINATE_COLONNA_2 = 2;
     private static final int COORDINATE_COLONNA_3 = 3;
 
+    /**
+     * Test che verifica se il costruttore è corretto per incrociatore.
+     */
     @Test
     @DisplayName("Test costruttore corretto")
     void testCostruttoreCorretto() {
@@ -27,6 +33,9 @@ class IncrociatoreTest {
         "La creazione dell' incrociatore non dovrebbe generare eccezioni.");
     }
 
+     /**
+     * Test che verifica se il costruttore ha un numero di coordinate errato per incrociatore.
+     */
     @Test
     @DisplayName("Test costruttore con numero di coordinate errato")
     void testCostruttoreNumeroCoordinateErrato() {
@@ -41,6 +50,11 @@ class IncrociatoreTest {
         "La creazione dell' incrociatore con un numero di coordinate errato dovrebbe generare un'eccezione.");
     }
 
+     /**
+     * Test che verifica il posizionamento di incrociatore.
+     *
+     * @throws NumeroCoordinateException
+     */
     @Test
     @DisplayName("Test toString")
     void testToString() throws NumeroCoordinateException {

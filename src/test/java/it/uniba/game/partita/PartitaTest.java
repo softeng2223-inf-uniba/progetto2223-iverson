@@ -1,14 +1,32 @@
 package it.uniba.game.partita;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /**
  * Classe di Test per la classe di Partita.
  */
 class PartitaTest {
+    private static final int TEMPO = 10;
+    private static final int FACILE = 50;
+    private static final int MEDIO = 30;
+    private static final int DIFFICILE = 10;
+    private static final int NEW_ERRORI_F = 10;
+    private static final int NEW_ERRORI_M = 5;
+    private static final int NEW_ERRORI_D = 1;
+    private static final int NUM_MAX_ERR = 10;
+    private static final int COLPI_TOTALI = 10;
+    private static final int DIM_MAX = 10;
+    private static final int TEMPO_MAX = 60;
+
+
+
+
     private Partita partita;
 
     /**
@@ -19,197 +37,271 @@ class PartitaTest {
         partita = new Partita();
     }
 
-    @Test
-    @DisplayName("Test getStartTime")
     /**
      * Test per il metodo che fa iniziare il tempo.
      */
+    @Test
+    @DisplayName("Test getStartTime")
     void testGetStartTime() {
-        partita.setStartTime(12345);
+        partita.setStartTime(TEMPO);
         long startTime = partita.getStartTime();
-        Assertions.assertEquals(12345, startTime);
+        assertEquals(TEMPO, startTime,
+        "Errore il tempo non è iniziato");
     }
 
-    @Test
-    @DisplayName("Test getErrorePerLivello")
     /**
-     * 
-     *  Test per il metodo che prende gli eorri per ogni livello.
+     *  Test per il metodo che prende gli erorri del livello FACILE.
      */
-    void testGetErrorePerLivello() {
+    @Test
+    @DisplayName("Test getErrorePerLivelloFacile")
+    void testGetErrorePerLivelloFacile() {
         int erroriFacile = partita.getErrorePerLivello("FACILE");
-        Assertions.assertEquals(50, erroriFacile);
+        assertEquals(FACILE, erroriFacile,
+        "Errore gli errori non corrispondo al livello FACILE");
+    }
+
+    /**
+     *  Test per il metodo che prende gli erorri del livello MEDIO.
+     */
+    @Test
+    @DisplayName("Test getErrorePerLivelloMedio")
+    void testGetErrorePerLivelloMedio() {
         int erroriMedio = partita.getErrorePerLivello("MEDIO");
-        Assertions.assertEquals(30, erroriMedio);
+        assertEquals(MEDIO, erroriMedio,
+        "Errore gli errori non corrispondo al livello MEDIO");
+    }
+
+    /**
+     *  Test per il metodo che prende gli erorri del livello DIFFICILE.
+     */
+    @Test
+    @DisplayName("Test getErrorePerLivelloDifficile")
+    void testGetErrorePerLivelloDifficile() {
          int erroriDifficile = partita.getErrorePerLivello("DIFFICILE");
-        Assertions.assertEquals(10, erroriDifficile);
+        assertEquals(DIFFICILE, erroriDifficile,
+        "Errore gli errori non corrispondo al livello DIFFICILE");
     }
 
-    @Test
-    @DisplayName("Test setErroriPerLivello")
     /**
-     *  Test per il metodo che imposta gli errori per livello.
+     *  Test per il metodo che reimposta gli errori per il livello FACILE.
      */
-    void testSetErroriPerLivello() {
-        partita.setErroriPerLivello("FACILE", 10);
+    @Test
+    @DisplayName("Test setErroriPerLivelloFACILE")
+    void testSetErroriPerLivelloFacile() {
+        partita.setErroriPerLivello("FACILE", NEW_ERRORI_F);
         int erroriFacile = partita.getErrorePerLivello("FACILE");
-        Assertions.assertEquals(10, erroriFacile);
-        partita.setErroriPerLivello("MEDIO", 5);
+        assertEquals(NEW_ERRORI_F, erroriFacile,
+        "Errore gli errori non sono stati reimpostati per il livello FACILE");
+    }
+
+    /**
+     *  Test per il metodo che reimposta gli errori per il livello MEDIO.
+     */
+    @Test
+    @DisplayName("Test setErroriPerLivelloMEDIO")
+    void testSetErroriPerLivelloMedio() {
+        partita.setErroriPerLivello("MEDIO", NEW_ERRORI_M);
         int erroriMedio = partita.getErrorePerLivello("MEDIO");
-        Assertions.assertEquals(5, erroriMedio);
+        assertEquals(NEW_ERRORI_M, erroriMedio,
+        "Errore gli errori non sono stati reimpostati per il livello MEDIO");
     }
 
-    @Test
-    @DisplayName("Test getLivello")
     /**
-     *  Test per il metodo che prende il livello.
+     *  Test per il metodo che reimposta gli errori per il livello DIFFICILE.
      */
-    void testGetLivello() {
+    @Test
+    @DisplayName("Test setErroriPerLivelloDIFFICILE")
+    void testSetErroriPerLivelloDifficile() {
+        partita.setErroriPerLivello("DIFFICILE", NEW_ERRORI_D);
+        int erroriDifficile = partita.getErrorePerLivello("DIFFICILE");
+        assertEquals(NEW_ERRORI_D, erroriDifficile,
+        "Errore gli errori non sono stati reimpostati per il livello DIFFICILE");
+    }
+
+    /**
+     *  Test per il metodo che prende il livello FACILE.
+     */
+    @Test
+    @DisplayName("Test getLivelloFacile")
+    void testGetLivelloFacile() {
         String livelloFacile = partita.getLivello();
-        Assertions.assertEquals("FACILE", livelloFacile);
+        assertEquals("FACILE", livelloFacile,
+        "Errore non è stato preso il livello FACILE");
     }
 
-    @Test
-    @DisplayName("Test setLivello")
     /**
-     *  Test per il metodo che imposta il livello.
+     *  Test per il metodo che imposta il livello FACILE.
      */
-    void testSetLivello() {
+    @Test
+    @DisplayName("Test setLivelloFacile")
+    void testSetLivelloFacile() {
         partita.setLivello("FACILE");
         String livelloFacile = partita.getLivello();
-        Assertions.assertEquals("FACILE", livelloFacile);
-        partita.setLivello("MEDIO");
-        String livelloMedio = partita.getLivello();
-        Assertions.assertEquals("MEDIO", livelloMedio);
-        partita.setLivello("DIFFICILE");
-        String livelloDifficile = partita.getLivello();
-        Assertions.assertEquals("DIFFICILE", livelloDifficile);
+        assertEquals("FACILE", livelloFacile,
+        "Errore non è stato impostato il livello FACILE");
     }
 
+     /**
+     *  Test per il metodo che imposta il livello MEDIO.
+     */
     @Test
-    @DisplayName("Test getNumMaxErrori")
+    @DisplayName("Test setLivelloMedio")
+    void testSetLivelloMedio() {
+        partita.setLivello("MEDIO");
+        String livelloMedio = partita.getLivello();
+        assertEquals("MEDIO", livelloMedio,
+        "Errore non è stato impostato il livello MEDIO");
+    }
+
+     /**
+     *  Test per il metodo che imposta il livello DIFFICILE.
+     */
+    @Test
+    @DisplayName("Test setLivelloDifficile")
+    void testSetLivelloDifficile() {
+        partita.setLivello("DIFFICILE");
+        String livelloDifficile = partita.getLivello();
+        assertEquals("DIFFICILE", livelloDifficile,
+        "Errore non è stato impostato il livello DIFFICILE");
+    }
+
+
     /**
      *  Test per il metodo che prende il numero massimo di errori.
      */
+    @Test
+    @DisplayName("Test getNumMaxErrori")
     void testGetNumMaxErrori() {
         int numMaxErrori = partita.getNumMaxErrori();
-        Assertions.assertEquals(50, numMaxErrori);
+        assertEquals(FACILE, numMaxErrori,
+        "Errore non è stato preso il valore degli errori massimi");
     }
 
-    @Test
-    @DisplayName("Test setNumMaxErrori")
     /**
      *  Test per il metodo che imposta il numero massimo di errori.
      */
+    @Test
+    @DisplayName("Test setNumMaxErrori")
     void testSetNumMaxErrori() {
-        partita.setNumMaxErrori(5);
+        partita.setNumMaxErrori(NUM_MAX_ERR);
         int numMaxErrori = partita.getNumMaxErrori();
-        Assertions.assertEquals(5, numMaxErrori);
+        assertEquals(NUM_MAX_ERR, numMaxErrori,
+        "Errore non è stato impostato il valore degli errori massimi");
     }
 
-    @Test
-    @DisplayName("Test getErroriCorrenti")
     /**
      *  Test per il metodo prende gli errori correnti.
      */
+    @Test
+    @DisplayName("Test getErroriCorrenti")
     void testGetErroriCorrenti() {
         int erroriCorrenti = partita.getErroriCorrenti();
-        Assertions.assertEquals(0, erroriCorrenti);
+        assertEquals(0, erroriCorrenti,
+        "Errore non è stato preso il valore degli errori correnti");
     }
 
-    @Test
-    @DisplayName("Test setErroriCorrenti")
     /**
      *  Test per il metodo che imposta gli errori correnti.
      */
+    @Test
+    @DisplayName("Test setErroriCorrenti")
     void testSetErroriCorrenti() {
         partita.setErroriCorrenti(2);
         int erroriCorrenti = partita.getErroriCorrenti();
-        Assertions.assertEquals(2, erroriCorrenti);
+        assertEquals(2, erroriCorrenti,
+        "Errore non è stato imposato il valore degli errori correnti");
     }
 
-    @Test
-    @DisplayName("Test getColpiTotali")
     /**
      *  Test per il metodo prende lo stato di colpito.
      */
+    @Test
+    @DisplayName("Test getColpiTotali")
     void testGetColpiTotali() {
         int colpiTotali = partita.getColpiTotali();
-        Assertions.assertEquals(0, colpiTotali);
+        assertEquals(0, colpiTotali,
+        "Errore non è stato preso il valore dei colpi totali");
     }
 
-    @Test
-    @DisplayName("Test setColpiTotali")
     /**
      *  Test per il metodo imposta lo stato in colpito.
      */
+    @Test
+    @DisplayName("Test setColpiTotali")
     void testSetColpiTotali() {
-        partita.setColpiTotali(10);
+        partita.setColpiTotali(COLPI_TOTALI);
         int colpiTotali = partita.getColpiTotali();
-        Assertions.assertEquals(10, colpiTotali);
+        assertEquals(COLPI_TOTALI, colpiTotali,
+        "Errore non è stato impostato il valore dei colpi totali");
     }
 
-    @Test
-    @DisplayName("Test statoPartita")
     /**
      *  Test per il metodo che mostra lo stato della partita.
      */
+    @Test
+    @DisplayName("Test statoPartita")
     void testStatoPartita() {
         boolean statoPartita = partita.statoPartita();
-        Assertions.assertFalse(statoPartita);
+        assertFalse(statoPartita,
+        "Errore non è stato impostato lo stato della partita");
     }
 
-    @Test
-    @DisplayName("Test setDimMax")
     /**
      *  Test per il metodo che imposta la dimensione massima della griglia di gioco.
      */
+    @Test
+    @DisplayName("Test setDimMax")
     void testSetDimMax() {
-        partita.setDimMax(10);
+        partita.setDimMax(DIM_MAX);
         int dimMax = partita.getDimMax();
-        Assertions.assertEquals(10, dimMax);
+        assertEquals(DIM_MAX, dimMax,
+        "Errore non è stata impostata la dimensione massima della griglia di gioco");
     }
 
+    /**
+     *  Test per il metodo prende la dimensione massima della griglia di gioco.
+     */
     @Test
     @DisplayName("Test getDimMax")
-    /**
-     *  Test per il metodo prende la dimensione massima dimensione massima della griglia di gioco.
-     */
     void testGetDimMax() {
         int dimMax = partita.getDimMax();
-        Assertions.assertEquals(10, dimMax);
+        assertEquals(DIM_MAX, dimMax,
+        "Errore non è stata preso il valore della dimensione massima della griglia di gioco");
     }
 
-    @Test
-    @DisplayName("Test setInCorso")
     /**
      *  Test per il metodo imposta lo stato della partita in in corso.
      */
+    @Test
+    @DisplayName("Test setInCorso")
     void testSetInCorso() {
         partita.setInCorso(true);
         boolean inCorso = partita.statoPartita();
-        Assertions.assertTrue(inCorso);
+        assertTrue(inCorso,
+        "Errore non è stato impostato lo stato in corso");
     }
 
-    @Test
-    @DisplayName("Test setTempoMax")
     /**
      *  Test per il metodo imposta il tempo al massimo.
      */
+    @Test
+    @DisplayName("Test setTempoMax")
     void testSetTempoMax() {
-        partita.setTempoMax(60);
+        partita.setTempoMax(TEMPO_MAX);
         int tempoMax = partita.getTempoMax();
-        Assertions.assertEquals(60, tempoMax);
+        assertEquals(TEMPO_MAX, tempoMax,
+        "Non è stato impostato il valore del tempo massimo");
     }
 
-    @Test
-    @DisplayName("Test getTempoMax")
     /**
      *  Test per il metodo prende il tempo massimo.
      */
+    @Test
+    @DisplayName("Test getTempoMax")
     void testGetTempoMax() {
         int tempoMax = partita.getTempoMax();
-        Assertions.assertEquals(0, tempoMax);
+        assertEquals(0, tempoMax,
+        "Errore non è stato preso il valore del tempo massimo");
     }
 }
 

@@ -7,8 +7,14 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+/**
+ * Test sulla classe Cacciatorpediniere.
+ */
 class CacciatorpediniereTest {
 
+    /**
+     * Test che verifica se il costruttore è corretto per cacciatorpediniere.
+     */
     @Test
     @DisplayName("Test costruttore corretto")
     void testCostruttoreCorretto() {
@@ -16,6 +22,9 @@ class CacciatorpediniereTest {
         assertDoesNotThrow(() -> new Cacciatorpediniere(coordinate));
     }
 
+    /**
+     * Test che verifica se il costruttore ha un numero di coordinate errato per cacciatorpediniere.
+     */
     @Test
     @DisplayName("Test costruttore con numero di coordinate errato")
     void testCostruttoreNumeroCoordinateErrato() {
@@ -24,6 +33,8 @@ class CacciatorpediniereTest {
     }
 
     /**
+     * Test che verifica il posizionamento di cacciatorpediniere.
+     *
      * @throws NumeroCoordinateException
      */
     @Test
