@@ -39,7 +39,8 @@ Attori/utenti del sistema: giocatore della partita.
 Criteri di accettazione: 
 
         Al comando /help o invocando l'app con flag --help o -h 
-        il risultato è una descrizione concisa, che normalmente appare all'avvio del programma, seguita dalla lista di comandi disponibili, uno per riga, come da esempio successivo: 
+        il risultato è una descrizione concisa, che normalmente appare all'avvio del programma, seguita dalla lista 
+        di comandi disponibili, uno per riga, come da esempio successivo: 
             * gioca	 
             * esci 
             ... 
@@ -77,7 +78,8 @@ Criteri di accettazione:
 
         Al comando /mostranavi  
 
-        l’applicazione risponde visualizzando, per ogni tipo di nave, la dimensione in quadrati e il numero di esemplari da affondare: 
+        l’applicazione risponde visualizzando, per ogni tipo di nave, la dimensione in quadrati e il numero 
+        di esemplari da affondare: 
 
         -Cacciatorpediniere 	⊠⊠ 	        esemplari: 4 
 
@@ -104,7 +106,87 @@ Criteri di accettazione:
 
         l’applicazione risponde visualizzando, una griglia 10x10, con le righe numerate da 1 a 10 e le colonne numerate da A a J, e tutte le navi posizionate   
 
- 
+* **RF8**: Come giocatore voglio impostare il numero massimo di tentativi falliti per livello di gioco 
+    Criteri di accettazione:
+
+        Al comando /facile numero
+        l’applicazione risponde con OK e imposta a numero il numero massimo di tentativi falliti
+
+        Al comando /medio numero
+        l’applicazione risponde con OK e imposta a numero il numero massimo di tentativi falliti
+
+        Al comando /difficile numero
+        l’applicazione risponde con OK e imposta a numero il numero massimo di tentativi falliti
+
+* **RF9**: Come giocatore voglio impostare direttamente il numero massimo di tentativi che si possono fallire
+    Criteri di accettazione:
+
+        Al comando /tentativi numero
+        l’applicazione risponde con OK e imposta a numero il numero massimo di tentativi falliti
+
+* **RF10**: Come giocatore voglio impostare la taglia della griglia
+    Criteri di accettazione:
+
+        Al comando /standard
+        l’applicazione risponde con OK e imposta a 10x10 la dimensione della griglia (è il default)
+
+        Al comando /large
+        l’applicazione risponde con OK e imposta a 18x18 la dimensione della griglia 
+
+        Al comando /extralarge
+        l’applicazione risponde con OK e imposta a 26x26 la dimensione della griglia 
+
+* **RF11**: Come giocatore voglio impostare il tempo di gioco
+        Criteri di accettazione:
+
+        Al comando /tempo numero
+        l’applicazione risponde con OK e imposta a numero il numero minuti a disposizione per giocare
+
+* **RF12**: Come giocatore voglio mostrare il tempo di gioco
+        Criteri di accettazione:
+
+        Al comando /mostratempo
+        l’applicazione risponde visualizzando il numero di minuti
+        trascorsi nel gioco e il numero di minuti ancora disponibili
+
+* **RF13**: Come giocatore voglio effettuare un tentativo per colpire una nave
+        Criteri di accettazione:
+
+        Digitando una coppia di caratteri separati da un trattino, corrispondenti rispettivamente al numero di
+        riga e alla lettera della colonna, (es. B-4), l’applicazione risponde 
+        •“acqua” se sulla cella non è posizionata nessuna nave;
+        •"colpito" se sulla cella è posizionata una nave;
+        •"colpito e affondato" se sulla cella è posizionata una nave ed è l’ultima cella non colpita della nave. 
+        Qualunque sia l’esito del tentativo, l’applicazione mostra la griglia con le navi colpite parzialmente 
+        o affondate, il numero di tentativi già effettuati, e il tempo trascorso. 
+        La partita termina con successo se il tentativo ha affondato l’ultima nave.
+        La partita termina con insuccesso se è stato raggiunto il numero massimo di tentativi falliti 
+        o se è scaduto il tempo di gioco.
+
+* **RF14**: Come giocatore voglio mostrare la griglia con le navi colpite e affondate
+        Criteri di accettazione:
+
+        Al comando /mostragriglia 
+        l’applicazione risponde visualizzando, una griglia 10x10, con le righe numerate da 1 a 10 e le colonne
+        numerate da A a J, con le navi affondate e le sole parti già colpite delle navi non affondate. 
+
+* **RF15**: Come giocatore voglio mostrare il numero di tentativi già effettuati e il numero di tentativi falliti
+        Criteri di accettazione:
+
+        Al comando /mostratentativi 
+        l’applicazione risponde visualizzando il numero di tentativi già effettuati, il numero di tentativi falliti 
+        e il numero massimo di tentativi falliti
+
+* **RF16**: Come giocatore voglio abbandonare una partita
+        Criteri di accettazione:
+
+        Al comando /abbandona
+        l'applicazione chiede conferma 
+        • se la conferma è positiva, l’applicazione risponde visualizzando sulla griglia la posizione di tutte le
+        navi e si predispone a ricevere nuovi comandi 
+        • se la conferma è negativa, l'applicazione si predispone a ricevere nuovi tentativi o comandi
+
+
 
 #### 3.2 REQUISITI NON FUNZIONALI
 **RNF1**: il container docker dell’app deve essere eseguito da terminali che supportano Unicode con encoding UTF-8 o UTF-16. Alcuni dei terminali supportati sono:
