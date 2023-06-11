@@ -9,6 +9,8 @@ import it.uniba.game.eccezioni.PosizioneException;
  * Main class of the application.
  */
 public final class App {
+    private static final Stampa STAMPA = new Stampa();
+    private static final Comando  COMANDO = new Comando();
     /**
      * Costruttore privato per prevenire inizializzazioni.
      */
@@ -25,20 +27,30 @@ public final class App {
      * @throws PosizioneException nel caso in cui si inserisce una posizione non disponibile
      */
     public static void main(final String[] args) {
-        Comando comando = new Comando();
-        Stampa stampa = new Stampa();
-        stampa.stampaDescrizione();
-        for (String string : args) {
-            if (string.equals("--help") || string.equals("-h")) {
-                stampa.stampaHelp();
-            }
+        STAMPA.stampaDescrizione();
+
+        if (args != null) {
+            help(args);
         }
+
         try {
-            comando.menu();
+            COMANDO.menu();
         } catch (NumeroCoordinateException | PosizioneException e) {
             System.out.println(e.getMessage());
         }
 
     }
 
+
+    /**
+     * Metodo che esegue solo la stampa dell'help.
+     * @param args command line arguments
+     */
+     static void help(final String[] args) {
+        for (String string : args) {
+            if (string.equals("--help") || string.equals("-h")) {
+                STAMPA.stampaHelp();
+            }
+        }
+    }
 }
