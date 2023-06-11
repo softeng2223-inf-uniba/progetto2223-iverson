@@ -2,8 +2,7 @@ package it.uniba.game.utility;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test per la classe enum Dimensioni.
@@ -27,7 +26,7 @@ class DimensioniTest {
     @DisplayName("Test per testGetDimCacciatorpediniere()")
     void testGetDimCacciatorpediniere() {
         Dimensioni cacciatorpediniere = Dimensioni.CACCIATORPEDINIERE;
-        assertEquals("Dimensione errata per CACCIATORPEDINIERE", CACCIATORPEDINIERE_DIM, cacciatorpediniere.getDim());
+        assertEquals(CACCIATORPEDINIERE_DIM, cacciatorpediniere.getDim(), "Dimensione errata per CACCIATORPEDINIERE");
     }
 
     /**
@@ -37,7 +36,7 @@ class DimensioniTest {
     @DisplayName("Test per testGetDimIncrociatore()")
     void testGetDimIncrociatore() {
         Dimensioni incrociatore = Dimensioni.INCROCIATORE;
-        assertEquals("Dimensione errata per INCROCIATORE", INCROCIATORE_DIM, incrociatore.getDim());
+        assertEquals(INCROCIATORE_DIM, incrociatore.getDim(), "Dimensione errata per INCROCIATORE");
     }
 
     /**
@@ -47,7 +46,7 @@ class DimensioniTest {
     @DisplayName("Test per testGetDimCorazzata()")
     void testGetDimCorazzata() {
         Dimensioni corazzata = Dimensioni.CORAZZATA;
-        assertEquals("Dimensione errata per CORAZZATA", CORAZZATA_DIM, corazzata.getDim());
+        assertEquals(CORAZZATA_DIM, corazzata.getDim(), "Dimensione errata per CORAZZATA");
     }
 
     /**
@@ -57,7 +56,7 @@ class DimensioniTest {
     @DisplayName("Test per testGetDimPortaerei()")
     void testGetDimPortaerei() {
         Dimensioni portaerei = Dimensioni.PORTAEREI;
-        assertEquals("Dimensione errata per PORTAEREI", PORTAEREI_DIM, portaerei.getDim());
+        assertEquals(PORTAEREI_DIM, portaerei.getDim(), "Dimensione errata per PORTAEREI");
     }
 
     /**
@@ -67,7 +66,7 @@ class DimensioniTest {
     @DisplayName("Test per testGetEsemplariCACCIATORPEDINIERE()")
     void testGetEsemplariCACCIATORPEDINIERE() {
         Dimensioni cacciatorpediniere = Dimensioni.CACCIATORPEDINIERE;
-        assertEquals("Numero di esemplari errato per CACCIATORPEDINIERE", CAC_E, cacciatorpediniere.getEsemplari());
+        assertEquals(CAC_E, cacciatorpediniere.getEsemplari(), "Numero di esemplari errato per CACCIATORPEDINIERE");
     }
 
     /**
@@ -78,7 +77,7 @@ class DimensioniTest {
     void testGetEsemplariINCROCIATORE() {
 
         Dimensioni incrociatore = Dimensioni.INCROCIATORE;
-        assertEquals("Numero di esemplari errato per INCROCIATORE", INC_E, incrociatore.getEsemplari());
+        assertEquals(INC_E, incrociatore.getEsemplari(), "Numero di esemplari errato per INCROCIATORE");
     }
 
     /**
@@ -88,7 +87,7 @@ class DimensioniTest {
     @DisplayName("Test per testGetEsemplariCORAZZATA()")
     void testGetEsemplariCORAZZATA() {
         Dimensioni corazzata = Dimensioni.CORAZZATA;
-        assertEquals("Numero di esemplari errato per CORAZZATA", CORAZZATA_E, corazzata.getEsemplari());
+        assertEquals(CORAZZATA_E, corazzata.getEsemplari(), "Numero di esemplari errato per CORAZZATA");
     }
 
     /**
@@ -98,7 +97,7 @@ class DimensioniTest {
     @DisplayName("Test per testGetEsemplariPORTAEREI()")
     void testGetEsemplariPORTAEREI() {
         Dimensioni portaerei = Dimensioni.PORTAEREI;
-        assertEquals("Numero di esemplari errato per PORTAEREI", PORTAEREI_E, portaerei.getEsemplari());
+        assertEquals(PORTAEREI_E, portaerei.getEsemplari(), "Numero di esemplari errato per PORTAEREI");
     }
 
     /**
@@ -111,7 +110,7 @@ class DimensioniTest {
 
         for (int i = 0; i < dimensioni.length; i++) {
             Dimensioni dimensione = dimensioni[i];
-            assertEquals("Indice errato per " + dimensione, i, dimensione.getIndex());
+            assertEquals(i, dimensione.getIndex(), "Indice errato per " + dimensione);
         }
     }
 }

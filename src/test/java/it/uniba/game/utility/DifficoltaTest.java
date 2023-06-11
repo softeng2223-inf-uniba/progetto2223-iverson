@@ -2,8 +2,7 @@ package it.uniba.game.utility;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Classe di test per la classe enum Difficolta.
@@ -24,7 +23,7 @@ class DifficoltaTest {
     void testGetValueFacile() {
         Difficolta difficolta = Difficolta.FACILE;
         int actualValue = difficolta.getValue();
-        assertEquals("Valore errato per Difficolta.FACILE", VALORE_FACILE, actualValue);
+        assertEquals(VALORE_FACILE, actualValue, "Valore errato per Difficolta.FACILE");
     }
 
     /**
@@ -35,7 +34,7 @@ class DifficoltaTest {
     void testGetValueMedio() {
         Difficolta difficolta = Difficolta.MEDIO;
         int actualValue = difficolta.getValue();
-        assertEquals("Valore errato per Difficolta.MEDIO", VALORE_MEDIO, actualValue);
+        assertEquals(VALORE_MEDIO, actualValue, "Valore errato per Difficolta.MEDIO");
     }
 
     /**
@@ -46,7 +45,7 @@ class DifficoltaTest {
     void testGetValueDifficile() {
         Difficolta difficolta = Difficolta.DIFFICILE;
         int actualValue = difficolta.getValue();
-        assertEquals("Valore errato per Difficolta.DIFFICILE", VALORE_DIFFICILE, actualValue);
+        assertEquals(VALORE_DIFFICILE, actualValue, "Valore errato per Difficolta.DIFFICILE");
     }
 
     /**
@@ -56,7 +55,7 @@ class DifficoltaTest {
     @DisplayName("Test per testEnumValues()")
     void testEnumValues() {
         Difficolta[] difficolte = Difficolta.values();
-        assertEquals("Numero di valori errato per l'enumerazione Difficolta", VERIFICATORE, difficolte.length);
+        assertEquals(VERIFICATORE, difficolte.length, "Numero di valori errato per l'enumerazione Difficolta");
     }
 
     /**
@@ -66,7 +65,7 @@ class DifficoltaTest {
     @DisplayName("Test per testEnumFACILE()")
     void testEnumFACILE() {
         Difficolta[] difficolte = Difficolta.values();
-        assertEquals("Ordine errato per Difficolta.FACILE", Difficolta.FACILE, difficolte[0]);
+        assertEquals(Difficolta.FACILE, difficolte[0], "Ordine errato per Difficolta.FACILE");
     }
     /**
      * Verifica l'ordine dei valori nell'enumerazione Difficolta.MEDIO.
@@ -75,7 +74,7 @@ class DifficoltaTest {
     @DisplayName("Test per testEnumMEDIO()")
     void testEnumMEDIO() {
         Difficolta[] difficolte = Difficolta.values();
-        assertEquals("Ordine errato per Difficolta.MEDIO", Difficolta.MEDIO, difficolte[1]);
+        assertEquals(Difficolta.MEDIO, difficolte[1], "Ordine errato per Difficolta.MEDIO");
     }
     /**
      * Verifica l'ordine dei valori nell'enumerazione Difficolta.DIFFICILE.
@@ -84,6 +83,6 @@ class DifficoltaTest {
     @DisplayName("Test per testEnumDIFFICILE()")
     void testEnumDIFFICILE() {
         Difficolta[] difficolte = Difficolta.values();
-        assertEquals("Ordine errato per Difficolta.DIFFICILE", Difficolta.DIFFICILE, difficolte[2]);
+        assertEquals(Difficolta.DIFFICILE, difficolte[2], "Ordine errato per Difficolta.DIFFICILE");
     }
 }

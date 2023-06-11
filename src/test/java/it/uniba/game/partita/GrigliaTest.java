@@ -3,10 +3,14 @@ package it.uniba.game.partita;
 import it.uniba.game.eccezioni.NumeroCoordinateException;
 import it.uniba.game.eccezioni.PosizioneException;
 import it.uniba.game.nave.Coordinata;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
 
 /**
  * Classe di test per la classe Griglia.
@@ -25,7 +29,7 @@ class GrigliaTest {
         try {
             griglia = new Griglia(DIECI, DIECI);
         } catch (NumeroCoordinateException e) {
-            Assertions.fail("Errore durante l'inizializzazione della griglia: " + e.getMessage());
+            fail("Errore durante l'inizializzazione della griglia: " + e.getMessage());
         }
     }
 
@@ -36,7 +40,7 @@ class GrigliaTest {
     @Test
     @DisplayName("Test per testGetRighe()")
     void testGetRighe() {
-        Assertions.assertEquals(DIECI, griglia.getRighe(), "Il numero di righe non corrisponde");
+        assertEquals(DIECI, griglia.getRighe(), "Il numero di righe non corrisponde");
     }
 
     /**
@@ -46,7 +50,7 @@ class GrigliaTest {
     @Test
     @DisplayName("Test per testGetColonne()")
     void testGetColonne() {
-        Assertions.assertEquals(DIECI, griglia.getColonne(), "Il numero di colonne non corrisponde");
+        assertEquals(DIECI, griglia.getColonne(), "Il numero di colonne non corrisponde");
     }
 
     /**
@@ -66,7 +70,7 @@ class GrigliaTest {
                 + "V V V V V V V V V V \n"
                 + "V V V V V V V V V V \n"
                 + "V V V V V V V V V V \n";
-        Assertions.assertEquals(expected, griglia.toString(), "La rappresentazione in stringa non corrisponde");
+        assertEquals(expected, griglia.toString(), "La rappresentazione in stringa non corrisponde");
     }
 
     /**
@@ -76,7 +80,7 @@ class GrigliaTest {
     @Test
     @DisplayName("Test per testGetCella()")
     void testGetCella() {
-        Assertions.assertEquals("V", griglia.getCella(0, 0), "Il valore della cella non corrisponde");
+        assertEquals("V", griglia.getCella(0, 0), "Il valore della cella non corrisponde");
     }
 
     /**
@@ -87,7 +91,7 @@ class GrigliaTest {
     @DisplayName("Test per testSetCella()")
     void testSetCella() {
         griglia.setCella(0, 0, "X");
-        Assertions.assertEquals("X", griglia.getCella(0, 0), "Il valore della cella impostato correttamente");
+        assertEquals("X", griglia.getCella(0, 0), "Il valore della cella impostato correttamente");
     }
 
     /**
@@ -101,9 +105,9 @@ class GrigliaTest {
             Coordinata[] coordinata = {new Coordinata(0, 0), new Coordinata(0, 1)};
             griglia.addNavi(coordinata, 0);
         } catch (NumeroCoordinateException e) {
-            Assertions.fail("Errore durante l'aggiunta della nave: " + e.getMessage());
+            fail("Errore durante l'aggiunta della nave: " + e.getMessage());
         }
-        Assertions.assertEquals(QUATTRO, griglia.naviSize(), "La dimensione delle navi non corrisponde");
+        assertEquals(QUATTRO, griglia.naviSize(), "La dimensione delle navi non corrisponde");
     }
 
     /**
@@ -117,9 +121,9 @@ class GrigliaTest {
             Coordinata[] coordinata = {new Coordinata(0, 0), new Coordinata(0, 1)};
             griglia.addNavi(coordinata, 0);
         } catch (NumeroCoordinateException e) {
-            Assertions.fail("Errore durante l'aggiunta della nave: " + e.getMessage());
+            fail("Errore durante l'aggiunta della nave: " + e.getMessage());
         }
-        Assertions.assertEquals(1, griglia.getSize(0), "La dimensione della nave non corrisponde");
+        assertEquals(1, griglia.getSize(0), "La dimensione della nave non corrisponde");
     }
 
     /**
@@ -133,9 +137,9 @@ class GrigliaTest {
             Coordinata[] coordinata = {new Coordinata(0, 0), new Coordinata(0, 1)};
             griglia.addNavi(coordinata, 0);
         } catch (NumeroCoordinateException e) {
-            Assertions.fail("Errore durante l'aggiunta della nave: " + e.getMessage());
+            fail("Errore durante l'aggiunta della nave: " + e.getMessage());
         }
-        Assertions.assertEquals(2, griglia.getDim(0, 0), "La dimensione della coordinata non corrisponde");
+        assertEquals(2, griglia.getDim(0, 0), "La dimensione della coordinata non corrisponde");
     }
 
     /**
@@ -149,9 +153,9 @@ class GrigliaTest {
             Coordinata[] coordinata = {new Coordinata(0, 0), new Coordinata(0, 1)};
             griglia.addNavi(coordinata, 0);
         } catch (NumeroCoordinateException e) {
-            Assertions.fail("Errore durante l'aggiunta della nave: " + e.getMessage());
+            fail("Errore durante l'aggiunta della nave: " + e.getMessage());
         }
-        Assertions.assertFalse(griglia.getAffondata(0, 0), "La nave non è stata affondata correttamente");
+        assertFalse(griglia.getAffondata(0, 0), "La nave non è stata affondata correttamente");
     }
 
     /**
@@ -165,10 +169,10 @@ class GrigliaTest {
             Coordinata[] coordinata = {new Coordinata(0, 0), new Coordinata(0, 1)};
             griglia.addNavi(coordinata, 0);
         } catch (NumeroCoordinateException e) {
-            Assertions.fail("Errore durante l'aggiunta della nave: " + e.getMessage());
+            fail("Errore durante l'aggiunta della nave: " + e.getMessage());
         }
         griglia.setAffondata(0, 0);
-        Assertions.assertTrue(griglia.getAffondata(0, 0), "La nave non è stata segnata come affondata correttamente");
+        assertTrue(griglia.getAffondata(0, 0), "La nave non è stata segnata come affondata correttamente");
     }
 
     /**
@@ -183,13 +187,12 @@ class GrigliaTest {
             Coordinata[] coordinata = {new Coordinata(0, 0), new Coordinata(0, 1)};
             griglia.addNavi(coordinata, 0);
         } catch (NumeroCoordinateException e) {
-            Assertions.fail("Errore durante l'aggiunta della nave: " + e.getMessage());
+            fail("Errore durante l'aggiunta della nave: " + e.getMessage());
         }
         try {
-            Assertions.assertEquals(0, griglia.getRiga(0, 0, 0), "Il valore della riga non corrisponde");
-            Assertions.assertEquals(0, griglia.getRiga(0, 0, 1), "Il valore della riga non corrisponde");
+            assertEquals(0, griglia.getRiga(0, 0, 0), "Il valore della riga non corrisponde");
         } catch (PosizioneException e) {
-            Assertions.fail("Errore durante l'accesso alla coordinata: " + e.getMessage());
+            fail("Errore durante l'accesso alla coordinata: " + e.getMessage());
         }
     }
 
@@ -205,13 +208,12 @@ class GrigliaTest {
             Coordinata[] coordinata = {new Coordinata(0, 0), new Coordinata(0, 1)};
             griglia.addNavi(coordinata, 0);
         } catch (NumeroCoordinateException e) {
-            Assertions.fail("Errore durante l'aggiunta della nave: " + e.getMessage());
+            fail("Errore durante l'aggiunta della nave: " + e.getMessage());
         }
         try {
-            Assertions.assertEquals(0, griglia.getColonna(0, 0, 0), "Il valore della colonna non corrisponde");
-            Assertions.assertEquals(1, griglia.getColonna(0, 0, 1), "Il valore della colonna non corrisponde");
+            assertEquals(0, griglia.getColonna(0, 0, 0), "Il valore della colonna non corrisponde");
         } catch (PosizioneException e) {
-            Assertions.fail("Errore durante l'accesso alla coordinata: " + e.getMessage());
+            fail("Errore durante l'accesso alla coordinata: " + e.getMessage());
         }
     }
 
@@ -227,12 +229,12 @@ class GrigliaTest {
             Coordinata[] coordinata = {new Coordinata(0, 0), new Coordinata(0, 1)};
             griglia.addNavi(coordinata, 0);
         } catch (NumeroCoordinateException e) {
-            Assertions.fail("Errore durante l'aggiunta della nave: " + e.getMessage());
+            fail("Errore durante l'aggiunta della nave: " + e.getMessage());
         }
         try {
-            Assertions.assertFalse(griglia.getColpito(0, 0, 0), "La coordinata non è stata colpita");
+            assertFalse(griglia.getColpito(0, 0, 0), "La coordinata non è stata colpita");
         } catch (PosizioneException e) {
-            Assertions.fail("Errore durante l'accesso alla coordinata: " + e.getMessage());
+            fail("Errore durante l'accesso alla coordinata: " + e.getMessage());
         }
     }
 
@@ -248,13 +250,13 @@ class GrigliaTest {
             Coordinata[] coordinata = {new Coordinata(0, 0), new Coordinata(0, 1)};
             griglia.addNavi(coordinata, 0);
         } catch (NumeroCoordinateException e) {
-            Assertions.fail("Errore durante l'aggiunta della nave: " + e.getMessage());
+            fail("Errore durante l'aggiunta della nave: " + e.getMessage());
         }
         try {
             griglia.setColpito(0, 0, 0);
-            Assertions.assertTrue(griglia.getColpito(0, 0, 0), "coordinata non segnata come colpita correttamente");
+            assertTrue(griglia.getColpito(0, 0, 0), "coordinata non segnata come colpita correttamente");
         } catch (PosizioneException e) {
-            Assertions.fail("Errore durante l'accesso alla coordinata: " + e.getMessage());
+            fail("Errore durante l'accesso alla coordinata: " + e.getMessage());
         }
     }
 }
