@@ -7,6 +7,10 @@
   - 3.1) REQUISITI FUNZIONALI
   - 3.2) REQUISITI NON FUNZIONALI
 - 7)MANUALE UTENTE
+- 8)PROCESSO DI SVILUPPO E ORGANIZZAZIONE DEL LAVORO
+   - 8.1) SPRINT 0     
+   - 8.2) SPRINT 1     
+   - 8.3) SPRINT 2     
 - 9)RETROSPETTIVA
    - 9.1) SPRINT 0
    - 9.2) SPRINT 1   
@@ -251,7 +255,7 @@ Nel caso l'utente inserisca il comando "/large" verrà impostata la dimensione d
 
 ![large](./img/large.png)
 
-Nel caso l'utente inserisca il comando "/large" verrà impostata la dimensione della griglia a 26x26. Comando chiamabile solo prima di iniziare una partita:
+Nel caso l'utente inserisca il comando "/extralarge" verrà impostata la dimensione della griglia a 26x26. Comando chiamabile solo prima di iniziare una partita:
 
 ![extralarge](./img/extralarge.png)
 
@@ -273,11 +277,26 @@ Nel caso l'utente inserisca il comando "/esci" prima gli verrà chiesta conferma
 
 ![esci](./img/esci.jpg)
 
+---
 
+## 8)PROCESSO DI SVILUPPO E ORGANIZZAZIONE DEL LAVORO
+Per rispettare al meglio i principi dello Scrum, si è deciso di seguire le seguenti regole:
+- all’inizio di ogni sprint c’è stata una riunione di gruppo riguardante lo sprint backlog e la divisione delle issue, oltre che la presa visione di eventuali errori segnalati nello sprint precedente.
+- alla fine di ogni sprint è stata svolta una riunione volta ad effettuare un’ultima revisione su tutto il lavoro svolto e alla stesura dell’analisi retrospettiva
+- sono state effettuate brevi riunioni da remoto a cadenza giornaliera (per quanto possibile nei giorni lavorativi) volte ad aggiornarsi sul lavoro fatto e a chiarire eventuali dubbi reciproci.
+In particolare, nei singoli sprint si è lavorato in questo modo:
+
+### 8.1)SPRINT 0
+Dopo una riunione all’inizio dello sprint in cui sono stati divisi i compiti e chiarite le varie modalità di lavoro, ogni membro del gruppo ha lavorato singolarmente seguendo il GitHub Flow. Al presentarsi di difficoltà o dubbi da parte di uno o piu membri del team, sono state svolte brevi riunioni volte a risolverli.
+
+### 8.2)SPRINT 1
+I membri del team hanno passato diversi giorni riuniti per definire il modello di dominio dell’applicazione, su cui poi si è basata la progettazione e realizzazione del codice. La realizzazione del codice delle classi di base è stata svolta da due membri del gruppo, ma revisionato da tutti quanti i membri a cadenza giornaliera. Dopo la realizzazione e caricamento delle classi di base, ogni membro ha lavorato singolarmente alle user story seguendo il GitHub Flow. Le revisioni di queste sono state svolte a rotazione da ogni membro del gruppo. Ogni membro del team si è impegnato a commentare e testare (manualmente) il codice scritto. Tutti i membri hanno lavorato congiuntamente alla stesura della relazione tecnica, pur essendo questa corretta e caricata da uno specifico membro
+
+### 8.3)SPRINT 2
+I membri del team hanno lavorato al completamento delle singole user story e alla correzione/revisione degli errori segnalati dallo sprint precedente. Anche in questo caso le revisioni sono state svolte a rotazione. C’è stata una fase di adattamento del progetto alla tassonomia ECB e ai principi di design, svolta in pair programming da due membri del gruppo ma revisionata da tutti i membri. I casi di test sono stati decisi congiuntamente da tutto il gruppo, ma implementati in JUnit da due membri alla fine della realizzazione del codice. La correzione del modello di dominio e la parte di report riguardante l’OO design e il system design sono state curate da tutto il gruppo. Ogni membro si è impegnato a commentare il codice scritto e a correggere/migliorare i commenti scritti precedentemente.
 
 
 ---
-
 ## 9)RETROSPETTIVA
 Di seguito la retrospettiva degli sprint precedenti. Sono state raccolte le  osservazioni e le opinioni dei membri del team riguardo al lavoro svolto in un modello di retrospettiva "sad,mad,glad".
 ### 9.1) SPRINT 0
