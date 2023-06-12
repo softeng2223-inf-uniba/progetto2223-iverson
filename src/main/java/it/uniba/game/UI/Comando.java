@@ -10,7 +10,7 @@ import it.uniba.game.eccezioni.NumeroCoordinateException;
 
 import it.uniba.game.utility.Tabella;
 
-import it.uniba.game.utility.Controlli;
+import it.uniba.game.logic.Controlli;
 
 
 /**
@@ -30,7 +30,7 @@ public class Comando {
      */
     public Comando() {
         partitaLogic = new PartitaLogic();
-        controlli = new Controlli();
+        controlli = Controlli.getInstance();
         stampa = new Stampa();
     }
 

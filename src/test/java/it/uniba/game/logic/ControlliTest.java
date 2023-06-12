@@ -1,6 +1,6 @@
-package it.uniba.game.utility;
+package it.uniba.game.logic;
 
-import it.uniba.game.logic.PartitaLogic;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ class ControlliTest {
      */
     @BeforeEach
     void setUp() {
-        controlli = new Controlli();
+        controlli = Controlli.getInstance();
         partita = new PartitaLogic();
     }
 

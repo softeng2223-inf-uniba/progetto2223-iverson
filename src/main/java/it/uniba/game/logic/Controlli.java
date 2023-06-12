@@ -1,19 +1,29 @@
-package it.uniba.game.utility;
-
-import it.uniba.game.logic.PartitaLogic;
+package it.uniba.game.logic;
 
 /**
  * <<Control>> Classe utile per svolgere dei controlli di validità di alcuni input dal punto di vista del gioco.
  */
 public class Controlli {
-
+    private static Controlli istanza;
 
     /**
      * Construttore vuoto in quanto svolge solo funzioni logiche.
      */
-    public Controlli() {
+    private Controlli() {
 
     }
+
+    /**
+     * Funzione che restituisce un oggetto della classe controlli non permette la creazione di piú istanze
+     * @return istanza oggetto di tipo Controlli   
+     */
+    public static Controlli getInstance() {
+        if (istanza == null) {
+            istanza = new Controlli();
+        }
+        return istanza;
+    }
+
     /**
      *Funzione che permette di controllare se una stringa contiene un valore numerico.
      * @param str la stringa da controllare
