@@ -29,7 +29,7 @@ public class Comando {
      * Construttore della classe Comando.
      */
     public Comando() {
-        partitaLogic = new PartitaLogic();
+        partitaLogic = PartitaLogic.getInstance();
         controlli = Controlli.getInstance();
         stampa = new Stampa();
     }

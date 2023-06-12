@@ -14,14 +14,25 @@ import it.uniba.game.utility.Tempo;
 public class PartitaLogic {
     private Partita partita;
     private GrigliaLogic grigliaLogic;
-
+    private static PartitaLogic instance;
     /**
      * Costruttore della classe. Inizializza un nuovo oggetto partita
      */
-    public PartitaLogic() {
+    private PartitaLogic() {
         partita = new Partita();
     }
 
+
+    /**
+     * Funzione che restituisce un oggetto della classe PartitaLogic non permette la creazione di piú istanze
+     * @return istanza oggetto di tipo PartitaLogic 
+     */
+    public static  PartitaLogic getInstance() {
+        if (instance == null) {
+                instance = new PartitaLogic();
+            } 
+            return instance;
+    }
 
     /**
      * Inizializza la griglia di gioco della partita

@@ -22,7 +22,7 @@ class ControlliTest {
     @BeforeEach
     void setUp() {
         controlli = Controlli.getInstance();
-        partita = new PartitaLogic();
+        //partita = new PartitaLogic();
     }
 
     /**

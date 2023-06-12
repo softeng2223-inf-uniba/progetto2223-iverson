@@ -38,7 +38,7 @@ public class GrigliaLogic {
      * Funzione che restituisce un oggetto della classe GrigliaLogic non permette la creazione di piú istanze
      * @param pRighe : numero di righe che la griglia dovra avere
      * @param pColonne : numero di colonne che la griglia dovra avere
-     * @return
+     * @return istanza oggetto di tipo GrigliaLogic 
      */
     public static  GrigliaLogic getInstance(final int pRighe, final int pColonne) {
         try {
