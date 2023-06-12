@@ -71,7 +71,6 @@ public final class Controlli {
         // Verifica che il carattere prima del trattino sia una lettera maiuscola
         char colonna = input.charAt(0);
         if (Character.toUpperCase(colonna) > ('A' + partita.getDimMax() - 1)) {
-            System.out.println('A' + partita.getDimMax() - 1);
             return false;
         }
 
