@@ -19,7 +19,7 @@ import java.util.Random;
  *
  */
 
-public class GrigliaLogic {
+public final class GrigliaLogic {
     private Griglia griglia;
     private static final Random RAND = new Random();
     private static GrigliaLogic instance;
@@ -35,10 +35,10 @@ public class GrigliaLogic {
     }
 
     /**
-     * Funzione che restituisce un oggetto della classe GrigliaLogic non permette la creazione di piú istanze
+     * Funzione che restituisce un oggetto della classe GrigliaLogic non permette la creazione di piú istanze.
      * @param pRighe : numero di righe che la griglia dovra avere
      * @param pColonne : numero di colonne che la griglia dovra avere
-     * @return istanza oggetto di tipo GrigliaLogic 
+     * @return istanza oggetto di tipo GrigliaLogic
      */
     public static  GrigliaLogic getInstance(final int pRighe, final int pColonne) {
         try {
@@ -47,14 +47,14 @@ public class GrigliaLogic {
             }
         } catch (NumeroCoordinateException e) {
             e.printStackTrace();
-        } 
+        }
             return instance;
     }
 
     /**
-     * Funzione che permette di resettare l'instanza dell'oggetto GrigliaLogic
+     * Funzione che permette di resettare l'instanza dell'oggetto GrigliaLogic.
      */
-    public void resetInstance(){
+    public void resetInstance() {
         instance = null;
     }
 

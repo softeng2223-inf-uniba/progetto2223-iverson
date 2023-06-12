@@ -46,22 +46,17 @@ class PartitaLogicTest {
     private static final int ERRORI_CORRENTI = 5;
 
     private PartitaLogic partitaLogic;
-    private Partita partita;
+    private GrigliaLogic grigliaLogic; 
 
     /**
      * Settaggio test preliminari.
+     */
      @BeforeEach
      public void setUp() {
-         partitaLogic = new PartitaLogic();
-         try {
-             new GrigliaLogic(DIM_GRIGLIA, DIM_GRIGLIA);
-            } catch (NumeroCoordinateException e) {
-                fail("Eccezione imprevista: " + e.getMessage());
-                e.printStackTrace();
-            }
-            partita = new Partita();
+         partitaLogic = PartitaLogic.getInstance();
+         grigliaLogic = GrigliaLogic.getInstance(DIM_GRIGLIA, DIM_GRIGLIA);
+
         }
-        */
 
     /**
      * Test per l'avvio della partita.

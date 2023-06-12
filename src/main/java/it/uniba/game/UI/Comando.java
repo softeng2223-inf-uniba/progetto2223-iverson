@@ -212,7 +212,6 @@ public class Comando {
             stampa.svelaGriglia(partitaLogic);
             partitaLogic.setInCorso(false);
             partitaLogic.resetGrigliaInstance();
-            
             System.out.println("Partita abbandonata!");
         }
     }

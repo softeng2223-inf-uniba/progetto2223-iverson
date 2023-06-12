@@ -11,7 +11,7 @@ import it.uniba.game.utility.Tempo;
  *  e i controlli riguardanti la vittoria/sconfitta del giocatore,
  *  oltre che la manipolazione delle impostazioni della partita.
  */
-public class PartitaLogic {
+public final class PartitaLogic {
     private Partita partita;
     private GrigliaLogic grigliaLogic;
     private static PartitaLogic instance;
@@ -24,13 +24,13 @@ public class PartitaLogic {
 
 
     /**
-     * Funzione che restituisce un oggetto della classe PartitaLogic non permette la creazione di piú istanze
-     * @return istanza oggetto di tipo PartitaLogic 
+     * Funzione che restituisce un oggetto della classe PartitaLogic non permette la creazione di piú istanze.
+     * @return istanza oggetto di tipo PartitaLogic
      */
     public static  PartitaLogic getInstance() {
         if (instance == null) {
                 instance = new PartitaLogic();
-            } 
+            }
             return instance;
     }
 
@@ -250,7 +250,7 @@ public class PartitaLogic {
     }
 
     /**
-     * Funzione che permette di resettare l'instanza dell'oggetto GrigliaLogic
+     * Funzione che permette di resettare l'instanza dell'oggetto GrigliaLogic.
      */
     public void resetGrigliaInstance() {
         grigliaLogic.resetInstance();

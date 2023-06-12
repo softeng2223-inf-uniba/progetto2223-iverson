@@ -49,6 +49,7 @@ class GrigliaLogicTest {
         grigliaLogic.setAffondato(1, 0);
         assertFalse(grigliaLogic.finepartita(), "Solo alcune navi sono state affondate");
     }
+
     /**
      * Test per il metodo testFinepartitaNaviAffondate().
      */

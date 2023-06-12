@@ -3,7 +3,7 @@ package it.uniba.game.logic;
 /**
  * <<Control>> Classe utile per svolgere dei controlli di validità di alcuni input dal punto di vista del gioco.
  */
-public class Controlli {
+public final class Controlli {
     private static Controlli istanza;
 
     /**
@@ -14,8 +14,8 @@ public class Controlli {
     }
 
     /**
-     * Funzione che restituisce un oggetto della classe Controlli non permette la creazione di piú istanze
-     * @return istanza oggetto di tipo Controlli   
+     * Funzione che restituisce un oggetto della classe Controlli non permette la creazione di piú istanze.
+     * @return istanza oggetto di tipo Controlli
      */
     public static Controlli getInstance() {
         if (istanza == null) {
