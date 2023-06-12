@@ -28,7 +28,7 @@ class GrigliaLogicTest {
      */
     @BeforeEach
     void setUp() throws NumeroCoordinateException {
-        grigliaLogic = new GrigliaLogic(DIECI, DIECI);
+        grigliaLogic = GrigliaLogic.getInstance(DIECI, DIECI);
     }
 
     /**

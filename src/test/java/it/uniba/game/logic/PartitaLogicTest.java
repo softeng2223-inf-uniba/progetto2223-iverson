@@ -50,18 +50,18 @@ class PartitaLogicTest {
 
     /**
      * Settaggio test preliminari.
-     */
-    @BeforeEach
-    public void setUp() {
-        partitaLogic = new PartitaLogic();
-        try {
-            new GrigliaLogic(DIM_GRIGLIA, DIM_GRIGLIA);
-        } catch (NumeroCoordinateException e) {
-            fail("Eccezione imprevista: " + e.getMessage());
-            e.printStackTrace();
+     @BeforeEach
+     public void setUp() {
+         partitaLogic = new PartitaLogic();
+         try {
+             new GrigliaLogic(DIM_GRIGLIA, DIM_GRIGLIA);
+            } catch (NumeroCoordinateException e) {
+                fail("Eccezione imprevista: " + e.getMessage());
+                e.printStackTrace();
+            }
+            partita = new Partita();
         }
-        partita = new Partita();
-    }
+        */
 
     /**
      * Test per l'avvio della partita.

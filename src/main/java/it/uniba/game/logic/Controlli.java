@@ -14,7 +14,7 @@ public class Controlli {
     }
 
     /**
-     * Funzione che restituisce un oggetto della classe controlli non permette la creazione di piú istanze
+     * Funzione che restituisce un oggetto della classe Controlli non permette la creazione di piú istanze
      * @return istanza oggetto di tipo Controlli   
      */
     public static Controlli getInstance() {
