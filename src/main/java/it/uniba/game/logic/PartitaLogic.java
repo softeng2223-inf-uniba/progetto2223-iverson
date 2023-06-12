@@ -253,6 +253,6 @@ public final class PartitaLogic {
      * Funzione che permette di resettare l'instanza dell'oggetto GrigliaLogic.
      */
     public void resetGrigliaInstance() {
-        grigliaLogic.resetInstance();
+        GrigliaLogic.resetInstance();
     }
 }
