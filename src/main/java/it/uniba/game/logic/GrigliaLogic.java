@@ -19,21 +19,46 @@ import java.util.Random;
  *
  */
 
-public class GrigliaLogic {
+public final class GrigliaLogic {
     private Griglia griglia;
     private static final Random RAND = new Random();
+    private static GrigliaLogic instance;
     /**
      * Costruttore della classe. Inizializza la griglia di gioco e posiziona le navi.
      * @param pRighe : numero di righe che la griglia dovra avere
      * @param pColonne : numero di colonne che la griglia dovra avere
      * @throws NumeroCoordinateException
      */
-    public GrigliaLogic(final int pRighe, final int pColonne) throws NumeroCoordinateException {
+    private GrigliaLogic(final int pRighe, final int pColonne) throws NumeroCoordinateException {
         griglia = new Griglia(pRighe, pColonne);
         impostaNavi();
     }
 
+    /**
+     * Funzione che restituisce un oggetto della classe GrigliaLogic non permette la creazione di piú istanze.
+     * @param pRighe : numero di righe che la griglia dovra avere
+     * @param pColonne : numero di colonne che la griglia dovra avere
+     * @return istanza oggetto di tipo GrigliaLogic
+     */
+    public static  GrigliaLogic getInstance(final int pRighe, final int pColonne) {
+        try {
+        if (instance == null) {
+                instance = new GrigliaLogic(pRighe, pColonne);
+            }
+        } catch (NumeroCoordinateException e) {
+            e.printStackTrace();
+        }
+            return instance;
+    }
 
+    /**
+     * Funzione che permette di resettare l'instanza dell'oggetto GrigliaLogic.
+     */
+    public static void resetInstance() {
+
+        instance = null;
+
+    }
 
     /**
      * Restituisce un array di coordinate consecutive prendendo

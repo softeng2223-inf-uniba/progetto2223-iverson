@@ -1,17 +1,9 @@
 package it.uniba.game.eccezioni;
 
 /**
- * <<Control>> Eccezione da lanciare quando si fallisce la clonazione.
+ * <<Boundary>> Eccezione da lanciare quando si fallisce la clonazione.
  */
 public class CloneException extends CloneNotSupportedException {
-
-    /**
-     * Costruttore, non fornisce ulteriori informazion
-     * sul motivo del lancio dell'eccezione.
-    */
-    CloneException() {
-        super();
-    }
 
     /**
      * Costruttore, fornisce ulteriori informazioni sul lancio dell'eccezione.

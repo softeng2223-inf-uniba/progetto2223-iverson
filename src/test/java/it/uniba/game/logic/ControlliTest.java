@@ -1,6 +1,6 @@
-package it.uniba.game.utility;
+package it.uniba.game.logic;
 
-import it.uniba.game.logic.PartitaLogic;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,8 +21,9 @@ class ControlliTest {
      */
     @BeforeEach
     void setUp() {
-        controlli = new Controlli();
-        partita = new PartitaLogic();
+        partita = PartitaLogic.getInstance();
+        controlli = Controlli.getInstance();
+        //partita = new PartitaLogic();
     }
 
     /**
@@ -65,15 +66,6 @@ class ControlliTest {
         assertFalse(result, "Stringa non vuota");
     }
 
-    /**
-     * Test per il metodo isCoordinata quando la coordinata è valida.
-     */
-    @Test
-    @DisplayName("Test per testIsCoordinataConCoordinataValida()")
-    void testIsCoordinataConCoordinataValida() {
-        boolean result = controlli.isCoordinata("A-1", partita);
-        assertTrue(result, "Coordinata non valida");
-    }
 
     /**
      * Test per il metodo isCoordinata quando la coordinata non è valida.

@@ -10,7 +10,7 @@ import it.uniba.game.eccezioni.NumeroCoordinateException;
 
 import it.uniba.game.utility.Tabella;
 
-import it.uniba.game.utility.Controlli;
+import it.uniba.game.logic.Controlli;
 
 
 /**
@@ -29,8 +29,8 @@ public class Comando {
      * Construttore della classe Comando.
      */
     public Comando() {
-        partitaLogic = new PartitaLogic();
-        controlli = new Controlli();
+        partitaLogic = PartitaLogic.getInstance();
+        controlli = Controlli.getInstance();
         stampa = new Stampa();
     }
 
@@ -211,6 +211,7 @@ public class Comando {
         if (conferma.equals("y")) {
             stampa.svelaGriglia(partitaLogic);
             partitaLogic.setInCorso(false);
+            partitaLogic.resetGrigliaInstance();
             System.out.println("Partita abbandonata!");
         }
     }

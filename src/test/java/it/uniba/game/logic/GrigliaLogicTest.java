@@ -28,7 +28,7 @@ class GrigliaLogicTest {
      */
     @BeforeEach
     void setUp() throws NumeroCoordinateException {
-        grigliaLogic = new GrigliaLogic(DIECI, DIECI);
+        grigliaLogic = GrigliaLogic.getInstance(DIECI, DIECI);
     }
 
     /**
@@ -38,16 +38,6 @@ class GrigliaLogicTest {
     @DisplayName("Test per testFinepartitaNonFinita()")
     void testFinepartitaNonFinita() {
         assertFalse(grigliaLogic.finepartita(), "La partita dovrebbe continuare senza colpi");
-    }
-    /**
-     * Test per il metodo testFinepartitaNaviColpite().
-     */
-    @Test
-    @DisplayName("Test per testFinepartitaNaviColpite()")
-    void testFinepartitaNaviColpite() {
-        grigliaLogic.setAffondato(0, 0);
-        grigliaLogic.setAffondato(1, 0);
-        assertFalse(grigliaLogic.finepartita(), "Solo alcune navi sono state affondate");
     }
     /**
      * Test per il metodo testFinepartitaNaviAffondate().

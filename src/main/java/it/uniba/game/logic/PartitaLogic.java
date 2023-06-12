@@ -11,17 +11,28 @@ import it.uniba.game.utility.Tempo;
  *  e i controlli riguardanti la vittoria/sconfitta del giocatore,
  *  oltre che la manipolazione delle impostazioni della partita.
  */
-public class PartitaLogic {
+public final class PartitaLogic {
     private Partita partita;
     private GrigliaLogic grigliaLogic;
-
+    private static PartitaLogic instance;
     /**
      * Costruttore della classe. Inizializza un nuovo oggetto partita
      */
-    public PartitaLogic() {
+    private PartitaLogic() {
         partita = new Partita();
     }
 
+
+    /**
+     * Funzione che restituisce un oggetto della classe PartitaLogic non permette la creazione di piú istanze.
+     * @return istanza oggetto di tipo PartitaLogic
+     */
+    public static  PartitaLogic getInstance() {
+        if (instance == null) {
+                instance = new PartitaLogic();
+            }
+            return instance;
+    }
 
     /**
      * Inizializza la griglia di gioco della partita
@@ -33,7 +44,7 @@ public class PartitaLogic {
      */
     public void avvia() throws NumeroCoordinateException {
 
-        grigliaLogic = new GrigliaLogic(partita.getDimMax(), partita.getDimMax());
+        grigliaLogic = GrigliaLogic.getInstance(partita.getDimMax(), partita.getDimMax());
         partita.setInCorso(true);
         partita.setStartTime(System.currentTimeMillis());
         partita.setColpiTotali(0);
@@ -136,106 +147,112 @@ public class PartitaLogic {
         long elapsedSeconds = elapsedTime / Tempo.valueOf("MILLISECONDI").getValue();
          return elapsedSeconds % Tempo.valueOf("SECONDI").getValue();
     }
-/**
- * Restituisce vero se la partita è in corso, falso altrimenti.
- * @return vero se la partita è in corso, falso altrimenti
- */
+    /**
+     * Restituisce vero se la partita è in corso, falso altrimenti.
+     * @return vero se la partita è in corso, falso altrimenti
+     */
     public boolean statoPartita() {
         return partita.statoPartita();
     }
-/**
- * Restituisce la dimensione della griglia della partita.
- * @return dimensione della griglia di gioco della partita
- */
+    /**
+     * Restituisce la dimensione della griglia della partita.
+     * @return dimensione della griglia di gioco della partita
+     */
     public int getDimMax() {
         return partita.getDimMax();
     }
-/**
- * Imposta la dimensione della griglia di gioco.
- * @param pDimMax : dimensione della griglia di gioco da impostare
- */
+    /**
+     * Imposta la dimensione della griglia di gioco.
+     * @param pDimMax : dimensione della griglia di gioco da impostare
+     */
     public void setDimMax(final int pDimMax) {
         partita.setDimMax(pDimMax);
     }
-/**
- * Imposta il tempo massimo di gioco.
- * @param pTempoMax : tempo massimo di gioco espresso in minuti
- */
+    /**
+     * Imposta il tempo massimo di gioco.
+     * @param pTempoMax : tempo massimo di gioco espresso in minuti
+     */
     public void setTempoMax(final int pTempoMax) {
         partita.setTempoMax(pTempoMax);
     }
-/**
- * Imposta il numero massimo di errori commettibili nella partita.
- * @param pNumMaxErrori : numero massimo di errori da impostare
- */
+    /**
+     * Imposta il numero massimo di errori commettibili nella partita.
+     * @param pNumMaxErrori : numero massimo di errori da impostare
+     */
     public void setNumMaxErrori(final int pNumMaxErrori) {
         partita.setNumMaxErrori(pNumMaxErrori);
     }
-/**
- * Restituisce il numero di errori massimo per un determinato livello di gioco.
- * @param pLivello : livello di gioco dal quale estrarre il numero di errori
- * @return : numero di errori per il livello di gioco dato
- */
+    /**
+     * Restituisce il numero di errori massimo per un determinato livello di gioco.
+     * @param pLivello : livello di gioco dal quale estrarre il numero di errori
+     * @return : numero di errori per il livello di gioco dato
+     */
     public int getErrorePerLivello(final String pLivello) {
         return partita.getErrorePerLivello(pLivello);
     }
 
-/**
- * Imposta il livello di difficoltà della partita.
- * @param pLivello : livello di difficoltà da impostare
- */
+    /**
+     * Imposta il livello di difficoltà della partita.
+     * @param pLivello : livello di difficoltà da impostare
+     */
     public void setLivello(final String pLivello) {
         partita.setLivello(pLivello);
     }
-/**
- * Imposta il numero di errori massimo per un dato livello di gioco.
- * @param pLivello : livello di cui cambiare gli errori
- * @param pErrori : errori da impostare per quel livello
- */
+    /**
+     * Imposta il numero di errori massimo per un dato livello di gioco.
+     * @param pLivello : livello di cui cambiare gli errori
+     * @param pErrori : errori da impostare per quel livello
+     */
     public void setErroriPerLivello(final String pLivello, final int pErrori) {
         partita.setErroriPerLivello(pLivello, pErrori);
     }
-/**
- * Cambia lo stato della partita inteso come in svolgimento o meno.
- * @param pInCorso : booleano che indica se la partita è in corso o meno
- */
+    /**
+     * Cambia lo stato della partita inteso come in svolgimento o meno.
+     * @param pInCorso : booleano che indica se la partita è in corso o meno
+     */
     public void setInCorso(final boolean pInCorso) {
         partita.setInCorso(pInCorso);
     }
-/**
- * Restituisce il numero di colpi effettuati durante la partita.
- * @return numero di colpi effettuati durante la partita
- */
+    /**
+     * Restituisce il numero di colpi effettuati durante la partita.
+     * @return numero di colpi effettuati durante la partita
+     */
    public int getColpiTotali() {
     return partita.getColpiTotali();
     }
-/**
- * Restituisce il tempo massimo di gioco (se impostato).
- * @return tempo massimo di gioco in minuti
- */
+    /**
+     * Restituisce il tempo massimo di gioco (se impostato).
+     * @return tempo massimo di gioco in minuti
+     */
     public int getTempoMax() {
         return partita.getTempoMax();
     }
-/**
- * Restituisce il numero massimo di errori commettibili nella partita.
- * @return numero massimo di errori commettibili nella partita.
- */
+    /**
+     * Restituisce il numero massimo di errori commettibili nella partita.
+     * @return numero massimo di errori commettibili nella partita.
+     */
     public int getNumMaxErrori() {
         return partita.getNumMaxErrori();
     }
-/**
- * Restitisce il numero di colpi mancati effettuati nella partita.
- * @return numero di errori effettuati nella partita
- */
+    /**
+     * Restitisce il numero di colpi mancati effettuati nella partita.
+     * @return numero di errori effettuati nella partita
+     */
     public int getErroriCorrenti() {
         return partita.getErroriCorrenti();
     }
-/**
- * Restituisce il livello di gioco impostato per la partita.
- * @return livello di difficoltà della partita
- */
+    /**
+     * Restituisce il livello di gioco impostato per la partita.
+     * @return livello di difficoltà della partita
+     */
     public String getLivello() {
         return partita.getLivello();
     }
 
+    /**
+     * Funzione che permette di resettare l'instanza dell'oggetto GrigliaLogic.
+     */
+    public void resetGrigliaInstance() {
+        GrigliaLogic.resetInstance();
+    }
 }

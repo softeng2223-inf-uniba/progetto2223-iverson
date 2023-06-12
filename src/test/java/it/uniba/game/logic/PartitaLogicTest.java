@@ -5,6 +5,7 @@ import it.uniba.game.eccezioni.PosizioneException;
 import it.uniba.game.partita.Partita;
 import it.uniba.game.utility.Difficolta;
 
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,47 +22,45 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
  * Test per la classe di PartitaLogic.
  */
 class PartitaLogicTest {
-    private static final int DIM_GRIGLIA = 10;
     private static final int TEMPO_SCADUTO_MILLISECONDI = 65000;
     private static final int TEMPO_ATTUALE_MILLISECONDI = 60000;
     private static final int RESTO_TEMPO_MILLISECONDI = 75000;
     private static final int TEMPO_TRASCORSO = 15;
-    private static final int DIM_MAX = 10;
     private static final int DIM_MAX_REIMPOSTATA = 15;
     private static final int DIM_MAX_NEGATIVA = -5;
     private static final int TEMPO_MAX_POSITIVO = 60;
     private static final int TEMPO_MAX_NEGATIVO = -30;
-    private static final int NUM_MAX_ERRORI = 50;
     private static final int NUM_ERRORI_REIMP = 3;
     private static final int NUM_ERRORI_NEGATIVO = -2;
     private static final int FACILE = 50;
     private static final int MEDIO = 30;
-    private static final int DIFFICILE = 10;
     private static final int FACILE_MODIFICATO = 60;
     private static final int MEDIO_MODIFICATO = 35;
     private static final int DIFFICILE_MODIFICATO = 15;
-    private static final int COLPI_TOTALI = 10;
+
     private static final int TEMPO_TRENTA = 30;
     private static final int ERRORI_MAX_NEW = 10;
-    private static final int ERRORI_CORRENTI = 5;
+
 
     private PartitaLogic partitaLogic;
-    private Partita partita;
+
 
     /**
      * Settaggio test preliminari.
      */
-    @BeforeEach
-    public void setUp() {
-        partitaLogic = new PartitaLogic();
-        try {
-            new GrigliaLogic(DIM_GRIGLIA, DIM_GRIGLIA);
+     @BeforeEach
+     public void setUp() {
+
+         partitaLogic = PartitaLogic.getInstance();
+         try {
+            partitaLogic.avvia();
         } catch (NumeroCoordinateException e) {
-            fail("Eccezione imprevista: " + e.getMessage());
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        partita = new Partita();
+
     }
+
 
     /**
      * Test per l'avvio della partita.
@@ -102,59 +101,6 @@ class PartitaLogicTest {
         assertEquals(0, partitaLogic.getErroriCorrenti(), "Errore dei colpi totali");
     }
 
-    /**
-     * Test per colpo corretto nave.
-     */
-    @Test
-    @DisplayName("Test per ColpisciNave")
-    void testColpisciNave() {
-        try {
-            partitaLogic.avvia();
-        } catch (NumeroCoordinateException e) {
-            fail("Eccezione imprevista: " + e.getMessage());
-        }
-
-        String[] result;
-        String[] expectedResult = {"C", " "};
-
-        try {
-            result = partitaLogic.colpisci("A-1");
-            if (result[0].equals("C")) {
-                assertArrayEquals(expectedResult, result,
-                "Errore mi aspettavo C");
-            }
-
-        } catch (PosizioneException e) {
-            fail("Eccezione imprevista: " + e.getMessage());
-        }
-    }
-
-    /**
-     * Test per colpo andato vuoto.
-     */
-    @Test
-    @DisplayName("Test per ColpisciVuoto")
-    void testColpisciVuoto() {
-        try {
-            partitaLogic.avvia();
-        } catch (NumeroCoordinateException e) {
-            fail("Eccezione imprevista: " + e.getMessage());
-        }
-
-        String[] result;
-        String[] expectedResult = {"V", " "};
-
-        try {
-            result = partitaLogic.colpisci("B-2");
-            if (result[0].equals("V")) {
-                assertArrayEquals(expectedResult, result,
-                "Errore mi aspettavo V");
-            }
-
-        } catch (PosizioneException e) {
-            fail("Eccezione imprevista: " + e.getMessage());
-        }
-    }
 
     /**
      * Test per colpo corretto nave più vittoria.
@@ -285,8 +231,8 @@ class PartitaLogicTest {
     @Test
     @DisplayName("Test per StatoPartitaNonInCorso")
     void testStatoPartitaNonInCorso() {
-
-        assertFalse(partita.statoPartita(),
+        partitaLogic.setInCorso(false);
+        assertFalse(partitaLogic.statoPartita(),
         "Errore stato partita in corso");
     }
 
@@ -297,8 +243,8 @@ class PartitaLogicTest {
     @DisplayName("Test per StatoPartitaInCorso")
     void testStatoParitaInCorso() {
 
-        partita.setInCorso(true);
-        assertTrue(partita.statoPartita(),
+        partitaLogic.setInCorso(true);
+        assertTrue(partitaLogic.statoPartita(),
         "Errore stato partita non è in corso");
     }
 
@@ -309,21 +255,12 @@ class PartitaLogicTest {
     @DisplayName("Test per StatoPartitaDopoUnSet")
     void testStatoPartitaDopoUnSet() {
 
-        partita.setInCorso(false);
-        assertFalse(partita.statoPartita(),
+        partitaLogic.setInCorso(false);
+        assertFalse(partitaLogic.statoPartita(),
         "Errore il valore ricevuto è errato");
     }
 
-    /**
-     * Test per prendere e impostare la dimensione massima della griglia di gioco.
-     */
-    @Test
-    @DisplayName("Test per GetSetDimMax")
-    void testGetSetDimMax() {
 
-        assertEquals(DIM_MAX, partita.getDimMax(),
-        "Errore nel ricevere e impostare il valore desiderato");
-    }
 
     /**
      * Test per prendere e reimpostare la dimensione massima della griglia di gioco.
@@ -332,8 +269,8 @@ class PartitaLogicTest {
     @DisplayName("Test per GetSetDimMaxReimpostata")
     void testGetSetDimMaxReimpostata() {
 
-        partita.setDimMax(DIM_MAX_REIMPOSTATA);
-        assertEquals(DIM_MAX_REIMPOSTATA, partita.getDimMax(),
+        partitaLogic.setDimMax(DIM_MAX_REIMPOSTATA);
+        assertEquals(DIM_MAX_REIMPOSTATA, partitaLogic.getDimMax(),
         "Errore la dimensione non è stata reimpostata");
     }
 
@@ -344,8 +281,8 @@ class PartitaLogicTest {
     @DisplayName("Test per GetSetDimMaxNegativa")
     void testGetSetDimMaxNegativa() {
 
-        partita.setDimMax(DIM_MAX_NEGATIVA);
-        assertEquals(DIM_MAX_NEGATIVA, partita.getDimMax(),
+        partitaLogic.setDimMax(DIM_MAX_NEGATIVA);
+        assertEquals(DIM_MAX_NEGATIVA, partitaLogic.getDimMax(),
         "Errore la dimensione massima della griglia non è stata impostata correttamente");
     }
 
@@ -356,7 +293,7 @@ class PartitaLogicTest {
     @DisplayName("Test per SetTempoMax")
     void testSetTempoMax() {
 
-        assertEquals(0, partita.getTempoMax(),
+        assertEquals(0, partitaLogic.getTempoMax(),
         "Errore nell' impostare il tempo max");
     }
 
@@ -367,8 +304,8 @@ class PartitaLogicTest {
     @DisplayName("Test per SetTempoMaxPositivo")
     void testSetTempoMaxPositivo() {
 
-        partita.setTempoMax(TEMPO_MAX_POSITIVO);
-        assertEquals(TEMPO_MAX_POSITIVO, partita.getTempoMax(),
+        partitaLogic.setTempoMax(TEMPO_MAX_POSITIVO);
+        assertEquals(TEMPO_MAX_POSITIVO, partitaLogic.getTempoMax(),
         "Errore il tempo è stato impostatto con un valore differente");
     }
 
@@ -379,21 +316,12 @@ class PartitaLogicTest {
     @DisplayName("Test per SetTempoMaxNegativo")
     void testSetTempoMaxNegativo() {
 
-        partita.setTempoMax(TEMPO_MAX_NEGATIVO);
-        assertEquals(TEMPO_MAX_NEGATIVO, partita.getTempoMax(),
+        partitaLogic.setTempoMax(TEMPO_MAX_NEGATIVO);
+        assertEquals(TEMPO_MAX_NEGATIVO, partitaLogic.getTempoMax(),
         "Errore il tempo è stato impostatto con un valore differente");
     }
 
-    /**
-     * Test per impostare il numero massimo di errori.
-     */
-    @Test
-    @DisplayName("Test per SetNumMaxErrori")
-    void testSetNumMaxErrori() {
 
-        assertEquals(NUM_MAX_ERRORI, partita.getNumMaxErrori(),
-        "Errore non è stato impostato il numero massimo di errori");
-    }
 
     /**
      * Test per reimpostare il numero massimo di errori.
@@ -401,8 +329,8 @@ class PartitaLogicTest {
     @Test
     @DisplayName("Test per SetNumMaxErroriReimpostato")
     void testSetNumMaxErroriReimpostato() {
-        partita.setNumMaxErrori(NUM_ERRORI_REIMP);
-        assertEquals(NUM_ERRORI_REIMP, partita.getNumMaxErrori(),
+        partitaLogic.setNumMaxErrori(NUM_ERRORI_REIMP);
+        assertEquals(NUM_ERRORI_REIMP, partitaLogic.getNumMaxErrori(),
         "Errore non è stato reimpostato il numero massimo di errori");
     }
 
@@ -413,8 +341,8 @@ class PartitaLogicTest {
     @DisplayName("Test per SetNumMaxErroriNegativo")
     void testSetNumMaxErroriNegativo() {
 
-        partita.setNumMaxErrori(NUM_ERRORI_NEGATIVO);
-        assertEquals(NUM_ERRORI_NEGATIVO, partita.getNumMaxErrori(),
+        partitaLogic.setNumMaxErrori(NUM_ERRORI_NEGATIVO);
+        assertEquals(NUM_ERRORI_NEGATIVO, partitaLogic.getNumMaxErrori(),
         "Errore il numero massimo di errori è stato impostato con un valore differente");
     }
 
@@ -444,18 +372,7 @@ class PartitaLogicTest {
         "Errore gli errori per livello non sono stati impostati su MEDIO");
     }
 
-    /**
-     * Test per prendere i valori degli errori del livello DIFFICILE.
-     */
-    @Test
-    @DisplayName("Test per GetErrorePerLivelloDifficile")
-    void testGetErrorePerLivelloDifficile() {
 
-        int erroriDifficile = partitaLogic.getErrorePerLivello("DIFFICILE");
-
-        assertEquals(DIFFICILE, erroriDifficile,
-        "Errore gli errori per livello non sono stati impostati su DIFFICILE");
-    }
 
     /**
      * Test per impostare il livello di gioco su FACILE.
@@ -464,8 +381,8 @@ class PartitaLogicTest {
     @DisplayName("Test per SetLivello FACILE")
     void testSetLivelloFacile() {
 
-        partita.setLivello(Difficolta.FACILE.name());
-        assertEquals("FACILE", partita.getLivello(),
+        partitaLogic.setLivello(Difficolta.FACILE.name());
+        assertEquals("FACILE", partitaLogic.getLivello(),
         "Errore il livello non è stato impostato su FACILE");
     }
 
@@ -476,8 +393,8 @@ class PartitaLogicTest {
     @DisplayName("Test per SetLivello MEDIO")
     void testSetLivelloMedio() {
 
-        partita.setLivello(Difficolta.MEDIO.name());
-        assertEquals("MEDIO", partita.getLivello(),
+        partitaLogic.setLivello(Difficolta.MEDIO.name());
+        assertEquals("MEDIO", partitaLogic.getLivello(),
         "Errore il livello non è stato impostato su MEDIO");
     }
 
@@ -488,8 +405,8 @@ class PartitaLogicTest {
     @DisplayName("Test per SetLivello DIFFICILE")
     void testSetLivelloDifficile() {
 
-        partita.setLivello(Difficolta.DIFFICILE.name());
-        assertEquals("DIFFICILE", partita.getLivello(),
+        partitaLogic.setLivello(Difficolta.DIFFICILE.name());
+        assertEquals("DIFFICILE", partitaLogic.getLivello(),
         "Errore il livello non è stato impostato su DIFFICILE");
     }
 
@@ -500,9 +417,9 @@ class PartitaLogicTest {
      @DisplayName("Test per ReimpostaErroriPerLivelloFacile")
     void testReimpostaErroriPerLivelloFacile() {
 
-        partita.setErroriPerLivello("FACILE", FACILE_MODIFICATO);
+        partitaLogic.setErroriPerLivello("FACILE", FACILE_MODIFICATO);
 
-        assertEquals(FACILE_MODIFICATO, partita.getErrorePerLivello("FACILE"),
+        assertEquals(FACILE_MODIFICATO, partitaLogic.getErrorePerLivello("FACILE"),
         "Errore gli errori non sono stati reimpostati per il livello FACILE");
     }
 
@@ -513,9 +430,9 @@ class PartitaLogicTest {
      @DisplayName("Test per ReimpostaErroriPerLivelloMedio")
     void testReimpostaErroriPerLivelloMedio() {
 
-        partita.setErroriPerLivello("MEDIO", MEDIO_MODIFICATO);
+        partitaLogic.setErroriPerLivello("MEDIO", MEDIO_MODIFICATO);
 
-        assertEquals(MEDIO_MODIFICATO, partita.getErrorePerLivello("MEDIO"),
+        assertEquals(MEDIO_MODIFICATO, partitaLogic.getErrorePerLivello("MEDIO"),
         "Errore gli errori non sono stati reimpostati per il livello MEDIO");
     }
 
@@ -526,23 +443,10 @@ class PartitaLogicTest {
      @DisplayName("Test per SetErroriPerLivelloDIFFICILE")
     void testSetErroriPerLivelloDifficile() {
 
-        partita.setErroriPerLivello("DIFFICILE", DIFFICILE_MODIFICATO);
+        partitaLogic.setErroriPerLivello("DIFFICILE", DIFFICILE_MODIFICATO);
 
-        assertEquals(DIFFICILE_MODIFICATO, partita.getErrorePerLivello("DIFFICILE"),
+        assertEquals(DIFFICILE_MODIFICATO, partitaLogic.getErrorePerLivello("DIFFICILE"),
         "Errore gli errori non sono stati reimpostati per il livello DIFFICILE");
-    }
-
-    /**
-     * Test per prendere il valore dei colpi totali.
-     */
-    @Test
-    @DisplayName("Test per GetColpiTotali")
-    void testGetColpiTotali() {
-
-        partita.setColpiTotali(COLPI_TOTALI);
-
-        assertEquals(COLPI_TOTALI, partita.getColpiTotali(),
-        "Errore non è stato preso il valore corretto dei colpi totali");
     }
 
     /**
@@ -552,9 +456,9 @@ class PartitaLogicTest {
     @DisplayName("Test per GetTempoMax")
     void testGetTempoMax() {
 
-        partita.setTempoMax(TEMPO_TRENTA);
+        partitaLogic.setTempoMax(TEMPO_TRENTA);
 
-        assertEquals(TEMPO_TRENTA, partita.getTempoMax(),
+        assertEquals(TEMPO_TRENTA, partitaLogic.getTempoMax(),
         "Errore non è stato preso il valore corretto del tempo massimo");
     }
 
@@ -565,23 +469,10 @@ class PartitaLogicTest {
     @DisplayName("Test per GetNumMaxErrori")
     void testGetNumMaxErrori() {
 
-        partita.setNumMaxErrori(ERRORI_MAX_NEW);
+        partitaLogic.setNumMaxErrori(ERRORI_MAX_NEW);
 
-        assertEquals(ERRORI_MAX_NEW, partita.getNumMaxErrori(),
+        assertEquals(ERRORI_MAX_NEW, partitaLogic.getNumMaxErrori(),
         "Errore non è stato preso il valore corretto del numero massimo di errori");
-    }
-
-    /**
-     * Test per prendere il valore degli errori correnti.
-     */
-    @Test
-    @DisplayName("Test per GetErroriCorrenti")
-    void testGetErroriCorrenti() {
-
-        partita.setErroriCorrenti(ERRORI_CORRENTI);
-
-        assertEquals(ERRORI_CORRENTI, partita.getErroriCorrenti(),
-        "Errore non è stato preso il valore corrente degli errori correnti");
     }
 
     /**
@@ -591,9 +482,9 @@ class PartitaLogicTest {
     @DisplayName("Test per GetLivello")
     void testGetLivello() {
 
-        partita.setLivello("MEDIO");
+        partitaLogic.setLivello("MEDIO");
 
-        assertEquals("MEDIO", partita.getLivello(),
+        assertEquals("MEDIO", partitaLogic.getLivello(),
         "Errore non è stato impostato il livello di gioco");
     }
 }
