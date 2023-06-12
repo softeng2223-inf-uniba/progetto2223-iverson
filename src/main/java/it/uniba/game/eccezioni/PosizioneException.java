@@ -1,17 +1,9 @@
 package it.uniba.game.eccezioni;
 
 /**
- * <<Control>> Eccezione da lanciare quando la posizione inserita è sbagliata.
+ * <<Boundary>> Eccezione da lanciare quando la posizione inserita è sbagliata.
  */
 public class PosizioneException extends Exception {
-
-    /**
-     * Costruttore, non fornisce ulteriori informazioni
-     * sul motivo del lancio dell'eccezione.
-     */
-    PosizioneException() {
-        super();
-    }
 
     /**
      * Costruttore, fornisce ulteriori informazioni sul lancio dell'eccezione.
