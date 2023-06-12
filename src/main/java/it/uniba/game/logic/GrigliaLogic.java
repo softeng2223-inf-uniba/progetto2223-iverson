@@ -54,8 +54,10 @@ public final class GrigliaLogic {
     /**
      * Funzione che permette di resettare l'instanza dell'oggetto GrigliaLogic.
      */
-    public void resetInstance() {
+    public static void resetInstance() {
+
         instance = null;
+
     }
 
     /**
