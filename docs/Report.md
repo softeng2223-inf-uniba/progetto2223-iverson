@@ -7,6 +7,8 @@
   - 3.1) REQUISITI FUNZIONALI
   - 3.2) REQUISITI NON FUNZIONALI
 - 4)SYSTEM DESIGN
+- 5)OO DESIGN
+   - 5.2) DIAGRAMMA DI SEQUENZA
 - 6)RIEPILOGO DEI TEST
 - 7)MANUALE UTENTE
 - 8)PROCESSO DI SVILUPPO E ORGANIZZAZIONE DEL LAVORO
@@ -36,7 +38,7 @@ Il modello di dominio è un diagramma delle classi con prospettive concettuali, 
 
 ![ModelloDominio](./img/ModelloDominio.PNG)
 
-L'entità fondamentale del gioco è la Partita. Una partita si compone di diversi attributi: il numero massimo di errori concessi al giocatore (NumeroMassimoErrori), il numero di tentativi totali effettuati (ColpiTotali), il numero di tentativi falliti (ErroriCorrenti) e uno stato che indica se la partita è effettivamente in corso (StatoDellaPartita). Una Partita si compone anche di una Mappa di Gioco, concetto rappresentante lo spazio dove si trovano le navi da colpire e di conseguenza le posizioni colpibili dal giocatore. Essa si compone di un certo numero di righe, un numero di colonne e una serie di posizioni dove può esserci una nave, l'acqua o un colpo andato a segno/mancato. Una mappa, quindi, si compone di tante navi, in particolare di 10 navi Una nave è caratterizzata dalla sua dimensione, uno stato che afferma se questa sia affondata o meno e una serie di coordinate (da 1 a 5 coordinate possibili) che identificano la sua posizione sulla mappa. Una coordinata è caratterizzata da un numero di riga, un numero di colonna e uno stato che afferma se in quella casella la nave sia stata colpita o meno. Il concetto di nave ha inoltre 4 specializzazioni, rappresentati i 4 tipi di nave disponibili nel gioco: Cacciatorpediniere, Portaerei, Corazzata, Incrociatore.
+L'entità fondamentale del gioco è la Partita. Una partita si compone di diversi attributi: il numero massimo di errori concessi al giocatore (NumeroMassimoErrori), il numero di tentativi totali effettuati (ColpiTotali), il numero di tentativi falliti (ErroriCorrenti), uno stato che indica se la partita è effettivamente in corso (StatoDellaPartita), le dimensioni massime della mappa, il tempo massimo per l’esecuzione delle partita, il tempo trascorso a partire dall’inizio della partita, il livello di difficoltà scelto e il numero di tentativi falliti per ogni possibile livello di difficoltà. Una Partita si compone anche di una Mappa di Gioco, concetto rappresentante lo spazio dove si trovano le navi da colpire e di conseguenza le posizioni colpibili dal giocatore. Essa si compone di un certo numero di righe, un numero di colonne e una serie di posizioni dove può esserci una nave, l'acqua o un colpo andato a segno/mancato. Una mappa, quindi, si compone di tante navi, in particolare di 10 navi Una nave è caratterizzata dalla sua dimensione, uno stato che afferma se questa sia affondata o meno e una serie di coordinate (da 1 a 5 coordinate possibili) che identificano la sua posizione sulla mappa. Una coordinata è caratterizzata da un numero di riga, un numero di colonna e uno stato che afferma se in quella casella la nave sia stata colpita o meno. Il concetto di nave ha inoltre 4 specializzazioni, rappresentati i 4 tipi di nave disponibili nel gioco: Cacciatorpediniere, Portaerei, Corazzata, Incrociatore.
 
 ---
 ## 3)REQUISITI SPECIFICI
@@ -205,15 +207,28 @@ Criteri di accettazione:
 ----
 
 ## 4)SYSTEM DESIGN
-
+Di seguito viene mostrato il diagramma dei package, ovvero uno schema raffigurante l’organizzazione delle directory del codice e le loro dipendenze. Con dipendenza tra package (indicata da una freccia tratteggiata) si intende la situazione per cui le classi di un package hanno bisogno delle informazioni contenute in un altro package per funzionare
 
 ![DiagrammaPackage](./img/DiagrammaPackage.PNG)
 
 ---
+## 5)OO DESIGN
 
-## 5)RIEPILOGO DEI TEST
-Tutti i casi di test sono stati eseguiti sono della categoria BlackBox.
-I casi di test sulle classi boundary non sono stati eseguiti perché essi dovrebbero controllare ogni singolo inserimento dell’utente, cosa che i casi di test automatici non possono prevedere.
+
+### 5.2) DIAGRAMMA DI SEQUENZA
+
+![Diagrammasequenzagioca](./img/Diagrammasequenzagioca.png)
+
+![Diagrammacolpisci](./img/Diagrammacolpisci.png)
+
+---
+## 6)RIEPILOGO DEI TEST
+Tutti i casi di test che sono stati eseguiti sono della categoria BlackBox.
+I casi di test sulle classi boundary non sono stati eseguiti perché essi dovrebbe controllare ogni singolo inserimento dell’utente, cosa che i casi di test automatici non possono prevedere.
+Le classi su cui non sono stati eseguiti i test sono le seguenti:
+1) Il package eccezioni con le sue classi: CloneException, NumeroCoordinateException e PosizioneException
+2) Il package UI con le sue classi: Comando e Stampa
+
 
 Casi di test per il package app:
 Sono stati generati casi di test automatici in JUnit per il package app contenente una sola  classe: 
@@ -267,13 +282,6 @@ Sono stati generati casi di test automatici in JUnit per il package utility che 
 - TabellaTest; I test su TabellaTest riguardano l’impostazione della dimensione della griglia di gioco.
 
 - TempoTest; I test su TempoTest riguardano la corretta restituzione del tempo impostato.
-
-
-
-
-
-
-
 
 
 ---
