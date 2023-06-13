@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"it.uniba.app"},{"l":"it.uniba.game.eccezioni"},{"l":"it.uniba.game.logic"},{"l":"it.uniba.game.nave"},{"l":"it.uniba.game.partita"},{"l":"it.uniba.game.UI"},{"l":"it.uniba.game.utility"}];updateSearchResults();
