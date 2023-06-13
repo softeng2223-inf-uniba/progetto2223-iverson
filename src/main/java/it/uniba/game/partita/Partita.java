@@ -81,7 +81,7 @@ public class Partita {
     }
   /**
   * Imposta il livello di difficoltà.
-  * @param pLivello
+  * @param pLivello livello della difficolta
   */
     public void setLivello(final String pLivello) {
         this.livello = pLivello;

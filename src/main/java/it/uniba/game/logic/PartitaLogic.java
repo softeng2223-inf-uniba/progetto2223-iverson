@@ -118,6 +118,7 @@ public final class PartitaLogic {
 
     /**
      * Metodo che controlla se il tempo del timer é scaduto.
+     * @return restituisce true se è scaduto, false altrimenti
      */
     public boolean controllaTempoScaduto() {
 
