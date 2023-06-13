@@ -6,6 +6,8 @@
 - 3)REQUISITI SPECIFICI
   - 3.1) REQUISITI FUNZIONALI
   - 3.2) REQUISITI NON FUNZIONALI
+- 4)SYSTEM DESIGN
+- 6)RIEPILOGO DEI TEST
 - 7)MANUALE UTENTE
 - 8)PROCESSO DI SVILUPPO E ORGANIZZAZIONE DEL LAVORO
    - 8.1) SPRINT 0     
@@ -202,6 +204,79 @@ Criteri di accettazione:
 
 ----
 
+## 4)SYSTEM DESIGN
+
+
+![DiagrammaPackage](./img/DiagrammaPackage.PNG)
+
+---
+
+## 5)RIEPILOGO DEI TEST
+Tutti i casi di test sono stati eseguiti sono della categoria BlackBox.
+I casi di test sulle classi boundary non sono stati eseguiti perché essi dovrebbero controllare ogni singolo inserimento dell’utente, cosa che i casi di test automatici non possono prevedere.
+
+Casi di test per il package app:
+Sono stati generati casi di test automatici in JUnit per il package app contenente una sola  classe: 
+
+- I test AppTest riguardano l’avvio con paramentro “-h” e “- -help”, in particolare che non restituisca vuoto. 
+
+Casi di test per la package logic: 
+Sono stati generati casi di test automatici in JUnit per il package logic che si suddividono in 3 diverse classi che sono:
+
+- ControlliTest; I test  riguardano i controlli per l’input, sia in caso di input validi che non validi.
+
+- GrigliaLogicTest; I test su GrigliaLogicTest riguardano i colpi e i lo stato delle celle delle navi, le loro coordinate, le dimensioni delle navi e il loro stato (Affondato, Colpito, ecc...).
+
+- PartitaLogicTest; I test su PartitaLogicTest riguardano i controlli sullo stato della partita, sul colpo (se esso è andato a vuoto o no), sul tempo, sulle dimensioni della griglia di gioco, sugli errori per livello(FACILE, MEDIO E DIFFICILE)  e sulla loro impostazione.
+
+
+Casi di test per il package nave:
+Sono stati generati casi di test automatici in JUnit per il package nave che si suddividono in 6 diverse classi che sono:
+
+- CacciatorpediniereTest;
+- CorazzataTest;
+- IncrociatoreTest;
+- PortaereiTest;
+
+   I test su CacciapediniereTest, CorazzataTest, IncrociatoreTest e PortaereiTest sono tutti dello stesso tipo (cambiano le dimensioni) ed essi riguardano il controllo sul corretto funzionamento del costruttore e del loro posizionamento sulla griglia di gioco.
+
+
+
+- NaveTest; I test su NaveTest riguardano l’impostare correttamente le dimensioni, le coordinate e lo stato della nave (se essa è stata affondata o no).
+
+- CoordinataTest; I test su CoordinateTest riguardano la corretta restituzione delle righe e delle colonne, dello stato del colpo, delle coordinate delle navi e della loro clonazione (una volta saputo le coordinate delle navi, esse vengono clonate e impostate sulla griglia di gioco).
+
+
+
+Casi di test per il package partita:
+Sono stati generati casi di test automatici in JUnit per il package partita che si suddividono in 2 diverse classi che sono:
+
+- GrigliaTest; I test su GrigliaTest riguardano la verifica del numero di righe e di colonne, il corretto valore della singola cella,  la dimensione delle navi, lo stato delle navi e lo stato del colpo.
+
+- PartitaTest; I test su PartitaTest riguardano l’impostazione del livello e i relativi numeri di errori, controllo sugli errori e il loro settaggio, controllo sullo stato dei colpi e della partita, impostazione della griglia di gioco e rispettive dimensioni e il cotrollo sul settaggio del tempo di gioco.
+
+
+
+Casi di test per il package utility:
+Sono stati generati casi di test automatici in JUnit per il package utility che si suddividono in 4 diverse classi che sono:
+
+- DifficoltaTest; I test su DifficoltaTest riguardano l’impostazione della difficoltà.
+
+- DimensioniTest; I test su DimensioniTest riguardano il controllo sulle dimensioni delle navi e sul numero di esemplari per nave.
+
+- TabellaTest; I test su TabellaTest riguardano l’impostazione della dimensione della griglia di gioco.
+
+- TempoTest; I test su TempoTest riguardano la corretta restituzione del tempo impostato.
+
+
+
+
+
+
+
+
+
+---
 ## 7)MANUALE UTENTE
 Nel caso l'utente avvii il programma senza inserire nessun parametro verrà mostrato questo:
 
@@ -227,7 +302,7 @@ Nel caso l'utente (a partita in corso) inserisca il comando "/svelagriglia" verr
 
 ![StampaGriglia](./img/StampaGriglia.jpg)
 
-Nel caso l'utente inserisca il comando "/mostralivello" verrà visualizzato la difficoltà alla quale l'utente sta giocando, la difficoltà è impostabile quando la partita non è iniziata (tramite i comandi "/facile", "/medio", "/difficile"; è possibile aggiungere accanto al comando un numero, quel numero diventerà il numero massimo di tentativi falliti per la difficoltà. In alternativa è possivile inserire il comando "/tentativi numero" che andrà ad impostare il numero massimo di tentativi falliti al numero inserito) e non è modificabile a partita in corso:
+Nel caso l'utente inserisca il comando "/mostralivello" verrà visualizzato la difficoltà alla quale l'utente sta giocando, la difficoltà è impostabile quando la partita non è iniziata (tramite i comandi "/facile", "/medio", "/difficile"; è possibile aggiungere accanto al comando un numero, quel numero diventerà il numero massimo di tentativi falliti per la difficoltà; in caso venga scelta questa opzione bisognerà riselezionare il livello per visualizzare la modifica su di esso (es: se si dovesse digitare "/facile 20" per poter usufruire del nuovo numero di tentativi fallibili bisogna digitare di nuovo "/facile"). In alternativa è possivile inserire il comando "/tentativi numero" che andrà ad impostare il numero massimo di tentativi falliti al numero inserito) e non è modificabile a partita in corso:
 
 ![mostralivello](./img/mostralivello.jpg)
 
