@@ -1,7 +1,7 @@
 package it.uniba.game.nave;
 
 /**
- * <<Entity>> Classe che rappresenta una posizione della mappa occupata da una nave.
+ * {@literal <<Entity>>} Classe che rappresenta una posizione della mappa occupata da una nave.
  */
 public class Coordinata implements Cloneable {
     private int riga;

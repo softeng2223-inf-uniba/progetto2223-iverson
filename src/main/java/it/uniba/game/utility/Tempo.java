@@ -4,8 +4,8 @@ package it.uniba.game.utility;
  * Classe enum che contiene i valori del tempo.
  */
 public enum Tempo {
-    MILLISECONDI(1000),
-    SECONDI(60);
+    MILLISECONDI(1000), // tempo in millisecondi
+    SECONDI(60); // tempo in secondi
 
 
     private int tempo;

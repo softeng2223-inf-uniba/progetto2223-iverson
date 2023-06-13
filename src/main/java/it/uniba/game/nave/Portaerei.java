@@ -3,7 +3,7 @@ package it.uniba.game.nave;
 import it.uniba.game.eccezioni.NumeroCoordinateException;
 import it.uniba.game.utility.Dimensioni;
 /**
- * <<<Entity>> Classe che estende la classe Nave e rappresenta un particolare tipo di nave
+ * {@literal <<<Entity>>} Classe che estende la classe Nave e rappresenta un particolare tipo di nave
  * caratterizzato dalla dimensione di 5 caselle nella mappa di gioco.
  */
 public class Portaerei extends Nave {

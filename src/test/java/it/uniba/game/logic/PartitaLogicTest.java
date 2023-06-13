@@ -77,6 +77,9 @@ class PartitaLogicTest {
         assertTrue(partitaLogic.statoPartita(), "Errore nell' avvio dell' inizializzaione della partita");
     }
 
+    /**
+     * Test per l'avvio dei colpi totali.
+     */
     @Test
     @DisplayName("Test su AvviaColpiTotali")
     void testAvviaColpiTotali() {
@@ -89,6 +92,9 @@ class PartitaLogicTest {
         assertEquals(0, partitaLogic.getColpiTotali(), "Errore nei colpi disponibili");
     }
 
+    /**
+     * Test su gli errori correnti.
+     */
     @Test
     @DisplayName("Test su ErroriCorrenti")
     void testAvviaErroriCorrenti() {

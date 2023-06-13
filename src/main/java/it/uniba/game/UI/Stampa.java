@@ -4,7 +4,7 @@ import it.uniba.game.logic.PartitaLogic;
 import it.uniba.game.utility.Tempo;
 
 /**
- * <<Boundary>> Classe che gestisce tutte le stampe a schermo dell'applicazione,
+ * {@literal <<Boundary>>} Classe che gestisce tutte le stampe a schermo dell'applicazione,
  *  ovvero tutte le informazioni visibili a video dall'utente.
  */
 public class Stampa {
@@ -17,7 +17,7 @@ public class Stampa {
 
     /**
      * Restituisce la griglia di gioco stampata in Unicode.
-     * @param partitaLogic
+     * @param partitaLogic : oggetto per manipolare la partita
      *
      */
     public void svelaGriglia(final PartitaLogic partitaLogic) {
@@ -91,7 +91,7 @@ public class Stampa {
      * Restituisce la griglia di gioco stampata in Unicode a differenza si
      * svelaGriglia() non mostra le navi dell'avversario.
      *
-     * @param partitaLogic
+     * @param partitaLogic  : oggetto per manipolare la partita
      */
     public void stampaGriglia(final PartitaLogic partitaLogic) {
         final char orizzontale = '\u2501'; // carattere Unicode della linea orizzontale
@@ -156,7 +156,7 @@ public class Stampa {
 
     /**
      * Metodo che restituisce il tempo massimo del timer e il tempo corrente.
-     * @param partitaLogic
+     * @param partitaLogic  : oggetto per manipolare la partita
      */
     public void mostraTempo(final PartitaLogic partitaLogic) {
         long secondi = Tempo.valueOf("SECONDI").getValue() -  partitaLogic.restoTempoAttuale();
@@ -177,7 +177,7 @@ public class Stampa {
 
     /**
      * Metodo che restituisce i tentativi già effettuati, i tentativi falliti e il numero massimo di tentativi falliti.
-     * @param partitaLogic
+     * @param partitaLogic  : oggetto per manipolare la partita
      */
     public void mostraTentativi(final PartitaLogic partitaLogic) {
         System.out.println("Il numero di tentativi effettuati è: " + partitaLogic.getColpiTotali());
@@ -198,7 +198,7 @@ public class Stampa {
 
     /**
      * La funzione mostra al giocatore il livello di difficoltà della partita.
-     * @param partitaLogic
+     * @param partitaLogic : oggetto per manipolare la partita
      */
     public void mostraLivello(final PartitaLogic partitaLogic) {
         System.out.println("La difficoltà è impostata a: " + partitaLogic.getLivello());
@@ -271,9 +271,9 @@ public class Stampa {
 
 
     /**
-     * ok.
-     * @param esito
-     * @param partitaLogic
+     * Stampa il risultato del colpo.
+     * @param esito : esito del colpo
+     * @param partitaLogic : oggetto per manipolare la partita
      */
     public void stampaRisultatoColpo(final String esito, final PartitaLogic partitaLogic) {
         stampaGriglia(partitaLogic);
@@ -297,7 +297,8 @@ public class Stampa {
     }
 
     /**
-     * @param esito
+     * Stampa un messaggio di fine partita basandosi sull'esito.
+     * @param esito : esito della partita
      */
     public void stampaFinePartita(final String esito) {
         switch (esito) {

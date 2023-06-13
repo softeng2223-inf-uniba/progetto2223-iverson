@@ -13,7 +13,7 @@ import java.util.Random;
 
 
 /**
- * <<Control>> Classe che permette l'utilizzo della griglia di gioco.
+ * {@literal <<Control>>} Classe che permette l'utilizzo della griglia di gioco.
  * Gestisce l'inserimento delle navi nella mappa, gli aggiornamenti di quest'ultima
  * in seguito ad un colpo ed i controlli riguardanti l'affondamento delle navi sulla mappa.
  *
@@ -285,7 +285,7 @@ public final class GrigliaLogic {
      * @param i : indice del tipo di nave
      * @param j : indice della nave nella lista di navi del suo stesso tipo
      * @param k : indice della coordinata occupata dalla nave della quale su vuole cambiare lo stato
-     * @throws PosizioneException
+     * @throws PosizioneException quando la posizione inserita è sbagliata.
      */
     public void setColpito(final int i, final int j, final int k) throws PosizioneException {
         griglia.setColpito(i, j, k);
@@ -315,7 +315,7 @@ public final class GrigliaLogic {
      * @param j : indice della nave nella lista di navi del suo stesso tipo
      * @param k : indice della coordinata occupata dalla nave della quale si vuole sapere l'avvenuto colpo
      * @return vero se la posizione della coordinata è stata colpita, falso altrimenti
-     * @throws PosizioneException
+     * @throws PosizioneException quando la posizione inserita è sbagliata.
      */
     public boolean getColpito(final int i, final int j, final int k) throws PosizioneException {
         return griglia.getColpito(i, j, k);

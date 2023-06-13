@@ -16,7 +16,7 @@ import it.uniba.game.eccezioni.NumeroCoordinateException;
 import it.uniba.game.eccezioni.PosizioneException;
 
 /**
- * <<Entity>> Classe che definisce la griglia di gioco e tutte le navi posizionate su di essa.
+ * {@literal <<Entity>>} Classe che definisce la griglia di gioco e tutte le navi posizionate su di essa.
  */
 public class Griglia {
     private int righe;
@@ -107,7 +107,8 @@ public class Griglia {
      *
      * @param coordinata : insieme delle coordinate occupate dalla nave sulla mappa
      * @param index : indice identificativo del tipo di nave da aggiungere alla lista
-     * @throws NumeroCoordinateException
+     * @throws NumeroCoordinateException se si inseriscono un numero diverso di coordinate
+     * rispetto alla sua dimensione.
      */
     public void addNavi(final Coordinata[] coordinata, final int index) throws NumeroCoordinateException {
         switch (index) {
@@ -192,7 +193,7 @@ public class Griglia {
      * @param j : indice della nave nella lista di navi del suo stesso tipo
      * @param k : indice della coordinata occupata dalla nave del quale si vuole sapere il valore della riga
      * @return valore della riga della coordinata
-     * @throws PosizioneException
+     * @throws PosizioneException quando la posizione inserita è sbagliata.
      */
     public int getRiga(final int i, final int j, final int k) throws PosizioneException {
         return this.navi.get(i).get(j).getcoordinate(k).getriga();
@@ -203,7 +204,7 @@ public class Griglia {
      * @param j : indice della nave nella lista di navi del suo stesso tipo
      * @param k : indice della coordinata occupata dalla nave
      * @return valore della colonna della coordinata
-     * @throws PosizioneException
+     * @throws PosizioneException quando la posizione inserita è sbagliata.
      */
     public int getColonna(final int i, final int j, final int k) throws PosizioneException {
         return this.navi.get(i).get(j).getcoordinate(k).getcolonna();
@@ -214,7 +215,7 @@ public class Griglia {
      * @param j : indice della nave nella lista di navi del suo stesso tipo
      * @param k : indice della coordinata occupata dalla nave della quale si vuole sapere l'avvenuto colpo
      * @return vero se la posizione della coordinata è stata colpita, falso altrimenti
-     * @throws PosizioneException
+     * @throws PosizioneException quando la posizione inserita è sbagliata.
      */
     public boolean getColpito(final int i, final int j, final int k) throws PosizioneException {
         return this.navi.get(i).get(j).getcoordinate(k).getcolpito();
@@ -224,7 +225,7 @@ public class Griglia {
      * @param i : indice del tipo di nave
      * @param j : indice della nave nella lista di navi del suo stesso tipo
      * @param k : indice della coordinata occupata dalla nave della quale su vuole cambiare lo stato
-     * @throws PosizioneException
+     * @throws PosizioneException quando la posizione inserita è sbagliata.
      */
     public void setColpito(final int i, final int j, final int k) throws PosizioneException {
         this.navi.get(i).get(j).getcoordinate(k).setcolpito();
