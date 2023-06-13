@@ -30,7 +30,7 @@ class PartitaTest {
     private Partita partita;
 
     /**
-     * Metodo per inizialixxare le istanze di Partita prima di ogni test.
+     * Metodo per inizializzare le istanze di Partita prima di ogni test.
      */
     @BeforeEach
     void setup() {

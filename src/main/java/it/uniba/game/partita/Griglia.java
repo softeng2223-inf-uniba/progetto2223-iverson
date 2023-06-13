@@ -16,7 +16,7 @@ import it.uniba.game.eccezioni.NumeroCoordinateException;
 import it.uniba.game.eccezioni.PosizioneException;
 
 /**
- * <<Entity>> Classe che definisce la griglia di gioco e tutte le navi posizionate su di essa.
+ * {@literal <<Entity>>} Classe che definisce la griglia di gioco e tutte le navi posizionate su di essa.
  */
 public class Griglia {
     private int righe;

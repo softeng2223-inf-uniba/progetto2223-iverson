@@ -14,7 +14,7 @@ import it.uniba.game.logic.Controlli;
 
 
 /**
- * <<Boundary>> Classe che ha la la funzione di menu
+ * {@literal <<Boundary>>} Classe che ha la la funzione di menu
  * e permette all'utente di inserire i vari comandi e interagire con l'applicazione.
  *
  */

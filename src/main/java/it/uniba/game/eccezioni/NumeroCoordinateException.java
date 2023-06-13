@@ -1,7 +1,7 @@
 package it.uniba.game.eccezioni;
 
 /**
- * <<Boundary>> Eccezione da lanciare quando si inseriscono un numero diverso di coordinate
+ * {@literal <<Boundary>>} Eccezione da lanciare quando si inseriscono un numero diverso di coordinate
  * rispetto alla sua dimensione.
  */
 public class NumeroCoordinateException extends Exception {

@@ -5,7 +5,7 @@ import it.uniba.game.eccezioni.NumeroCoordinateException;
 import it.uniba.game.eccezioni.PosizioneException;
 
 /**
- * <<Entity>> Classe che definisce le proprietà di una Nave, intesa come elemento della mappa di gioco.
+ * {@literal <<Entity>>} Classe che definisce le proprietà di una Nave, intesa come elemento della mappa di gioco.
  */
 public abstract class Nave {
     private final int dim;

@@ -8,7 +8,7 @@ import it.uniba.game.utility.Difficolta;
 import it.uniba.game.utility.Tabella;
 
 /**
- * <<Entity>> Classe che definisce la partita giocata dal giocatore,
+ * {@literal <<Entity>>} Classe che definisce la partita giocata dal giocatore,
  * comprendendo le statistiche di gioco e le impostazioni di gioco.
  */
 public class Partita {

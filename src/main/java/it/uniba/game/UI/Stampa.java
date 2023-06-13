@@ -4,7 +4,7 @@ import it.uniba.game.logic.PartitaLogic;
 import it.uniba.game.utility.Tempo;
 
 /**
- * <<Boundary>> Classe che gestisce tutte le stampe a schermo dell'applicazione,
+ * {@literal <<Boundary>>} Classe che gestisce tutte le stampe a schermo dell'applicazione,
  *  ovvero tutte le informazioni visibili a video dall'utente.
  */
 public class Stampa {
