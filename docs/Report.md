@@ -126,8 +126,7 @@ Criteri di accettazione:
 
         Al comando /svelagriglia  
 
-        l’applicazione risponde visualizzando, una griglia 10x10, con le righe numerate
-        da 1 a 10 e le colonne numerate da A a J, e tutte le navi posizionate   
+       l’applicazione risponde visualizzando una griglia con le righe numerate a partire da 1 e le colonne numerate a partire da A, ce tutte le navi posizionate   
 
 * **RF8**: Come giocatore voglio impostare il numero massimo di tentativi falliti per livello di gioco 
     Criteri di accettazione:
@@ -190,8 +189,7 @@ Criteri di accettazione:
         Criteri di accettazione:
 
         Al comando /mostragriglia 
-        l’applicazione risponde visualizzando, una griglia 10x10, con le righe numerate da 1 a 10 e le colonne
-        numerate da A a J, con le navi affondate e le sole parti già colpite delle navi non affondate. 
+       l’applicazione risponde visualizzando, una griglia con le righe numerate a partire da 1 e le colonne numerate a partire da A, con le navi affondate e le sole parti già colpite delle navi non affondate.
 
 * **RF15**: Come giocatore voglio mostrare il numero di tentativi già effettuati e il numero di tentativi falliti
         Criteri di accettazione:
@@ -461,7 +459,8 @@ Dopo una riunione all’inizio dello sprint in cui sono stati divisi i compiti e
 I membri del team hanno passato diversi giorni riuniti per definire il modello di dominio dell’applicazione, su cui poi si è basata la progettazione e realizzazione del codice. La realizzazione del codice delle classi di base è stata svolta da due membri del gruppo, ma revisionato da tutti quanti i membri a cadenza giornaliera. Dopo la realizzazione e caricamento delle classi di base, ogni membro ha lavorato singolarmente alle user story seguendo il GitHub Flow. Le revisioni di queste sono state svolte a rotazione da ogni membro del gruppo. Ogni membro del team si è impegnato a commentare e testare (manualmente) il codice scritto. Tutti i membri hanno lavorato congiuntamente alla stesura della relazione tecnica, pur essendo questa corretta e caricata da uno specifico membro
 
 ### 8.3)SPRINT 2
-I membri del team hanno lavorato al completamento delle singole user story e alla correzione/revisione degli errori segnalati dallo sprint precedente. Anche in questo caso le revisioni sono state svolte a rotazione. C’è stata una fase di adattamento del progetto alla tassonomia ECB e ai principi di design, svolta in pair programming da due membri del gruppo ma revisionata da tutti i membri. I casi di test sono stati decisi congiuntamente da tutto il gruppo, ma implementati in JUnit da due membri alla fine della realizzazione del codice. La correzione del modello di dominio e la parte di report riguardante l’OO design e il system design sono state curate da tutto il gruppo. Ogni membro si è impegnato a commentare il codice scritto e a correggere/migliorare i commenti scritti precedentemente.
+I membri del team hanno lavorato al completamento delle singole user story e alla correzione/revisione degli errori segnalati dallo sprint precedente. Anche in questo caso le revisioni sono state svolte a rotazione. C’è stata una fase di adattamento del progetto alla tassonomia ECB e ai principi di design, svolta in pair programming da due membri del gruppo ma revisionata da tutti i membri. I casi di test sono stati decisi congiuntamente da tutto il gruppo, ma implementati in JUnit da due membri alla fine della realizzazione del codice. La correzione del modello di dominio e la parte di report riguardante l’OO design e il system design sono state curate da tutto il gruppo. Ogni membro si è impegnato a commentare il codice scritto e a correggere/migliorare i commenti scritti precedentemente. Tutti i membri hanno lavorato congiuntamente alla stesura della relazione tecnica, pur essendo questa  caricata da uno specifico membro
+
 
 
 ---
