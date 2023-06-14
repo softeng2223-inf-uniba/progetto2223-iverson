@@ -56,7 +56,6 @@ class PartitaLogicTest {
 
     }
 
-
     /**
      * Test per l'avvio della partita.
      */
