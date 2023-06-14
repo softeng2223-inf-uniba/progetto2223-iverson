@@ -84,7 +84,7 @@ public final class GrigliaLogic {
                 boolean esito = true;
                 int i = 0;
                 while (i < dimnave && esito) {
-                    if (!griglia.getCella(triga, tcolonna).equals("V")) {
+                    if (!griglia.getCella(triga + i, tcolonna).equals("V")) {
                         esito = false;
                     }
                     i++;
@@ -98,7 +98,7 @@ public final class GrigliaLogic {
                 boolean esito = true;
                 int i = 0;
                 while (i < dimnave && esito) {
-                    if (!griglia.getCella(triga, tcolonna + 1).equals("V")) {
+                    if (!griglia.getCella(triga, tcolonna + i).equals("V")) {
                         esito = false;
                     }
                     i++;
