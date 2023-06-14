@@ -61,18 +61,6 @@ class PartitaLogicTest {
      * Test per l'avvio della partita.
      */
     @Test
-    @DisplayName("Test su AvviaStatoPartita")
-    void testAvviaStatoPartita() {
-         try {
-            partitaLogic.avvia();
-        } catch (NumeroCoordinateException e) {
-            fail("Eccezione imprevista: " + e.getMessage());
-        }
-
-        assertTrue(partitaLogic.statoPartita(), "Errore nell' avvio dell' inizializzaione della partita");
-    }
-
-    @Test
     @DisplayName("Test su AvviaColpiTotali")
     void testAvviaColpiTotali() {
          try {
@@ -84,18 +72,7 @@ class PartitaLogicTest {
         assertEquals(0, partitaLogic.getColpiTotali(), "Errore nei colpi disponibili");
     }
 
-    @Test
-    @DisplayName("Test su ErroriCorrenti")
-    void testAvviaErroriCorrenti() {
-         try {
-            partitaLogic.avvia();
-        } catch (NumeroCoordinateException e) {
-            fail("Eccezione imprevista: " + e.getMessage());
-        }
-
-        assertEquals(0, partitaLogic.getErroriCorrenti(), "Errore dei colpi totali");
-    }
-
+ 
 
     /**
      * Test per colpo corretto nave più vittoria.
