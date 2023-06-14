@@ -22,8 +22,9 @@
 
 ---
 ## 1)INTRODUZIONE
+**GIOCO**:
 Il gioco realizzato è quello della battaglia navale, con una versione a giocatore singolo contro la CPU. Di seguito le regole del gioco:
-* Il sistema posiziona casualmente le navi su una griglia 10x10. Le navi posizionate sono molteplici: 
+* Il sistema posiziona casualmente le navi su una griglia quadrata. Le navi posizionate sono molteplici: 
     * Cacciatorpediniere (4 esemplari,2 caselle);
     * Incrociatore (3 esemplari, 3 caselle);
     * Corazzata (2 esemplari, 4 caselle);
@@ -31,6 +32,15 @@ Il gioco realizzato è quello della battaglia navale, con una versione a giocato
 * Il giocatore cerca di indovinare la posizione delle navi e affondarle 
 * Il giocatore vince se affonda tutte le navi prima di esaurire le mosse 
 * Il numero di mosse disponibili dipende dalla modalità di gioco (facile/media/difficile/…)
+* La dimensione della griglia può essere decisa fra 10x10(default), 18x18, 26x26
+* Nel caso si inserisca il tempo di gioco ed esso scade la partita termina con una sconfitta
+
+**PARTECIPANTI DEL GRUPPO**:
+Francesco Bernardi;
+Riccardo Carichino;
+Mattia Francesco Di Leo;
+Davide Grazioso;
+Vito Luce.
 
 ---
 
@@ -108,14 +118,16 @@ Criteri di accettazione:
 
         Al comando /gioca  
 
-        se nessuna partita è in corso l'applicazione imposta causalmente le navi, in orizzontale o in verticale, mostra la griglia vuota e si predispone a ricevere il primo tentativo o altri comandi. 
+        se nessuna partita è in corso l'applicazione imposta causalmente le navi, in orizzontale o in verticale, mostra la 
+        griglia vuota e si predispone a ricevere il primo tentativo o altri comandi. 
 
 * **RF7**: Come giocatore voglio svelare la griglia con le navi posizionate 
     Criteri di accettazione:
 
         Al comando /svelagriglia  
 
-        l’applicazione risponde visualizzando, una griglia 10x10, con le righe numerate da 1 a 10 e le colonne numerate da A a J, e tutte le navi posizionate   
+        l’applicazione risponde visualizzando, una griglia 10x10, con le righe numerate
+        da 1 a 10 e le colonne numerate da A a J, e tutte le navi posizionate   
 
 * **RF8**: Come giocatore voglio impostare il numero massimo di tentativi falliti per livello di gioco 
     Criteri di accettazione:
@@ -208,37 +220,49 @@ Criteri di accettazione:
 ----
 
 ## 4)SYSTEM DESIGN
-Di seguito viene mostrato il diagramma dei package, ovvero uno schema raffigurante l’organizzazione delle directory del codice e le loro dipendenze. Con dipendenza tra package (indicata da una freccia tratteggiata) si intende la situazione per cui le classi di un package hanno bisogno delle informazioni contenute in un altro package per funzionare
+Di seguito viene mostrato il diagramma dei package, ovvero uno schema raffigurante l’organizzazione delle directory del codice e le loro dipendenze. Con dipendenza tra package (indicata da una freccia tratteggiata) si intende la situazione per cui le classi di un package hanno bisogno delle informazioni contenute in un altro package per funzionare. Non sono state rilevate dipendenze cicliche tra package.
 
 ![DiagrammaPackage](./img/DiagrammaPackage.PNG)
 
+Per rispettare i requisiti non funzionali si è deciso di optare per una grafica basata su **UNICODE** in modo che la grafica possa essere vista senza alcun problema sui terminali citati nella sezione Requisiti non funzionali
+
 ---
 ## 5)OO DESIGN
+Ogni classe è stata progettata per assolvere ad uno specifico compito, in modo da realizzare un'astrazione di ogni concetto base del gioco.
+I concetti riguardanti il dominio dell'applicazione (come le classi Partita,Griglia e Nave) sono stati separati dalla parte di presentazione dell'applicazione, curata principalmente dalle classi Boundary Stampa e Comando, che
+permettono all'utente di interagire con l'applicazione. Le classi PartitaLogic e GrigliaLogic sono classi Control che permettono di manipolare gli oggetti delle classi Partita e Griglia secondo la logica del gioco e realizzando i comandi impartiti dall'utente, evitando che ci sia un collegamento diretto tra una classe Boundary e una Entity.
+A livello di information hiding, in ogni classe le operazioni strettamente necessarie sono pubbliche, mentre quelle di "servizio" sono state rese private. Le variabili di istanza sono state rese tutte private.
+Non sono state effettuate nè rilevate ripetizioni nella rappresentazioni di ciascun concetto
 
 ### 5.1)DIAGRAMMA DELLE CLASSI
 Di seguito si mostrano i diagrammi delle classi rappresentanti i concetti principali dell'applicazione da una prospettiva software.
 Sono stati realizzati:
 1. Un diagramma delle classi generale
 2. 2 diagrammi delle classi specifici per le user story più importanti.
-In questi ultimi,sono rappresentati solo  gli elementi (classi,attributi,metodi...) facenti effettivamente parte della realizzazione della specifica user story
+(In questi ultimi, sono rappresentati solo  gli elementi (classi,attributi,metodi...) facenti effettivamente parte della realizzazione della specifica user story)
 
-- DIAGRAMMA DELLE CLASSI GENERALE
-Questo è un diagramma rappresentante tutte le classi coinvolte nell'esecuzione del programma, con i loro attributi,metodi e relazioni
+- **DIAGRAMMA DELLE CLASSI GENERALE**
+Questo è un diagramma rappresentante tutte le classi coinvolte nell'esecuzione del programma, con i loro attributi, metodi e relazioni
 N.B. le classi segnate come "control" sono classi Singleton.
 
 ![UMLtotale](./img/UMLtotale.PNG)
 
-- DIAGRAMMA DELLE CLASSI "GIOCA"
+- **DIAGRAMMA DELLE CLASSI "GIOCA"**
 Questo diagramma rappresenta tutte le classi (con opportuni metodi e attributi) coinvolte nella realizzazione della user story: "come giocatore desidero avviare una partita"
 
 ![UMLgioca](./img/UMLgioca.PNG)
 
-- DIAGRAMMA DELLE CLASSI "COLPISCI"
+- **DIAGRAMMA DELLE CLASSI "COLPISCI"**
 Questo diagramma rappresenta le classi coinvolte nella realizzazione della user story: "Come giocatore voglio effettuare un tentativo per colpire una nave"
 
 ![UMLcolpisci](./img/UMLcolpisci.PNG)
 
 ### 5.2) DIAGRAMMA DI SEQUENZA
+di seguito si mostrano due diagrammi di sequenza relativi rispettivamente alle user stories:
+- come giocatore voglio iniziare una partita 
+- come giocatore voglio effettuare un tentativo per colpire una nave
+
+in questi diagrammi si mostra come i vari oggetti delle classi comunichino tra di loro per realizzare le user story.
 
 ![Diagrammasequenzagioca](./img/Diagrammasequenzagioca.png)
 
@@ -246,8 +270,8 @@ Questo diagramma rappresenta le classi coinvolte nella realizzazione della user 
 
 ---
 ## 6)RIEPILOGO DEI TEST
-Tutti i casi di test che sono stati eseguiti sono della categoria BlackBox.
-I casi di test sulle classi boundary non sono stati eseguiti perché essi dovrebbe controllare ogni singolo inserimento dell’utente, cosa che i casi di test automatici non possono prevedere.
+Tutti i casi di test sono stati eseguiti con la metodologia BlackBox.
+I casi di test sulle classi boundary non sono stati eseguiti perché essi dovrebbero controllare ogni singolo inserimento dell’utente, cosa che i casi di test automatici non possono prevedere.
 Le classi su cui non sono stati eseguiti i test sono le seguenti:
 1) Il package eccezioni con le sue classi: CloneException, NumeroCoordinateException e PosizioneException
 2) Il package UI con le sue classi: Comando e Stampa
@@ -256,16 +280,16 @@ Le classi su cui non sono stati eseguiti i test sono le seguenti:
 Casi di test per il package app:
 Sono stati generati casi di test automatici in JUnit per il package app contenente una sola  classe: 
 
-- I test AppTest riguardano l’avvio con paramentro “-h” e “- -help”, in particolare che non restituisca vuoto. 
+- AppTest; I test riguardano l’avvio con paramentro “-h” e “- -help”, in particolare che non restituisca vuoto. 
 
 Casi di test per la package logic: 
 Sono stati generati casi di test automatici in JUnit per il package logic che si suddividono in 3 diverse classi che sono:
 
 - ControlliTest; I test  riguardano i controlli per l’input, sia in caso di input validi che non validi.
 
-- GrigliaLogicTest; I test su GrigliaLogicTest riguardano i colpi e i lo stato delle celle delle navi, le loro coordinate, le dimensioni delle navi e il loro stato (Affondato, Colpito, ecc...).
+- GrigliaLogicTest; I test riguardano i colpi e i lo stato delle celle delle navi, le loro coordinate, le dimensioni delle navi e il loro stato (Affondato, Colpito, ecc...).
 
-- PartitaLogicTest; I test su PartitaLogicTest riguardano i controlli sullo stato della partita, sul colpo (se esso è andato a vuoto o no), sul tempo, sulle dimensioni della griglia di gioco, sugli errori per livello(FACILE, MEDIO E DIFFICILE)  e sulla loro impostazione.
+- PartitaLogicTest; I test riguardano i controlli sullo stato della partita, sul colpo (se esso è andato a vuoto o no), sul tempo, sulle dimensioni della griglia di gioco, sugli errori per livello (FACILE, MEDIO E DIFFICILE)  e sulla loro impostazione.
 
 
 Casi di test per il package nave:
@@ -280,35 +304,51 @@ Sono stati generati casi di test automatici in JUnit per il package nave che si 
 
 
 
-- NaveTest; I test su NaveTest riguardano l’impostare correttamente le dimensioni, le coordinate e lo stato della nave (se essa è stata affondata o no).
+- NaveTest; I test riguardano l’impostare correttamente le dimensioni, le coordinate e lo stato della nave (se essa è stata affondata o no).
 
-- CoordinataTest; I test su CoordinateTest riguardano la corretta restituzione delle righe e delle colonne, dello stato del colpo, delle coordinate delle navi e della loro clonazione (una volta saputo le coordinate delle navi, esse vengono clonate e impostate sulla griglia di gioco).
+- CoordinataTest; I test riguardano la corretta restituzione delle righe e delle colonne, dello stato del colpo, delle coordinate delle navi e della loro clonazione (una volta saputo le coordinate delle navi, esse vengono clonate e impostate sulla griglia di gioco).
 
 
 
 Casi di test per il package partita:
 Sono stati generati casi di test automatici in JUnit per il package partita che si suddividono in 2 diverse classi che sono:
 
-- GrigliaTest; I test su GrigliaTest riguardano la verifica del numero di righe e di colonne, il corretto valore della singola cella,  la dimensione delle navi, lo stato delle navi e lo stato del colpo.
+- GrigliaTest; I test riguardano la verifica del numero di righe e di colonne, il corretto valore della singola cella,  la dimensione delle navi, lo stato delle navi e lo stato del colpo.
 
-- PartitaTest; I test su PartitaTest riguardano l’impostazione del livello e i relativi numeri di errori, controllo sugli errori e il loro settaggio, controllo sullo stato dei colpi e della partita, impostazione della griglia di gioco e rispettive dimensioni e il cotrollo sul settaggio del tempo di gioco.
+- PartitaTest; I test riguardano l’impostazione del livello e i relativi numeri di errori, controllo sugli errori e il loro settaggio, controllo sullo stato dei colpi e della partita, impostazione della griglia di gioco e rispettive dimensioni e il cotrollo sul settaggio del tempo di gioco.
 
 
 
 Casi di test per il package utility:
 Sono stati generati casi di test automatici in JUnit per il package utility che si suddividono in 4 diverse classi che sono:
 
-- DifficoltaTest; I test su DifficoltaTest riguardano l’impostazione della difficoltà.
+- DifficoltaTest; I test riguardano l’impostazione della difficoltà.
 
-- DimensioniTest; I test su DimensioniTest riguardano il controllo sulle dimensioni delle navi e sul numero di esemplari per nave.
+- DimensioniTest; I test riguardano il controllo sulle dimensioni delle navi e sul numero di esemplari per nave.
 
-- TabellaTest; I test su TabellaTest riguardano l’impostazione della dimensione della griglia di gioco.
+- TabellaTest; I test riguardano l’impostazione della dimensione della griglia di gioco.
 
-- TempoTest; I test su TempoTest riguardano la corretta restituzione del tempo impostato.
+- TempoTest; I test riguardano la corretta restituzione del tempo impostato.
 
 
 ---
 ## 7)MANUALE UTENTE
+**INIZIO LEGENDA:**
+
+Colpo a vuoto (acqua):
+
+![Acqua](./img/Acqua.png)
+
+Colpo andato a segno (nave colpita):
+
+![colpito](./img/colpito.png)
+
+Nave:
+
+![nave](./img/nave.png)
+
+**FINE LEGENDA**
+
 Nel caso l'utente avvii il programma senza inserire nessun parametro verrà mostrato questo:
 
 ![Descrizione](./img/Descrizione.jpg)
@@ -333,7 +373,7 @@ Nel caso l'utente (a partita in corso) inserisca il comando "/svelagriglia" verr
 
 ![StampaGriglia](./img/StampaGriglia.jpg)
 
-Nel caso l'utente inserisca il comando "/mostralivello" verrà visualizzato la difficoltà alla quale l'utente sta giocando, la difficoltà è impostabile quando la partita non è iniziata (tramite i comandi "/facile", "/medio", "/difficile"; è possibile aggiungere accanto al comando un numero, quel numero diventerà il numero massimo di tentativi falliti per la difficoltà; in caso venga scelta questa opzione bisognerà riselezionare il livello per visualizzare la modifica su di esso (es: se si dovesse digitare "/facile 20" per poter usufruire del nuovo numero di tentativi fallibili bisogna digitare di nuovo "/facile"). In alternativa è possivile inserire il comando "/tentativi numero" che andrà ad impostare il numero massimo di tentativi falliti al numero inserito) e non è modificabile a partita in corso:
+Nel caso l'utente inserisca il comando "/mostralivello" verrà visualizzato la difficoltà alla quale l'utente sta giocando, la difficoltà è impostabile quando la partita non è iniziata (tramite i comandi "/facile", "/medio", "/difficile"; è possibile aggiungere accanto al comando un numero, quel numero diventerà il numero massimo di tentativi falliti per la difficoltà; in caso venga scelta questa opzione bisognerà riselezionare il livello per visualizzare la modifica su di esso (es: se si dovesse digitare "/facile 20" per poter usufruire del nuovo numero di tentativi fallibili bisogna digitare di nuovo "/facile"). In alternativa è possibile inserire il comando "/tentativi numero" che andrà ad impostare il numero massimo di tentativi falliti al numero inserito) e non è modificabile a partita in corso:
 
 ![mostralivello](./img/mostralivello.jpg)
 
@@ -386,6 +426,27 @@ Nel caso l'utente inserisca il comando "/esci" prima gli verrà chiesta conferma
 ---
 
 ## 8)PROCESSO DI SVILUPPO E ORGANIZZAZIONE DEL LAVORO
+Per questo progetto è stato adoperato un approccio definito Scrum il quale è un framework agile, incrementale ed iterativo per lo sviluppo di prodotti, applicazioni e servizi.
+Scrum è una modalità pianificata e strutturata con la quale è possibile costruire soluzioni complesse. Lo Scrum si basa sul concetto che la conoscenza derivi dall'esperienza e che le decisioni vadano prese alla luce di ciò che si conosce.
+Il progetto è stato suddiviso in tre sprint separati, ognuno dei quali aveva uno scopo finale specifico.
+
+**WORKFLOW UTILIZZATO**
+Il workflow utilizzato per ogni Sprint è organizzato nel seguente modo:
+- veniva creato l'issue su GitHub e veniva assegnato ad uno o due membri del gruppo.
+- una volta iniziato l'issue la corrispondente Card della Board veniva spostata dalla Colonna "To Do" alla colonna "In Progress" e veniva creato un branch relativo all'issue da risolvere.
+- una volta terminato lo sviluppo dell'issue veniva creata la relativa Pull Request che descriveva tutte le principali implementazioni effettuate, assegnando uno o più Reviewer (a seconda della difficoltà dell'issue) e la Card veniva spostata in "Review".
+- nel caso in cui venivano segnalate modifiche da effettuare (errori, miglioramenti, ecc....) il reviewer doveva notificare e possibilmente suggerire una soluzione all'utente/i a cui era stata assegnata l'issue.
+- quando la Review aveva esito positivo si poteva effettuare il merge del branch all'interno del master branch, eliminando il branch dell'issue e la card veniva spostata in "Ready".
+- al termine dello Sprint, se le issue erano state risolte nel modo corretto le Card venivano spostate in "Done".
+
+**UTILIZZO DELLE BOARD**
+Le Board utilizzate per suddividere le issue ed il loro stato sono composte nel seguente modo:
+**TO DO**: dove le issue devono ancora essere prese in carico.
+**IN PROGRESS**: dove le issue sono in sviluppo da parte di una persona.
+**REVIEW**: dove le issue vengono revisionate da una o più persone.
+**READY**: dove le issue sono pronte per la revisione del cliente.
+**DONE**: dove le issue sono terminate e pronte per la versione finale del progetto.
+
 Per rispettare al meglio i principi dello Scrum, si è deciso di seguire le seguenti regole:
 - all’inizio di ogni sprint c’è stata una riunione di gruppo riguardante lo sprint backlog e la divisione delle issue, oltre che la presa visione di eventuali errori segnalati nello sprint precedente.
 - alla fine di ogni sprint è stata svolta una riunione volta ad effettuare un’ultima revisione su tutto il lavoro svolto e alla stesura dell’analisi retrospettiva
@@ -393,6 +454,7 @@ Per rispettare al meglio i principi dello Scrum, si è deciso di seguire le segu
 In particolare, nei singoli sprint si è lavorato in questo modo:
 
 ### 8.1)SPRINT 0
+
 Dopo una riunione all’inizio dello sprint in cui sono stati divisi i compiti e chiarite le varie modalità di lavoro, ogni membro del gruppo ha lavorato singolarmente seguendo il GitHub Flow. Al presentarsi di difficoltà o dubbi da parte di uno o piu membri del team, sono state svolte brevi riunioni volte a risolverli.
 
 ### 8.2)SPRINT 1
