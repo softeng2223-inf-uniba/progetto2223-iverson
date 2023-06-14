@@ -1,7 +1,8 @@
 package it.uniba.game.logic;
 
 /**
- * <<Control>> Classe utile per svolgere dei controlli di validità di alcuni input dal punto di vista del gioco.
+ * {@literal <<Control>>} Classe utile per svolgere dei controlli di validità
+ * di alcuni input dal punto di vista del gioco.
  */
 public final class Controlli {
     private static Controlli istanza;

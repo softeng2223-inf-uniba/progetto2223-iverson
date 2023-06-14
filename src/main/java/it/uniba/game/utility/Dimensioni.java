@@ -3,10 +3,10 @@ package it.uniba.game.utility;
  * Classe enum che rappresenta i valori di dimensioni.
  */
 public enum Dimensioni {
-    CACCIATORPEDINIERE(0, 2, 4),
-    INCROCIATORE(1, 3, 3),
-    CORAZZATA(2, 4, 2),
-    PORTAEREI(3, 5, 1);
+    CACCIATORPEDINIERE(0, 2, 4), // Dimensioni del cacciatorpediniere (lunghezza, larghezza, altezza)
+    INCROCIATORE(1, 3, 3), // Dimensioni del incrociatore (lunghezza, larghezza, altezza)
+    CORAZZATA(2, 4, 2), // Dimensioni della corazzata (lunghezza, larghezza, altezza)
+    PORTAEREI(3, 5, 1); // Dimensioni della portaerei (lunghezza, larghezza, altezza)
 
     private int dim;
     private int esemplari;

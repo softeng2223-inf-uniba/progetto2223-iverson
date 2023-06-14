@@ -72,7 +72,6 @@ class PartitaLogicTest {
     }
 
 
-
     /**
      * Test per colpo corretto nave più vittoria.
      */

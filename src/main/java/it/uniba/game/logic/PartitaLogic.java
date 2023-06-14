@@ -6,7 +6,7 @@ import it.uniba.game.partita.Partita;
 import it.uniba.game.utility.Tempo;
 
 /**
- * <<Control>> Classe che permette l'utilizzo dei dati della Partita.
+ * {@literal <<Control>>} Classe che permette l'utilizzo dei dati della Partita.
  *  Gestisce l'avvio e la terminazione della partita, l'inserimento dei colpi
  *  e i controlli riguardanti la vittoria/sconfitta del giocatore,
  *  oltre che la manipolazione delle impostazioni della partita.
@@ -121,6 +121,7 @@ public final class PartitaLogic {
 
     /**
      * Metodo che controlla se il tempo del timer é scaduto.
+     * @return restituisce true se è scaduto, false altrimenti
      */
     public boolean controllaTempoScaduto() {
 
