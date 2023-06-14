@@ -1,7 +1,7 @@
 package it.uniba.game.eccezioni;
 
 /**
- * <<Boundary>> Eccezione da lanciare quando la posizione inserita è sbagliata.
+ * {@literal <<Boundary>>} Eccezione da lanciare quando la posizione inserita è sbagliata.
  */
 public class PosizioneException extends Exception {
 

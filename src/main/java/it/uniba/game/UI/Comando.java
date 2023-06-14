@@ -14,7 +14,7 @@ import it.uniba.game.logic.Controlli;
 
 
 /**
- * <<Boundary>> Classe che ha la la funzione di menu
+ * {@literal <<Boundary>>} Classe che ha la la funzione di menu
  * e permette all'utente di inserire i vari comandi e interagire con l'applicazione.
  *
  */
@@ -39,6 +39,7 @@ public class Comando {
      * vari comandi.
      * @throws NumeroCoordinateException se si inseriscono un numero diverso di
      * coordinate rispetto alla sua dimensione.
+     * @throws PosizioneException nel caso in cui si inserisce una posizione non disponibile
      */
     public void menu() throws NumeroCoordinateException, PosizioneException {
         do {
