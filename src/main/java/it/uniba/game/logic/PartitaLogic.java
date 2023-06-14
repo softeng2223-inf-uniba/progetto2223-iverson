@@ -90,12 +90,15 @@ public final class PartitaLogic {
 
         if (grigliaLogic.finepartita()) {
             partita.setInCorso(false);
+            resetGrigliaInstance();
             output[1] = "vittoria";
 
         } else if (controllaTempoScaduto()) {
+            resetGrigliaInstance();
             partita.setInCorso(false);
             output[1] = "tempo";
         } else if ((partita.getNumMaxErrori() - partita.getColpiTotali()) == 0) {
+            resetGrigliaInstance();
             partita.setInCorso(false);
             output[1] = "errori";
         } else {
