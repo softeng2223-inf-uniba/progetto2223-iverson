@@ -8,6 +8,7 @@
   - 3.2) REQUISITI NON FUNZIONALI
 - 4)SYSTEM DESIGN
 - 5)OO DESIGN
+   - 5.1) DIAGRAMMA DELLE CLASSI
    - 5.2) DIAGRAMMA DI SEQUENZA
 - 6)RIEPILOGO DEI TEST
 - 7)MANUALE UTENTE
@@ -214,6 +215,28 @@ Di seguito viene mostrato il diagramma dei package, ovvero uno schema raffiguran
 ---
 ## 5)OO DESIGN
 
+### 5.1)DIAGRAMMA DELLE CLASSI
+Di seguito si mostrano i diagrammi delle classi rappresentanti i concetti principali dell'applicazione da una prospettiva software.
+Sono stati realizzati:
+1. Un diagramma delle classi generale
+2. 2 diagrammi delle classi specifici per le user story più importanti.
+In questi ultimi,sono rappresentati solo  gli elementi (classi,attributi,metodi...) facenti effettivamente parte della realizzazione della specifica user story
+
+- DIAGRAMMA DELLE CLASSI GENERALE
+Questo è un diagramma rappresentante tutte le classi coinvolte nell'esecuzione del programma, con i loro attributi,metodi e relazioni
+N.B. le classi segnate come "control" sono classi Singleton.
+
+![UMLtotale](./img/UMLtotale.PNG)
+
+- DIAGRAMMA DELLE CLASSI "GIOCA"
+Questo diagramma rappresenta tutte le classi (con opportuni metodi e attributi) coinvolte nella realizzazione della user story: "come giocatore desidero avviare una partita"
+
+![UMLgioca](./img/UMLgioca.PNG)
+
+- DIAGRAMMA DELLE CLASSI "COLPISCI"
+Questo diagramma rappresenta le classi coinvolte nella realizzazione della user story: "Come giocatore voglio effettuare un tentativo per colpire una nave"
+
+![UMLcolpisci](./img/UMLcolpisci.PNG)
 
 ### 5.2) DIAGRAMMA DI SEQUENZA
 
