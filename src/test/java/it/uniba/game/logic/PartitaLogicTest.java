@@ -52,7 +52,7 @@ class PartitaLogicTest {
      public void setUp() {
 
          partitaLogic = PartitaLogic.getInstance();
-        
+
 
     }
 
