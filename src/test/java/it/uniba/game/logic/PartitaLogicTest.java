@@ -52,12 +52,7 @@ class PartitaLogicTest {
      public void setUp() {
 
          partitaLogic = PartitaLogic.getInstance();
-         try {
-            partitaLogic.avvia();
-        } catch (NumeroCoordinateException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        
 
     }
 
