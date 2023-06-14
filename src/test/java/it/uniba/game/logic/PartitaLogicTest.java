@@ -71,7 +71,7 @@ class PartitaLogicTest {
         assertEquals(0, partitaLogic.getColpiTotali(), "Errore nei colpi disponibili");
     }
 
- 
+
 
     /**
      * Test per colpo corretto nave più vittoria.

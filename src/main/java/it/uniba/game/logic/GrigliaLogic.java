@@ -79,7 +79,7 @@ public final class GrigliaLogic {
                 triga = RAND.nextInt(griglia.getRighe());
                 tcolonna = RAND.nextInt(griglia.getColonne());
             } while (!griglia.getCella(triga, tcolonna).equals("V"));
-            boolean esitoR = false;
+
             if ((dimnave + triga) < griglia.getRighe()) {
                 boolean esito = true;
                 int i = 0;
@@ -90,11 +90,21 @@ public final class GrigliaLogic {
                     i++;
                 }
                 if (esito) {
-                    esitoR = true;
+                    esitoTrovato = true;
+                    int j = 0;
+                    Coordinata[] coordinate = new Coordinata[dimnave];
+                    while (j < dimnave) {
+                        griglia.setCella(triga + j, tcolonna, "N");
+                        coordinate[j] = new Coordinata(triga + j, tcolonna);
+
+                     j++;
+                    }
+                    return coordinate;
+
                 }
             }
-            boolean esitoC = false;
-            if ((dimnave + tcolonna) < griglia.getColonne() && !esitoR) {
+
+            if ((dimnave + tcolonna) < griglia.getColonne()) {
                 boolean esito = true;
                 int i = 0;
                 while (i < dimnave && esito) {
@@ -104,33 +114,19 @@ public final class GrigliaLogic {
                     i++;
                 }
                 if (esito) {
-                    esitoC = true;
-                }
-            }
-            if (esitoR) {
-                esitoTrovato = true;
-                int i = 0;
-                Coordinata[] coordinate = new Coordinata[dimnave];
-                while (i < dimnave) {
-                    griglia.setCella(triga + i, tcolonna, "N");
-                    coordinate[i] = new Coordinata(triga + i, tcolonna);
+                    esitoTrovato = true;
+                    int j = 0;
+                    Coordinata[] coordinate = new Coordinata[dimnave];
+                    while (j < dimnave) {
+                        griglia.setCella(triga, tcolonna + j, "N");
+                        coordinate[j] = new Coordinata(triga, tcolonna + j);
 
-                    i++;
+                        j++;
                 }
                 return coordinate;
-
-            } else if (esitoC) {
-                esitoTrovato = true;
-                int i = 0;
-                Coordinata[] coordinate = new Coordinata[dimnave];
-                while (i < dimnave) {
-                    griglia.setCella(triga, tcolonna + i, "N");
-                    coordinate[i] = new Coordinata(triga, tcolonna + i);
-
-                    i++;
                 }
-                return coordinate;
             }
+
         } while (!esitoTrovato);
         return null;
     }
